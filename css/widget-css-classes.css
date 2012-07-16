@@ -1,0 +1,9 @@
+.wcssc_copy img, .wcssc_remove img {
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+}
+
+.wcssc_remove img {
+	margin-left: -12px;
+}
