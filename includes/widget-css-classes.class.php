@@ -97,6 +97,12 @@ class WCSSC {
 		// if Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
+		
+		// if Widget Context plugin is enabled, use it's callback
+		} elseif ( in_array( 'widget-context/widget-context.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			$widget_opt = get_option( $widget_obj['callback_original_wc'][0]->option_name );
+		
+		// Default callback
 		} else {
 			$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 		}
