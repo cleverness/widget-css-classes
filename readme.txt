@@ -53,6 +53,18 @@ Features:
 
 == Frequently Asked Questions ==
 
+= Why aren't the classes showing up in my widget? =
+You must make sure you have an HTML element defined for `before_widget` and `after_widget` in your `register_sidebar` functions. This HTML element must have class and id attributes. This plugin will not work if `before_widget` and `after_widget` are blank.
+
+Example:
+`register_sidebar( array(
+	'name'          => 'Sidebar',
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</div>',
+	'before_title'  => '<h2 class="widget-title">',
+	'after_title'   => '</h2>'
+) );`
+
 = How I export the Settings? =
 You can export the Settings from Settings > Widget CSS Classes > Import/Export.
 
