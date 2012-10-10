@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.0
+ * @version 1.1
  */
 
 /**
@@ -93,11 +93,17 @@ class WCSSC {
 		$widget_id              = $params[0]['widget_id'];
 		$widget_obj             = $wp_registered_widgets[$widget_id];
 		$widget_num             = $widget_obj['params'][0]['number'];
+		$widget_css_classes     = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
 
 		// if Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
-		
+			$widget_logic_options = get_option( 'widget_logic' );
+			if ( $widget_logic_options['widget_logic-options-filter'] == 'checked' ) {
+				$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
+			} else {
+				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+			}
+
 		// if Widget Context plugin is enabled, use it's callback
 		} elseif ( in_array( 'widget-context/widget-context.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$widget_opt = get_option( $widget_obj['callback_original_wc'][0]->option_name );
@@ -108,12 +114,16 @@ class WCSSC {
 		}
 
 		// add classes
-		if ( isset( $widget_opt[$widget_num]['classes'] ) && !empty( $widget_opt[$widget_num]['classes'] ) )
-			$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['classes']} ", $params[0]['before_widget'], 1 );
+		if ( $widget_css_classes['type'] != 3 ) {
+			if ( isset( $widget_opt[$widget_num]['classes'] ) && !empty( $widget_opt[$widget_num]['classes'] ) )
+				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['classes']} ", $params[0]['before_widget'], 1 );
+		}
 
 		// add id
-		if ( isset( $widget_opt[$widget_num]['ids'] ) && !empty( $widget_opt[$widget_num]['ids'] ) )
-			$params[0]['before_widget'] = preg_replace( '/id="/', "id=\"{$widget_opt[$widget_num]['ids']} ", $params[0]['before_widget'], 1 );
+		if ( $widget_css_classes['show_id'] == 1 ) {
+			if ( isset( $widget_opt[$widget_num]['ids'] ) && !empty( $widget_opt[$widget_num]['ids'] ) )
+				$params[0]['before_widget'] = preg_replace( '/id="/', "id=\"{$widget_opt[$widget_num]['ids']} ", $params[0]['before_widget'], 1 );
+		}
 
 		// add first, last, even, and odd classes
 		if ( !$widget_number ) {

@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 1.0
+Stable tag: 1.1
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -35,7 +35,7 @@ Features:
 * Adds number classes to widgets
 * Fully translatable
 * Multi-site compatible
-* Compatible with Widget Login plugin
+* Compatible with Widget Login and Widget Context plugins
 * Has filters and hooks for customizing output including class names
 
 [Plugin Website](http://cleverness.org/plugins/widget-css-classes/)
@@ -69,10 +69,20 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.1 =
+* Added support for Widget Context plugin
+* Fixed notices appearing when Widget Logic plugin was enabled but filter was disabled
+* Added Hide option for the Class Field Type in Settings
+* Don't show any previously added IDs in front end if Show Additional Field for ID is set to No
+* Don't show any previously added classes in front end if Class Field Type is set to Hide
+
 = 1.0 =
 * First version
 
 == Upgrade Notice ==
+
+= 1.1 =
+Compatibility fix, bug fix, new feature
 
 = 1.0 =
 First version
@@ -84,6 +94,8 @@ First version
 [Add .first & .last CSS Class Automatically To WordPress Widgets](http://wpshock.com/add-first-last-css-class-automatically-to-wordpress-widgets/)
 
 Plus/Minus Icons from [Farm Fresh Icons](http://www.fatcow.com/free-icons) by Fat Cow Hosting
+
+Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
 
 == License ==
 

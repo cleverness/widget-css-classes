@@ -5,7 +5,7 @@
  * Settings
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.0
+ * @version 1.1
  */
 
 /**
@@ -56,7 +56,8 @@ class WCSSC_Settings {
 	function type_option() {
 		?>
 		<input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Dropdown', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Dropdown', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+        <input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
 	<?php
 	}
 
