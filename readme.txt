@@ -35,7 +35,7 @@ Features:
 * Adds number classes to widgets
 * Fully translatable
 * Multi-site compatible
-* Compatible with Widget Login and Widget Context plugins
+* Compatible with Widget Logic and Widget Context plugins
 * Has filters and hooks for customizing output including class names
 
 [Plugin Website](http://cleverness.org/plugins/widget-css-classes/)
