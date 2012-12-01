@@ -45,7 +45,7 @@ class WCSSC {
 		if ( WCSSC_Loader::$settings['type'] == 2 ) {
 			$preset_values = explode( ';', WCSSC_Loader::$settings['dropdown'] );
 			$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Class', 'widget-css-classes' ) ).":</label>\n";
-			$fields .= "\t<select  name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes'>\n";
+			$fields .= "\t<select name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes'>\n";
 			$fields .= "\t<option value=''>".esc_attr__( 'Select', 'widget-css-classes' )."</option>\n";
 			foreach ( $preset_values as $preset ) {
 				if ( $preset != '' ) {
@@ -122,7 +122,7 @@ class WCSSC {
 		// add id
 		if ( $widget_css_classes['show_id'] == 1 ) {
 			if ( isset( $widget_opt[$widget_num]['ids'] ) && !empty( $widget_opt[$widget_num]['ids'] ) )
-				$params[0]['before_widget'] = preg_replace( '/id="/', "id=\"{$widget_opt[$widget_num]['ids']} ", $params[0]['before_widget'], 1 );
+				$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[$widget_num]['ids']}", $params[0]['before_widget'], 1 );
 		}
 
 		// add first, last, even, and odd classes
