@@ -98,7 +98,7 @@ class WCSSC {
 		// if Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$widget_logic_options = get_option( 'widget_logic' );
-			if ( $widget_logic_options['widget_logic-options-filter'] == 'checked' ) {
+			if ( 'checked' == $widget_logic_options['widget_logic-options-filter'] ) {
 				$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
 			} else {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
@@ -126,34 +126,44 @@ class WCSSC {
 		}
 
 		// add first, last, even, and odd classes
-		if ( !$widget_number ) {
-			$widget_number = array();
-		}
+		if ( $widget_css_classes['show_number'] == 1 || $widget_css_classes['show_location'] == 1 || $widget_css_classes['show_evenodd'] == 1 ) {
+			if ( !$widget_number ) {
+				$widget_number = array();
+			}
 
-		if ( !isset( $arr_registered_widgets[$this_id] ) || !is_array( $arr_registered_widgets[$this_id] ) ) {
-			return $params;
-		}
+			if ( !isset( $arr_registered_widgets[$this_id] ) || !is_array( $arr_registered_widgets[$this_id] ) ) {
+				return $params;
+			}
 
-		if ( isset( $widget_number[$this_id] ) ) {
-			$widget_number[$this_id]++;
-		} else {
-			$widget_number[$this_id] = 1;
-		}
+			if ( isset( $widget_number[$this_id] ) ) {
+				$widget_number[$this_id]++;
+			} else {
+				$widget_number[$this_id] = 1;
+			}
 
-		$class        = 'class="'.apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ).$widget_number[$this_id].' ';
-		$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
-		$widget_last  = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
-		$widget_even  = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
-		$widget_odd   = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
+			$class = 'class="';
 
-		if ( $widget_number[$this_id] == 1 ) {
-			$class .= $widget_first.' '.$widget_odd.' ';
-		} else {
-			$class .= ( ( $widget_number[$this_id] % 2 ) ? $widget_odd.' ' : $widget_even.' ' );
-		}
+			if ( $widget_css_classes['show_number'] == 1 ) {
+				$class .= apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ).$widget_number[$this_id].' ';
+			}
 
-		if ( $widget_number[$this_id] == count( $arr_registered_widgets[$this_id] ) ) {
-			$class .= $widget_last.' ';
+			if ( $widget_css_classes['show_location'] == 1 ) {
+				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
+				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
+				if ( $widget_number[$this_id] == 1 ) {
+					$class .= $widget_first.' ';
+				}
+				if ( $widget_number[$this_id] == count( $arr_registered_widgets[$this_id] ) ) {
+					$class .= $widget_last.' ';
+				}
+			}
+
+			if ( $widget_css_classes['show_evenodd'] == 1 ) {
+				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
+				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
+				$class .= ( ( $widget_number[$this_id] % 2 ) ? $widget_odd.' ' : $widget_even.' ' );
+			}
+
 		}
 
 		$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );

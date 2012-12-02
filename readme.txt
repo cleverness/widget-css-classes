@@ -83,6 +83,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 = 1.2 =
 * Replace ID with custom ID rather than appending to existing ID
+* Added settings to not show numbered widget classes, first/last classes, and even/odd classes
 
 = 1.1 =
 * Added support for Widget Context plugin
