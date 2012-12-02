@@ -84,6 +84,9 @@ class WCSSC_Lib {
 				'show_id'       => 0,
 				'type'          => 1,
 				'dropdown'      => '',
+				'show_number'   => 1,
+				'show_location' => 1,
+				'show_evenodd'  => 1,
 			);
 
 			add_option( 'WCSSC_options', $options );

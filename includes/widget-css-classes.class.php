@@ -164,9 +164,9 @@ class WCSSC {
 				$class .= ( ( $widget_number[$this_id] % 2 ) ? $widget_odd.' ' : $widget_even.' ' );
 			}
 
-		}
+			$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );
 
-		$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );
+		}
 
 		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
