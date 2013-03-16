@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 3.5
-Stable tag: 1.2
+Tested up to: 3.5.1
+Stable tag: 1.2.1
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -81,6 +81,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.2.1 =
+* Added Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
+
 = 1.2 =
 * Replace ID with custom ID rather than appending to existing ID
 * Added settings to not show numbered widget classes, first/last classes, and even/odd classes
@@ -115,6 +118,8 @@ First version
 Plus/Minus Icons from [Farm Fresh Icons](http://www.fatcow.com/free-icons) by Fat Cow Hosting
 
 Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
+
+Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
 
 == License ==
 

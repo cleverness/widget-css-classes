@@ -86,6 +86,7 @@ class WCSSC {
 	 * @since 1.0
 	 */
 	public static function add_widget_classes( $params ) {
+
 		global $wp_registered_widgets, $widget_number;
 
 		$arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
