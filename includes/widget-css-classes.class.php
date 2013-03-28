@@ -95,6 +95,7 @@ class WCSSC {
 		$widget_obj             = $wp_registered_widgets[$widget_id];
 		$widget_num             = $widget_obj['params'][0]['number'];
 		$widget_css_classes     = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
+		$widget_opt             = null;
 
 		// if Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
@@ -107,7 +108,12 @@ class WCSSC {
 
 		// if Widget Context plugin is enabled, use it's callback
 		} elseif ( in_array( 'widget-context/widget-context.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			$widget_opt = get_option( $widget_obj['callback_original_wc'][0]->option_name );
+			$callback = isset($widget_obj['callback_original_wc']) ? $widget_obj['callback_original_wc'] : null;
+			$callback = !$callback && isset($widget_obj['callback']) ? $widget_obj['callback'] : null;
+
+			if ($callback && is_array($widget_obj['callback'])) {
+				$widget_opt = get_option( $callback[0]->option_name );
+			}
 		
 		// Default callback
 		} else {
