@@ -83,6 +83,8 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 = 1.2.1 =
 * Added Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
+* Updated Widget Context compatibility fix plus notice fix by [Joan Piedra](http://joanpiedra.com/)
+* Changed jQuery live to on for 1.9 compatibility
 
 = 1.2 =
 * Replace ID with custom ID rather than appending to existing ID
