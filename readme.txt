@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 1.2.1
+Tested up to: 3.7
+Stable tag: 1.2.2
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -81,6 +81,10 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.2.2 =
+* Fix for notice on line 103 when using Widget Logic
+* Tested with WordPress 3.7 beta 1
+
 = 1.2.1 =
 * Added Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
 * Updated Widget Context compatibility fix plus notice fix by [Joan Piedra](http://joanpiedra.com/)
@@ -101,6 +105,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * First version
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+Bug fix
 
 = 1.2 =
 New settings, bug fix

@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.1
+ * @version 1.2.2
  */
 
 /**
@@ -100,7 +100,7 @@ class WCSSC {
 		// if Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 			$widget_logic_options = get_option( 'widget_logic' );
-			if ( 'checked' == $widget_logic_options['widget_logic-options-filter'] ) {
+			if ( isset( $widget_logic_options['widget_logic-options-filter'] ) && 'checked' == $widget_logic_options['widget_logic-options-filter'] ) {
 				$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
 			} else {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
