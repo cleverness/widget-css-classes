@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Widget CSS Classes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 16:23+0100\n"
+"PO-Revision-Date: 2013-10-11 16:45+0100\n"
+"Last-Translator: Tomasz Wesołowski <tomek@ittw.pl>\n"
+"Language-Team: ITTW <tomek@ittw.pl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e;"
+"esc_html__\n"
+"X-Poedit-Basepath: ./\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../widget-css-classes.php:54
+#: ../includes/widget-css-classes-loader.class.php:40
+msgid ""
+"Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
+"wordpress.org/Upgrading_WordPress\">Please update.</a>"
+msgstr ""
+"Widget CSS Classes wymaga WordPress-a w wersji 3.3 lub nowszego. <a href="
+"\"http://codex.wordpress.org/Upgrading_WordPress\">Zaktualizuj.</a>"
+
+#: ../includes/widget-css-classes-library.class.php:31
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: ../includes/widget-css-classes-library.class.php:45
+msgid "Version"
+msgstr "Wersja"
+
+#: ../includes/widget-css-classes-library.class.php:46
+msgid "Donate"
+msgstr "Wesprzyj"
+
+#: ../includes/widget-css-classes-settings.class.php:39
+#: ../includes/widget-css-classes-settings.class.php:42
+msgid "Widget CSS Classes Settings"
+msgstr "Ustawienia"
+
+#: ../includes/widget-css-classes-settings.class.php:43
+msgid "Add Widget Number Classes"
+msgstr "Dodaj numer widgetu jako klasę"
+
+#: ../includes/widget-css-classes-settings.class.php:44
+msgid "Add First/Last Classes"
+msgstr "Dodaj Pierwszy/Ostatni jako klasę"
+
+#: ../includes/widget-css-classes-settings.class.php:45
+msgid "Add Even/Odd Classes"
+msgstr "Dodaj Parzysty/Nieparzysty"
+
+#: ../includes/widget-css-classes-settings.class.php:46
+msgid "Show Additional Field for ID"
+msgstr "Pokaż dodatkowe pole dla ID"
+
+#: ../includes/widget-css-classes-settings.class.php:47
+msgid "Class Field Type"
+msgstr "Typ wybory klasy"
+
+#: ../includes/widget-css-classes-settings.class.php:48
+msgid "Define Classes for Dropdown"
+msgstr "Zdefiniuj klasy dla Listy"
+
+#: ../includes/widget-css-classes-settings.class.php:53
+#: ../includes/widget-css-classes-settings.class.php:60
+#: ../includes/widget-css-classes-settings.class.php:67
+#: ../includes/widget-css-classes-settings.class.php:74
+msgid "Yes"
+msgstr "Tak"
+
+#: ../includes/widget-css-classes-settings.class.php:54
+#: ../includes/widget-css-classes-settings.class.php:61
+#: ../includes/widget-css-classes-settings.class.php:68
+#: ../includes/widget-css-classes-settings.class.php:75
+msgid "No"
+msgstr "Nie"
+
+#: ../includes/widget-css-classes-settings.class.php:81
+msgid "Text"
+msgstr "Tekst"
+
+#: ../includes/widget-css-classes-settings.class.php:82
+msgid "Dropdown"
+msgstr "Lista"
+
+#: ../includes/widget-css-classes-settings.class.php:83
+msgid "Hide"
+msgstr "Ukryj"
+
+#: ../includes/widget-css-classes-settings.class.php:115
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: ../includes/widget-css-classes-settings.class.php:120
+msgid "Settings Imported"
+msgstr "Ustawienia zostały zaimportowane"
+
+#: ../includes/widget-css-classes-settings.class.php:123
+msgid "Invalid Settings File"
+msgstr "Błędny plik ustawień"
+
+#: ../includes/widget-css-classes-settings.class.php:126
+msgid "No Settings File Selected"
+msgstr "Nie wybrano pliku z ustawieniami"
+
+#: ../includes/widget-css-classes-settings.class.php:197
+msgid "Widget CSS Classes"
+msgstr "Widget CSS Classes"
+
+#: ../includes/widget-css-classes-settings.class.php:243
+msgid "Import/Export Settings"
+msgstr "Import/Export Ustawienia"
+
+#: ../includes/widget-css-classes-settings.class.php:245
+msgid "Export Settings"
+msgstr "Ustawienia eksportu"
+
+#: ../includes/widget-css-classes-settings.class.php:249
+msgid "Import Settings"
+msgstr "Ustawienia importu"
+
+#: ../includes/widget-css-classes.class.php:34
+msgid "CSS ID"
+msgstr "CSS ID"
+
+#: ../includes/widget-css-classes.class.php:40
+#: ../includes/widget-css-classes.class.php:47
+msgid "CSS Class"
+msgstr "CSS Klasa"
+
+#: ../includes/widget-css-classes.class.php:49
+msgid "Select"
+msgstr "Wybierz"
+
+#: ../includes/widget-css-classes.class.php:154
+msgid "widget-"
+msgstr "widget-"
+
+#: ../includes/widget-css-classes.class.php:158
+msgid "widget-first"
+msgstr "widget-first"
+
+#: ../includes/widget-css-classes.class.php:159
+msgid "widget-last"
+msgstr "widget-last"
+
+#: ../includes/widget-css-classes.class.php:169
+msgid "widget-even"
+msgstr "widget-even"
+
+#: ../includes/widget-css-classes.class.php:170
+msgid "widget-odd"
+msgstr "widget-odd"
