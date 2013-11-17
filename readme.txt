@@ -7,14 +7,15 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 3.7
-Stable tag: 1.2.2
+Tested up to: 3.7.1
+Stable tag: 1.2.3
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
 == Description ==
 
-Widget CSS Classes gives you the ability to add custom classes and ids to your WordPress widgets.
+Widget CSS Classes gives you the ability to add custom classes and ids to your WordPress widgets. Please note that it doesn't allow you to enter custom CSS. You'll need to edit your theme's style.css or add another
+plugin that allows you to input custom CSS.
 
 This plugin also adds additional classes to help you style your widgets easier:
 
@@ -28,7 +29,7 @@ Features:
 
 * Adds a text field to a widget for defining a class
 * You can specify multiple classes by putting a space between them
-* Optionally adds a dropdown menu with predefined classes instead of a text field
+* Optionally adds a drop-down menu with predefined classes instead of a text field
 * Optionally adds a text field to add an id to a widget
 * Adds first and last classes to the first and last widget instances in a sidebar
 * Adds even/odd classes to widgets
@@ -54,7 +55,8 @@ Features:
 == Frequently Asked Questions ==
 
 = Why aren't the classes showing up in my widget? =
-You must make sure you have an HTML element defined for `before_widget` and `after_widget` in your `register_sidebar` functions. This HTML element must have class and id attributes. This plugin will not work if `before_widget` and `after_widget` are blank.
+You need to make sure you have an HTML element defined for `before_widget` and `after_widget` in your `register_sidebar` functions, usually located in your theme's functions.php (_/wp-content/themes/yourtheme/functions
+.php_). This HTML element must have class and id attributes. This plugin will not work if `before_widget` and `after_widget` are blank.
 
 Example:
 `register_sidebar( array(
@@ -81,6 +83,10 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.2.3 =
+* Added Polish translation, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
+* Added Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
+
 = 1.2.2 =
 * Fix for notice on line 103 when using Widget Logic
 * Tested with WordPress 3.7 beta 1
@@ -106,6 +112,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Upgrade Notice ==
 
+= 1.2.3 =
+New translations
+
 = 1.2.2 =
 Bug fix
 
@@ -129,6 +138,10 @@ Plus/Minus Icons from [Farm Fresh Icons](http://www.fatcow.com/free-icons) by Fa
 Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
 
 Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
+
+Polish translation added, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
+
+Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
 
 == License ==
 
