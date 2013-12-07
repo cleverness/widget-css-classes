@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 3.7.1
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -94,6 +94,10 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.2.4 =
+* Added Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
+* Added support for WP Page Widget
+
 = 1.2.3 =
 * Added Polish translation, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
 * Added Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
@@ -122,6 +126,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * First version
 
 == Upgrade Notice ==
+
+= 1.2.4 =
+New translation, added support for WP Page Widget
 
 = 1.2.3 =
 New translations
@@ -153,6 +160,8 @@ Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/us
 Polish translation added, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
 
 Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
+
+Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
 
 == License ==
 
