@@ -119,9 +119,13 @@ class WCSSC {
 		// Default callback
 		else {
 			// Check if WP Page Widget is in use
-			$custom_sidebarcheck = get_post_meta( get_the_ID(), '_customize_sidebars' );
+			global $post;
+			$id = ( isset( $post->ID ) ? get_the_ID() : NULL );
+			if ( isset( $id ) && get_post_meta( $id, '_customize_sidebars' ) ) {
+				$custom_sidebarcheck = get_post_meta( $id, '_customize_sidebars' );
+			}
 			if ( isset( $custom_sidebarcheck[0] ) && ( $custom_sidebarcheck[0] == 'yes' ) ) {
-				$widget_opt = get_option( 'widget_'.get_the_id().'_'.substr($widget_obj['callback'][0]->option_name, 7) );
+				$widget_opt = get_option( 'widget_'.$id.'_'.substr($widget_obj['callback'][0]->option_name, 7) );
 			}
 			else {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
