@@ -126,8 +126,7 @@ class WCSSC {
 			}
 			if ( isset( $custom_sidebarcheck[0] ) && ( $custom_sidebarcheck[0] == 'yes' ) ) {
 				$widget_opt = get_option( 'widget_'.$id.'_'.substr($widget_obj['callback'][0]->option_name, 7) );
-			}
-			else {
+			} elseif ( isset( $widget_obj['callback'][0]->option_name ) ) {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 			}
 		}
