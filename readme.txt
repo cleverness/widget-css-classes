@@ -95,6 +95,8 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 == Changelog ==
 
 = 1.2.7 =
+* Added missing escaping from settings page
+* Enqueue admin scripts on correct hook
 * Fixed undefined notice when option was not found
 
 = 1.2.6 =

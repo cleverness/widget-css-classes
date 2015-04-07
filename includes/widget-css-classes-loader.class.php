@@ -62,7 +62,7 @@ class WCSSC_Loader {
 	 * @since 1.0
 	 */
 	private static function call_wp_hooks() {
-		add_action( 'admin_head', array( __CLASS__, 'enqueue_scripts_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts_styles' ) );
 		add_action( 'in_widget_form', array( 'WCSSC', 'extend_widget_form' ), 10, 3 );
 		add_filter( 'widget_update_callback', array( 'WCSSC', 'update_widget' ), 10, 2 );
 		add_filter( 'plugin_action_links', array( 'WCSSC_Lib', 'add_settings_link' ), 10, 2 );

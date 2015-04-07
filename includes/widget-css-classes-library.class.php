@@ -42,8 +42,8 @@ class WCSSC_Lib {
 	 */
 	public static function admin_footer() {
 		$plugin_data = get_plugin_data( WCSSC_FILE );
-		echo $plugin_data['Title'].' | '.esc_attr__( 'Version', 'widget-css-classes' ).' '.$plugin_data['Version'].' | '.$plugin_data['Author'].
-			' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">'.esc_attr__( 'Donate', 'widget-css-classes' ).'</a>
+		echo $plugin_data['Title'].' | '.esc_attr__( 'Version', 'widget-css-classes' ).' '.esc_html( $plugin_data['Version'] ).' | '.$plugin_data['Author'].
+			' | <a href="http://codebrainmedia.com">CodeBrain Media</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">'.esc_attr__( 'Donate', 'widget-css-classes' ).'</a>
 		<br />';
 	}
 

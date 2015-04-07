@@ -50,37 +50,37 @@ class WCSSC_Settings {
 	}
 
 	function show_number_option() { ?>
-    <input type="radio" name="<?php echo $this->general_key.'[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo $this->general_key.'[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	function show_location_option() {
 		?>
-    <input type="radio" name="<?php echo $this->general_key.'[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo $this->general_key.'[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	function show_evenodd_option() {
 		?>
-    <input type="radio" name="<?php echo $this->general_key.'[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo $this->general_key.'[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	function show_id_option() {
 		?>
-		<input type="radio" name="<?php echo $this->general_key.'[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo $this->general_key.'[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	function type_option() {
 		?>
-		<input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Dropdown', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-        <input type="radio" name="<?php echo $this->general_key.'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Dropdown', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+        <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
 	<?php
 	}
 
@@ -90,23 +90,23 @@ class WCSSC_Settings {
 			foreach ( $presets as $key => $preset ) {
 				if ( $preset != '' ) {
 				?>
-					<p><input type="text" name="<?php echo $this->general_key.'[dropdown]['.$key.']'; ?>" value="<?php echo $preset; ?>" />
-					&nbsp;&nbsp;&nbsp;&nbsp;<a class="wcssc_remove" href="#"><img src="<?php echo WCSSC_PLUGIN_URL; ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
+					<p><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
+					&nbsp;&nbsp;&nbsp;&nbsp;<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
 				<?php
 				}
 			}
 			?>
 			<p class="wcssc_dropdown">
-				<input type="text" name="<?php echo $this->general_key.'[dropdown][]'; ?>" value="" />
-				<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo WCSSC_PLUGIN_URL; ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
-				<a class="wcssc_remove" href="#"><img src="<?php echo WCSSC_PLUGIN_URL; ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a>
+				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="" />
+				<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
+				<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a>
 			</p>
 		<?php
 		} else {
 			?>
-			<p class="wcssc_dropdown"><input type="text" name="<?php echo $this->general_key.'[dropdown][]'; ?>" value="<?php echo $this->general_settings['dropdown']; ?>" />
-			<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo WCSSC_PLUGIN_URL; ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
-			<a class="wcssc_remove" href="#"><img src="<?php echo WCSSC_PLUGIN_URL; ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
+			<p class="wcssc_dropdown"><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="<?php echo esc_attr( $this->general_settings['dropdown'] ); ?>" />
+			<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
+			<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
 		<?php
 		}
 	}
@@ -132,7 +132,7 @@ class WCSSC_Settings {
 		}
 
 		if ( isset( $wcssc_message ) && $wcssc_message != '' ) {
-			echo '<div class="updated"><p>'.$wcssc_message.'</p></div>';
+			echo '<div class="updated"><p>'.esc_html( $wcssc_message ).'</p></div>';
 		}
 
 		// export settings
@@ -167,7 +167,7 @@ class WCSSC_Settings {
 				$wcssc_message = 3;
 			}
 
-			wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message='.$wcssc_message ) );
+			wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message='.esc_attr( $wcssc_message ) ) );
 			exit;
 		}
 	}
@@ -229,11 +229,10 @@ class WCSSC_Settings {
 	function plugin_options_tabs() {
 		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
-		screen_icon( 'options-general' );
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $this->plugin_tabs as $tab_key => $tab_caption ) {
 			$active = $current_tab == $tab_key ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab '.$active.'" href="?page='.$this->plugin_key.'&amp;tab='.$tab_key.'">'.$tab_caption.'</a>';
+			echo '<a class="nav-tab '.esc_attr( $active ).'" href="?page='.esc_attr( $this->plugin_key ).'&amp;tab='.esc_attr( $tab_key ).'">'.esc_html( $tab_caption ).'</a>';
 		}
 		echo '</h2>';
 	}
