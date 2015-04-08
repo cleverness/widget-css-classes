@@ -25,27 +25,28 @@ class WCSSC {
 	 */
 	public static function extend_widget_form( $widget, $return, $instance ) {
 		if ( !isset( $instance['classes'] ) ) $instance['classes'] = null;
-
-		$fields = "<p>\n";
+		$fields = '';
 
 		// show id field
 		if ( WCSSC_Loader::$settings['show_id'] == 1 ) {
 			if ( !isset( $instance['ids'] ) ) $instance['ids'] = null;
-			$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-ids'>".apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) ).":</label>
-			<input type='text' name='widget-{$widget->id_base}[{$widget->number}][ids]' id='widget-{$widget->id_base}-{$widget->number}-ids' value='{$instance['ids']}'/><br />\n";
+			$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-ids'>".apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) ).":</label>
+			<input type='text' name='widget-{$widget->id_base}[{$widget->number}][ids]' id='widget-{$widget->id_base}-{$widget->number}-ids' value='{$instance['ids']}' class='widefat' /></p>\n";
 		}
+
+		$fields .= "<p>\n";
 
 		// show text field
 		if ( WCSSC_Loader::$settings['type'] == 1 ) {
 			$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Class', 'widget-css-classes' ) ).":</label>
-			<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}'/>\n";
+			<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' />\n";
 		}
 
 		// show dropdown
 		if ( WCSSC_Loader::$settings['type'] == 2 ) {
 			$preset_values = explode( ';', WCSSC_Loader::$settings['dropdown'] );
 			$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Class', 'widget-css-classes' ) ).":</label>\n";
-			$fields .= "\t<select name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes'>\n";
+			$fields .= "\t<select name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' class='widefat'>\n";
 			$fields .= "\t<option value=''>".esc_attr__( 'Select', 'widget-css-classes' )."</option>\n";
 			foreach ( $preset_values as $preset ) {
 				if ( $preset != '' ) {
