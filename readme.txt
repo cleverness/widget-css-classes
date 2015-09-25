@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -93,6 +93,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 4. Generated HTML
 
 == Changelog ==
+
+= 1.2.8 =
+* Added text domain to plugin header in preperation for automatic language translations
 
 = 1.2.7 =
 * Changed class and ID fields to full-width

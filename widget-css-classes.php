@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: Widget CSS Classes
-Version: 1.2.7
+Version: 1.2.8
 Description: Add custom, first, last, even, odd, and numbered classes to your widgets.
 Author: C.M. Kendrick
 Author URI: http://cleverness.org
 Plugin URI: http://cleverness.org/plugins/widget-css-classes
+Text Domain: widget-css-classes
 */
 
 add_action( 'init', 'widget_css_classes_loader' );
@@ -18,11 +19,11 @@ add_action( 'wp_loaded', 'widget_css_classes_frontend_hook' );
 function widget_css_classes_loader() {
 
 	$languages_path = plugin_basename( dirname( __FILE__ ).'/languages' );
-	load_plugin_textdomain( 'widget-css-classes', '', $languages_path );
+	load_plugin_textdomain( 'widget-css-classes', FALSE, $languages_path );
 
 	if ( is_admin() ) {
 
-		if ( !defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.2.4' );
+		if ( !defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.2.8' );
 		if ( !defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
 		if ( !defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
 		if ( !defined( 'WCSSC_PLUGIN_DIR' ) ) define( 'WCSSC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
