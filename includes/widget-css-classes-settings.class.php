@@ -91,22 +91,22 @@ class WCSSC_Settings {
 				if ( $preset != '' ) {
 				?>
 					<p><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
-					&nbsp;&nbsp;&nbsp;&nbsp;<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
+					<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
 				<?php
 				}
 			}
 			?>
 			<p class="wcssc_dropdown">
 				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="" />
-				<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
-				<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a>
+				<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><span class="dashicons dashicons-plus-alt"></span></a>
+				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 			</p>
 		<?php
 		} else {
 			?>
 			<p class="wcssc_dropdown"><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="<?php echo esc_attr( $this->general_settings['dropdown'] ); ?>" />
-			<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-plus-icon.png" alt="+" /></a>
-			<a class="wcssc_remove" href="#"><img src="<?php echo esc_attr( WCSSC_PLUGIN_URL ); ?>/images/bullet-toggle-minus-icon.png" alt="-" /></a></p>
+			<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><span class="dashicons dashicons-plus-alt"></span></a>
+			<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
 		<?php
 		}
 	}

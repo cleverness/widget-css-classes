@@ -1,9 +1,8 @@
-.wcssc_copy img, .wcssc_remove img {
+.wcssc_copy span, .wcssc_remove span {
 	vertical-align: middle;
 	margin: 0;
 	padding: 0;
 }
-
-.wcssc_remove img {
-	margin-left: -12px;
+.wcssc_copy, .wcssc_remove {
+	text-decoration: none;
 }
