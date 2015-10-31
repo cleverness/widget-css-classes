@@ -229,12 +229,12 @@ class WCSSC_Settings {
 	function plugin_options_tabs() {
 		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
-		echo '<h2 class="nav-tab-wrapper">';
+		echo '<h1 class="nav-tab-wrapper">';
 		foreach ( $this->plugin_tabs as $tab_key => $tab_caption ) {
 			$active = $current_tab == $tab_key ? 'nav-tab-active' : '';
 			echo '<a class="nav-tab '.esc_attr( $active ).'" href="?page='.esc_attr( $this->plugin_key ).'&amp;tab='.esc_attr( $tab_key ).'">'.esc_html( $tab_caption ).'</a>';
 		}
-		echo '</h2>';
+		echo '</h1>';
 	}
 
 	function importexport_fields() {
