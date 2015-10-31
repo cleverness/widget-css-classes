@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 4.3
-Stable tag: 1.2.8
+Tested up to: 4.4
+Stable tag: 1.2.9
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -94,8 +94,12 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.2.9 =
+* Changed h2 to h1 on settings page
+* Changed plus/minus icons on settings page to dashicons
+
 = 1.2.8 =
-* Added text domain to plugin header in preperation for automatic language translations
+* Added text domain to plugin header in preparation for automatic language translations
 
 = 1.2.7 =
 * Changed class and ID fields to full-width
