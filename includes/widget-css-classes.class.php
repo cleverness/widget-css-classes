@@ -74,7 +74,9 @@ class WCSSC {
 	 */
 	public static function update_widget( $instance, $new_instance ) {
 		$instance['classes'] = $new_instance['classes'];
-		$instance['ids']     = $new_instance['ids'];
+		if (WCSSC_Loader::$settings['show_id'] == 1) {
+			$instance['ids']     = $new_instance['ids'];
+		}
 		do_action( 'widget_css_classes_update', $instance, $new_instance );
 		return $instance;
 	}
@@ -116,7 +118,7 @@ class WCSSC {
 				$widget_opt = get_option( $callback[0]->option_name );
 			}
 		}
-		
+
 		// Default callback
 		else {
 			// Check if WP Page Widget is in use
