@@ -81,12 +81,12 @@ class WCSSC_Lib {
 		if ( $version == 0 ) {
 			// add default options
 			$options = array(
-				'show_id'       	=> 0,
-				'type'          	=> 1,
+				'show_id'		=> 0,
+				'type'			=> 1,
 				'defined_classes'	=> '',
-				'show_number'   	=> 1,
-				'show_location' 	=> 1,
-				'show_evenodd'  	=> 1,
+				'show_number'		=> 1,
+				'show_location'		=> 1,
+				'show_evenodd'		=> 1,
 			);
 
 			add_option( 'WCSSC_options', $options );
