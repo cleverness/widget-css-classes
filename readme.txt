@@ -99,6 +99,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * Option to use both defined and text input classes
 * Improvement: Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
 * Fix: Only show stored classes if the field-type in the setting page is correct
+* Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
 
 = 1.2.9 =
 * Changed h2 to h1 on settings page
