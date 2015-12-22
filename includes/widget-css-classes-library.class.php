@@ -103,6 +103,11 @@ class WCSSC_Lib {
 			}
 			if ( $version < 1.3 ) {
 				$general_options         = get_option( 'WCSSC_options' );
+				// Hide option is now 0 instead of 3
+				if ( isset( $general_options['type'] ) && $general_options['type'] == 3 ) {
+					$general_options['type'] = 0;
+				}
+				// dropdown settings are renamed to defined_classes
 				if ( ! isset( $general_options['dropdown'] ) ) {
 					$general_options['dropdown'] = '';
 				}
