@@ -103,7 +103,11 @@ class WCSSC_Lib {
 			}
 			if ( $version < 1.3 ) {
 				$general_options         = get_option( 'WCSSC_options' );
+				if ( ! isset( $general_options['dropdown'] ) ) {
+					$general_options['dropdown'] = '';
+				}
 				$general_options['defined_classes'] = $general_options['dropdown'];
+				unset( $general_options['dropdown'] );
 				update_option( 'WCSSC_options', $general_options );
 			}
 		}
