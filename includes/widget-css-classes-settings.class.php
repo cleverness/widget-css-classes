@@ -45,7 +45,7 @@ class WCSSC_Settings {
 		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', 'widget-css-classes' ), array( $this, 'show_evenodd_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', 'widget-css-classes' ), array( $this, 'show_id_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'type', esc_attr__( 'Class Field Type', 'widget-css-classes' ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'dropdown', esc_attr__( 'Define Classes for Dropdown', 'widget-css-classes' ), array( $this, 'dropdown_option' ), $this->general_key, 'section_general' );
+		add_settings_field( 'defined_classes', esc_attr__( 'Predefine Classes', 'widget-css-classes' ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
 		do_action( 'widget_css_classes_settings' );
 	}
 
@@ -79,33 +79,34 @@ class WCSSC_Settings {
 	function type_option() {
 		?>
 		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Dropdown', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-        <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+        <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
 	<?php
 	}
 
-	function dropdown_option() {
-		$presets = explode( ';', $this->general_settings['dropdown'] );
+	function defined_classes_option() {
+		$presets = explode( ';', $this->general_settings['defined_classes'] );
 		if ( count( $presets ) > 1 ) {
 			foreach ( $presets as $key => $preset ) {
 				if ( $preset != '' ) {
 				?>
-					<p><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
+					<p><input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
 					<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
 				<?php
 				}
 			}
 			?>
-			<p class="wcssc_dropdown">
-				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="" />
-				<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><span class="dashicons dashicons-plus-alt"></span></a>
+			<p class="wcssc_defined_classes">
+				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="" />
+				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 			</p>
 		<?php
 		} else {
 			?>
-			<p class="wcssc_dropdown"><input type="text" name="<?php echo esc_attr( $this->general_key ).'[dropdown][]'; ?>" value="<?php echo esc_attr( $this->general_settings['dropdown'] ); ?>" />
-			<a href="#" class="wcssc_copy" rel=".wcssc_dropdown"><span class="dashicons dashicons-plus-alt"></span></a>
+			<p class="wcssc_defined_classes"><input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
+			<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 			<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
 		<?php
 		}
@@ -178,7 +179,7 @@ class WCSSC_Settings {
 		foreach ( $input as $key => $value ) {
 
 			if ( isset( $input[$key] ) ) {
-				if ( $key == 'dropdown' ) {
+				if ( $key == 'defined_classes' ) {
 					if ( is_array( $value ) ) {
 						$output[$key] = implode( ';', $input[$key] );
 					} else {
