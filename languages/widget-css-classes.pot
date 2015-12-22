@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Widget CSS Classes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-02 15:50-0500\n"
-"PO-Revision-Date: 2012-12-02 15:50-0500\n"
+"POT-Creation-Date: 2015-12-22 23:40+0100\n"
+"PO-Revision-Date: 2015-12-22 23:40+0100\n"
 "Last-Translator: C.M. Kendrick <cindy@cleverness.org>\n"
 "Language-Team:  <cindy@cleverness.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,15 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: ./\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../widget-css-classes.php:54
-#: ../includes/widget-css-classes-loader.class.php:40
-msgid ""
-"Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
-"wordpress.org/Upgrading_WordPress\">Please update.</a>"
-msgstr ""
 
 #: ../includes/widget-css-classes-library.class.php:31
 msgid "Settings"
@@ -31,6 +24,13 @@ msgstr ""
 
 #: ../includes/widget-css-classes-library.class.php:46
 msgid "Donate"
+msgstr ""
+
+#: ../includes/widget-css-classes-loader.class.php:40
+#: ../widget-css-classes.php:55
+msgid ""
+"Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
+"wordpress.org/Upgrading_WordPress\">Please update.</a>"
 msgstr ""
 
 #: ../includes/widget-css-classes-settings.class.php:39
@@ -59,7 +59,7 @@ msgid "Class Field Type"
 msgstr ""
 
 #: ../includes/widget-css-classes-settings.class.php:48
-msgid "Define Classes for Dropdown"
+msgid "Predefined Classes"
 msgstr ""
 
 #: ../includes/widget-css-classes-settings.class.php:53
@@ -81,30 +81,34 @@ msgid "Text"
 msgstr ""
 
 #: ../includes/widget-css-classes-settings.class.php:82
-msgid "Dropdown"
+msgid "Predefined"
 msgstr ""
 
 #: ../includes/widget-css-classes-settings.class.php:83
+msgid "Both"
+msgstr ""
+
+#: ../includes/widget-css-classes-settings.class.php:84
 msgid "Hide"
 msgstr ""
 
-#: ../includes/widget-css-classes-settings.class.php:115
+#: ../includes/widget-css-classes-settings.class.php:116
 msgid "Import/Export"
 msgstr ""
 
-#: ../includes/widget-css-classes-settings.class.php:120
+#: ../includes/widget-css-classes-settings.class.php:121
 msgid "Settings Imported"
 msgstr ""
 
-#: ../includes/widget-css-classes-settings.class.php:123
+#: ../includes/widget-css-classes-settings.class.php:124
 msgid "Invalid Settings File"
 msgstr ""
 
-#: ../includes/widget-css-classes-settings.class.php:126
+#: ../includes/widget-css-classes-settings.class.php:127
 msgid "No Settings File Selected"
 msgstr ""
 
-#: ../includes/widget-css-classes-settings.class.php:197
+#: ../includes/widget-css-classes-settings.class.php:198
 msgid "Widget CSS Classes"
 msgstr ""
 
@@ -120,35 +124,31 @@ msgstr ""
 msgid "Import Settings"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:34
+#: ../includes/widget-css-classes.class.php:38
 msgid "CSS ID"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:40
-#: ../includes/widget-css-classes.class.php:47
-msgid "CSS Class"
+#: ../includes/widget-css-classes.class.php:44
+#: ../includes/widget-css-classes.class.php:51
+msgid "CSS Classes"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:49
-msgid "Select"
-msgstr ""
-
-#: ../includes/widget-css-classes.class.php:147
+#: ../includes/widget-css-classes.class.php:191
 msgid "widget-"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:151
+#: ../includes/widget-css-classes.class.php:195
 msgid "widget-first"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:152
+#: ../includes/widget-css-classes.class.php:196
 msgid "widget-last"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:162
+#: ../includes/widget-css-classes.class.php:206
 msgid "widget-even"
 msgstr ""
 
-#: ../includes/widget-css-classes.class.php:163
+#: ../includes/widget-css-classes.class.php:207
 msgid "widget-odd"
 msgstr ""
