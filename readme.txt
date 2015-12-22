@@ -94,6 +94,12 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.3.0 =
+* Change dropdown to checkboxes for multiple select
+* Option to use both defined and text input classes
+* Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
+* Only show stored classes if the field-type in the setting page is correct
+
 = 1.2.9 =
 * Changed h2 to h1 on settings page
 * Changed plus/minus icons on settings page to dashicons
