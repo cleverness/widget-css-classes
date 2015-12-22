@@ -45,7 +45,7 @@ class WCSSC_Settings {
 		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', 'widget-css-classes' ), array( $this, 'show_evenodd_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', 'widget-css-classes' ), array( $this, 'show_id_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'type', esc_attr__( 'Class Field Type', 'widget-css-classes' ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'defined_classes', esc_attr__( 'Predefine Classes', 'widget-css-classes' ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
+		add_settings_field( 'defined_classes', esc_attr__( 'Predefined Classes', 'widget-css-classes' ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
 		do_action( 'widget_css_classes_settings' );
 	}
 
