@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Widget CSS Classes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-22 23:40+0100\n"
+"PO-Revision-Date: 2015-12-22 23:44+0100\n"
+"Last-Translator: C.M. Kendrick <cindy@cleverness.org>\n"
+"Language-Team:  <cindy@cleverness.org>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ./\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/widget-css-classes-library.class.php:31
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../includes/widget-css-classes-library.class.php:45
+msgid "Version"
+msgstr "Versie"
+
+#: ../includes/widget-css-classes-library.class.php:46
+msgid "Donate"
+msgstr "Doneren"
+
+#: ../includes/widget-css-classes-loader.class.php:40
+#: ../widget-css-classes.php:55
+msgid ""
+"Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
+"wordpress.org/Upgrading_WordPress\">Please update.</a>"
+msgstr ""
+"Voor Widget CSS Classes is WordPress versie 3.3 of hoger vereist. <a href="
+"\"http://codex.wordpress.org/Upgrading_WordPress\">Updaten a.u.b..</a>"
+
+#: ../includes/widget-css-classes-settings.class.php:39
+#: ../includes/widget-css-classes-settings.class.php:42
+msgid "Widget CSS Classes Settings"
+msgstr "Widget CSS Classes Instellingen"
+
+#: ../includes/widget-css-classes-settings.class.php:43
+msgid "Add Widget Number Classes"
+msgstr "Voeg numerieke Classes toe"
+
+#: ../includes/widget-css-classes-settings.class.php:44
+msgid "Add First/Last Classes"
+msgstr "Voeg First/Last Classes toe"
+
+#: ../includes/widget-css-classes-settings.class.php:45
+msgid "Add Even/Odd Classes"
+msgstr "Voeg Even/Odd Classes toe"
+
+#: ../includes/widget-css-classes-settings.class.php:46
+msgid "Show Additional Field for ID"
+msgstr "Toon extra veld voor ID"
+
+#: ../includes/widget-css-classes-settings.class.php:47
+msgid "Class Field Type"
+msgstr "Soort Class veld"
+
+#: ../includes/widget-css-classes-settings.class.php:48
+msgid "Predefined Classes"
+msgstr "Vooraf bepaalde Classes"
+
+#: ../includes/widget-css-classes-settings.class.php:53
+#: ../includes/widget-css-classes-settings.class.php:60
+#: ../includes/widget-css-classes-settings.class.php:67
+#: ../includes/widget-css-classes-settings.class.php:74
+msgid "Yes"
+msgstr "Ja"
+
+#: ../includes/widget-css-classes-settings.class.php:54
+#: ../includes/widget-css-classes-settings.class.php:61
+#: ../includes/widget-css-classes-settings.class.php:68
+#: ../includes/widget-css-classes-settings.class.php:75
+msgid "No"
+msgstr "Nee"
+
+#: ../includes/widget-css-classes-settings.class.php:81
+msgid "Text"
+msgstr "Tekst"
+
+#: ../includes/widget-css-classes-settings.class.php:82
+msgid "Predefined"
+msgstr "Vooraf bepaald"
+
+#: ../includes/widget-css-classes-settings.class.php:83
+msgid "Both"
+msgstr "Beide"
+
+#: ../includes/widget-css-classes-settings.class.php:84
+msgid "Hide"
+msgstr "Verbergen"
+
+#: ../includes/widget-css-classes-settings.class.php:116
+msgid "Import/Export"
+msgstr "Importeren/Exporteren"
+
+#: ../includes/widget-css-classes-settings.class.php:121
+msgid "Settings Imported"
+msgstr "Instellingen geïmporteerd"
+
+#: ../includes/widget-css-classes-settings.class.php:124
+msgid "Invalid Settings File"
+msgstr "Ongeldig instellingen bestand"
+
+#: ../includes/widget-css-classes-settings.class.php:127
+msgid "No Settings File Selected"
+msgstr "Geen instellingen bestand geselecteerd"
+
+#: ../includes/widget-css-classes-settings.class.php:198
+msgid "Widget CSS Classes"
+msgstr "Widget CSS Classes"
+
+#: ../includes/widget-css-classes-settings.class.php:243
+msgid "Import/Export Settings"
+msgstr "Instellingen importeren/exporteren"
+
+#: ../includes/widget-css-classes-settings.class.php:245
+msgid "Export Settings"
+msgstr "Instellingen exporteren"
+
+#: ../includes/widget-css-classes-settings.class.php:249
+msgid "Import Settings"
+msgstr "Instellingen importeren"
+
+#: ../includes/widget-css-classes.class.php:38
+msgid "CSS ID"
+msgstr "CSS ID"
+
+#: ../includes/widget-css-classes.class.php:44
+#: ../includes/widget-css-classes.class.php:51
+msgid "CSS Classes"
+msgstr "CSS Classes"
+
+#: ../includes/widget-css-classes.class.php:191
+msgid "widget-"
+msgstr "widget-"
+
+#: ../includes/widget-css-classes.class.php:195
+msgid "widget-first"
+msgstr "widget-first"
+
+#: ../includes/widget-css-classes.class.php:196
+msgid "widget-last"
+msgstr "widget-last"
+
+#: ../includes/widget-css-classes.class.php:206
+msgid "widget-even"
+msgstr "widget-even"
+
+#: ../includes/widget-css-classes.class.php:207
+msgid "widget-odd"
+msgstr "widget-odd"
+
+#~ msgid "Define Classes for Dropdown"
+#~ msgstr "Classes definiëren voor dropdown"
+
+#~ msgid "Dropdown"
+#~ msgstr "Dropdown"
+
+#~ msgid "Select"
+#~ msgstr "Selecteren"
