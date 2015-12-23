@@ -158,6 +158,10 @@ class WCSSC_Settings {
 					foreach ( $import as $import_option ) {
 						list( $key, $value ) = explode( "\t", $import_option );
 						$options[$key] = json_decode( sanitize_text_field( $value ) );
+						if ( $options['dropdown'] ) { // Update for 1.3.0
+							$options['defined_classes'] = $options['dropdown'];
+							unset( $options['dropdown'] );
+						}
 					}
 					update_option( 'WCSSC_options', $options );
 					$wcssc_message = 1;
