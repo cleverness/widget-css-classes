@@ -95,7 +95,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 == Changelog ==
 
 = 1.3.0 =
-* Feature: Change dropdown to checkboxes for multiple select
+* Feature: Change dropdown to checkboxes for multiple class selection
 * Featute: Option to use both defined and text input classes
 * Feature: Migrate classes when predefined classes are available
 * Improvement: Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
