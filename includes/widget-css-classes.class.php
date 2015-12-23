@@ -27,6 +27,7 @@ class WCSSC {
 		if ( !isset( $instance['classes'] ) ) $instance['classes'] = null;
 		if ( !isset( $instance['classes-defined'] ) ) $instance['classes-defined'] = array();
 		
+				
 		$fields = '';
 		
 		if ( WCSSC_Loader::$settings['show_id'] == 1 || WCSSC_Loader::$settings['type'] > 0 ) {
@@ -47,7 +48,22 @@ class WCSSC {
 	
 			// show predefined
 			if ( WCSSC_Loader::$settings['type'] == 2 || WCSSC_Loader::$settings['type'] == 3 ) {
+				
+				// Merge input classes with predefined classes
 				$preset_values = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
+				if ( isset( $instance['classes'] ) ) {
+					$text_classes = explode( ' ', $instance['classes'] );
+					foreach ( $text_classes as $key => $value ) {
+						if ( in_array( $value, $preset_values ) ) {
+							if ( ! in_array( $value, $instance['classes-defined'] ) ) {
+								$instance['classes-defined'][] = $value;
+							}
+							unset( $text_classes[ $key ] );					
+						}
+					}
+					$instance['classes'] = implode( ' ', $text_classes );
+				}
+				
 				$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) ).":</label>\n";
 				if ( WCSSC_Loader::$settings['type'] == 3 ) {
 					$fields .= "\t<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' style='margin-bottom: .5em;' />\n";
@@ -88,6 +104,24 @@ class WCSSC {
 		if (WCSSC_Loader::$settings['show_id'] == 1) {
 			$instance['ids']     = $new_instance['ids'];
 		}
+		
+		if ( WCSSC_Loader::$settings['type'] == 2 || WCSSC_Loader::$settings['type'] == 3 ) {
+			// Merge input classes with predefined classes
+			$preset_values = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
+			if ( isset( $instance['classes'] ) ) {
+				$text_classes = explode( ' ', $instance['classes'] );
+				foreach ( $text_classes as $key => $value ) {
+					if ( in_array( $value, $preset_values ) ) {
+						if ( ! in_array( $value, $instance['classes-defined'] ) ) {
+							$instance['classes-defined'][] = $value;
+						}
+						unset( $text_classes[ $key ] );					
+					}
+				}
+				$instance['classes'] = implode( ' ', $text_classes );
+			}
+		}
+		
 		do_action( 'widget_css_classes_update', $instance, $new_instance );
 		return $instance;
 	}
@@ -151,7 +185,6 @@ class WCSSC {
 				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['classes']} ", $params[0]['before_widget'], 1 );
 		}
 		
-		// add selected predefined classes
 		$presets = explode( ';', $widget_css_classes['defined_classes'] );
 		if ( $widget_css_classes['type'] == 2 || $widget_css_classes['type'] == 3 ) {
 			if ( isset( $widget_opt[$widget_num]['classes-defined'] ) && !empty( $widget_opt[$widget_num]['classes-defined'] ) && is_array( $widget_opt[$widget_num]['classes-defined'] ) ) {
