@@ -39,7 +39,7 @@ class WCSSC {
 				<input type='text' name='widget-{$widget->id_base}[{$widget->number}][ids]' id='widget-{$widget->id_base}-{$widget->number}-ids' value='{$instance['ids']}' class='widefat' /></p>\n";
 			}
 	
-			// show text field
+			// show text field only
 			if ( WCSSC_Loader::$settings['type'] == 1 ) {
 				
 				// Merge predefined classes with input classes
@@ -75,6 +75,7 @@ class WCSSC {
 				
 				$fields .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-classes'>".apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) ).":</label>\n";
 				if ( WCSSC_Loader::$settings['type'] == 3 ) {
+					// also show text field
 					$fields .= "\t<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' style='margin-bottom: .5em;' />\n";
 				}
 				$fields .= "\t<ul id='widget-{$widget->id_base}-{$widget->number}-classes-defined' class='' style='background: #fff; padding: 5px; max-height: 70px; overflow: hidden; overflow-y: auto; margin: 0; border: 1px solid #ddd;'>\n";
