@@ -115,7 +115,7 @@ class WCSSC {
 			$instance['ids']     = $new_instance['ids'];
 		}
 		
-		if ( WCSSC_Loader::$settings['type'] == 1 ) {
+		if ( WCSSC_Loader::$settings['type'] == 1 && is_array( $instance['classes-defined'] ) ) {
 			// Merge predefined classes with input classes
 			$text_classes = explode( ' ', $instance['classes'] );
 			foreach ( $instance['classes-defined'] as $key => $value ) {
@@ -128,7 +128,7 @@ class WCSSC {
 		if ( WCSSC_Loader::$settings['type'] == 2 || WCSSC_Loader::$settings['type'] == 3 ) {
 			// Merge input classes with predefined classes
 			$preset_values = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
-			if ( isset( $instance['classes'] ) ) {
+			if ( isset( $instance['classes'] ) && is_array( $instance['classes-defined'] ) ) {
 				$text_classes = explode( ' ', $instance['classes'] );
 				foreach ( $text_classes as $key => $value ) {
 					if ( in_array( $value, $preset_values ) ) {
