@@ -95,11 +95,13 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 == Changelog ==
 
 = 1.3.0 =
-* Change dropdown to checkboxes for multiple select
-* Option to use both defined and text input classes
+* Feature: Change dropdown to checkboxes for multiple select
+* Featute: Option to use both defined and text input classes
+* Feature: Migrate classes when predefined classes are available
 * Improvement: Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
 * Fix: Only show stored classes if the field-type in the setting page is correct
-* Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
+* Fix: When predefined is selected, show previous text input classes if they are defined
+* i18n: Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
 
 = 1.2.9 =
 * Changed h2 to h1 on settings page
