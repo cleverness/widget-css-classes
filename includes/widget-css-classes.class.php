@@ -195,6 +195,15 @@ class WCSSC {
 						$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$value} ", $params[0]['before_widget'], 1 );
 					}
 				}
+			} else if ( $widget_css_classes['type'] == 2 && isset( $widget_opt[$widget_num]['classes'] ) && !empty( $widget_opt[$widget_num]['classes'] ) ) {
+				// Add predefined classes if they are set as normal classes. Also takes case of compatibility for versions lower than 1.3
+				$classes = explode( ' ', $widget_opt[$widget_num]['classes'] );
+				foreach ( $classes as $key => $value ) {
+					if ( in_array( $value, $presets ) ) {
+						$value = esc_attr( $value );
+						$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$value} ", $params[0]['before_widget'], 1 );
+					}
+				}
 			}
 		}
 		
