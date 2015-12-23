@@ -185,6 +185,7 @@ class WCSSC {
 				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['classes']} ", $params[0]['before_widget'], 1 );
 		}
 		
+		// add selected predefined classes
 		$presets = explode( ';', $widget_css_classes['defined_classes'] );
 		if ( $widget_css_classes['type'] == 2 || $widget_css_classes['type'] == 3 ) {
 			if ( isset( $widget_opt[$widget_num]['classes-defined'] ) && !empty( $widget_opt[$widget_num]['classes-defined'] ) && is_array( $widget_opt[$widget_num]['classes-defined'] ) ) {
