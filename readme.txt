@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -93,6 +93,15 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 4. Generated HTML
 
 == Changelog ==
+
+= 1.3.0 =
+* Feature: Change dropdown to checkboxes for multiple class selection
+* Featute: Option to use both defined and text input classes
+* Feature: Migrate classes when predefined classes are available
+* Improvement: Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
+* Fix: Only show stored classes if the field-type in the setting page is correct
+* Fix: When predefined is selected, show previous text input classes if they are defined
+* i18n: Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
 
 = 1.2.9 =
 * Changed h2 to h1 on settings page
