@@ -75,7 +75,8 @@ class WCSSC {
 						if ( in_array( $preset, $instance['classes-defined'] ) ) {
 							$preset_checked = 'checked="checked"';
 						}
-						$fields .= "\t<li><input name='widget-{$widget->id_base}[{$widget->number}][classes-defined][]' type='checkbox' value='".$preset."' ".$preset_checked."> ".$preset."</li>\n";
+						$id = 'widget-'.$widget->id_base.'-'.$widget->number.'-classes-defined-'.$preset;
+						$fields .= "\t<li><input id='{$id}' name='widget-{$widget->id_base}[{$widget->number}][classes-defined][]' type='checkbox' value='".$preset."' ".$preset_checked."> <label for='{$id}'>".$preset."</label></li>\n";
 					}
 				}
 				$fields .= "\t</ul>\n";
