@@ -31,14 +31,14 @@ __Features:__
 
 * Adds a text field to a widget for defining a class
 * You can specify multiple classes by putting a space between them
-* Optionally adds a drop-down menu with predefined classes instead of a text field
+* Optionally adds checkboxes with predefined classes
 * Optionally adds a text field to add an id to a widget
 * Adds first and last classes to the first and last widget instances in a sidebar
 * Adds even/odd classes to widgets
 * Adds number classes to widgets
 * Fully translatable
 * Multi-site compatible
-* Compatible with Widget Logic and Widget Context plugins
+* Compatible with Widget Logic, Widget Context, and WP Page Widget plugins
 * Has filters and hooks for customizing output including class names
 
 [Plugin Website](http://cleverness.org/plugins/widget-css-classes/)
@@ -50,7 +50,7 @@ __Features:__
 3. Configure the settings under __Settings > Widget CSS Classes__
 4. Visit __Appearance > Widgets__ to add or change the custom classes and ids for a widget.
 5. Expand the appropriate widget in the desired sidebar.
-6. You'll see a field labeled __CSS Class__. Depending on your settings, this will be a text field or a drop-down field.
+6. You'll see a field labeled __CSS Class__. Depending on your settings, this will be a text field and/or checkboxes.
 7. If you are using the text field you can enter multiple class names by separating them with a space.
 8. If you've enabled the id field, you will see a text field called __CSS ID__.
 
@@ -88,7 +88,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 == Screenshots ==
 
 1. Basic Widget
-2. Widget with ID field and Dropdown
+2. Widget with ID field and Predefined Choices
 3. Settings Page
 4. Generated HTML
 
@@ -96,12 +96,14 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 = 1.3.0 =
 * Feature: Change dropdown to checkboxes for multiple class selection
-* Featute: Option to use both defined and text input classes
+* Feature: Option to use both predefined and text input classes
 * Feature: Migrate classes when predefined classes are available
 * Improvement: Do not show previously defined classes that are removed in the settings page when a widget is not updated yet
 * Fix: Only show stored classes if the field-type in the setting page is correct
 * Fix: When predefined is selected, show previous text input classes if they are defined
+* Fix: Ids index notice
 * i18n: Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
+* i18n: Added Russian translation by Наталия Завьялова
 
 = 1.2.9 =
 * Changed h2 to h1 on settings page
@@ -188,8 +190,6 @@ First version
 
 [Add .first & .last CSS Class Automatically To WordPress Widgets](http://wpshock.com/add-first-last-css-class-automatically-to-wordpress-widgets/)
 
-Plus/Minus Icons from [Farm Fresh Icons](http://www.fatcow.com/free-icons) by Fat Cow Hosting
-
 Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
 
 Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
@@ -199,6 +199,12 @@ Polish translation added, Slovak translation files renamed by [Tomasz Wesołowsk
 Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
 
 Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
+
+Dutch translation and predefined classes fix by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
+
+Russian translation by Наталия Завьялова
+
+Fix ids notice by [Ricardo Lüders](http://www.luders.com.br/)
 
 == License ==
 
