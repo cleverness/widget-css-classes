@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Widget CSS Classes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-02 15:50-0500\n"
+"PO-Revision-Date: 2014-09-26 02:21+0300\n"
+"Last-Translator: Nataliya Zavyalova <admin@time-impressions.ru>\n"
+"Language-Team:  <cindy@cleverness.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ./\n"
+"X-Generator: Poedit 1.6.9\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru_RU\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../widget-css-classes.php:54
+#: ../includes/widget-css-classes-loader.class.php:40
+msgid ""
+"Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
+"wordpress.org/Upgrading_WordPress\">Please update.</a>"
+msgstr ""
+"Для «CSS классы для виджетов»  требуется WordPress 3.3 или новее. <a href="
+"\"http://codex.wordpress.org/Upgrading_WordPress\">Пожалуйста, обновите.</a>"
+
+#: ../includes/widget-css-classes-library.class.php:31
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../includes/widget-css-classes-library.class.php:45
+msgid "Version"
+msgstr "Версия"
+
+#: ../includes/widget-css-classes-library.class.php:46
+msgid "Donate"
+msgstr "Пожертвовать"
+
+#: ../includes/widget-css-classes-settings.class.php:39
+#: ../includes/widget-css-classes-settings.class.php:42
+msgid "Widget CSS Classes Settings"
+msgstr "Настройки плагина «CSS классы для виджетов»"
+
+#: ../includes/widget-css-classes-settings.class.php:43
+msgid "Add Widget Number Classes"
+msgstr "Добавить нумерованные классы"
+
+#: ../includes/widget-css-classes-settings.class.php:44
+msgid "Add First/Last Classes"
+msgstr "Добавить First/Last классы"
+
+#: ../includes/widget-css-classes-settings.class.php:45
+msgid "Add Even/Odd Classes"
+msgstr "Добавить Even/Odd классы"
+
+#: ../includes/widget-css-classes-settings.class.php:46
+msgid "Show Additional Field for ID"
+msgstr "Показать дополнительное поле для ID"
+
+#: ../includes/widget-css-classes-settings.class.php:47
+msgid "Class Field Type"
+msgstr "Тип поля для класса"
+
+#: ../includes/widget-css-classes-settings.class.php:48
+msgid "Define Classes for Dropdown"
+msgstr "Определить классы для выпадающего списка"
+
+#: ../includes/widget-css-classes-settings.class.php:53
+#: ../includes/widget-css-classes-settings.class.php:60
+#: ../includes/widget-css-classes-settings.class.php:67
+#: ../includes/widget-css-classes-settings.class.php:74
+msgid "Yes"
+msgstr "Да"
+
+#: ../includes/widget-css-classes-settings.class.php:54
+#: ../includes/widget-css-classes-settings.class.php:61
+#: ../includes/widget-css-classes-settings.class.php:68
+#: ../includes/widget-css-classes-settings.class.php:75
+msgid "No"
+msgstr "Нет"
+
+#: ../includes/widget-css-classes-settings.class.php:81
+msgid "Text"
+msgstr "Текст"
+
+#: ../includes/widget-css-classes-settings.class.php:82
+msgid "Dropdown"
+msgstr "Выпадающий список"
+
+#: ../includes/widget-css-classes-settings.class.php:83
+msgid "Hide"
+msgstr "Скрыть"
+
+#: ../includes/widget-css-classes-settings.class.php:115
+msgid "Import/Export"
+msgstr "Импорт/Экспорт"
+
+#: ../includes/widget-css-classes-settings.class.php:120
+msgid "Settings Imported"
+msgstr "Настройки импорта"
+
+#: ../includes/widget-css-classes-settings.class.php:123
+msgid "Invalid Settings File"
+msgstr "Недопустимый файл настроек"
+
+#: ../includes/widget-css-classes-settings.class.php:126
+msgid "No Settings File Selected"
+msgstr "Не выбран файл настроек"
+
+#: ../includes/widget-css-classes-settings.class.php:197
+msgid "Widget CSS Classes"
+msgstr "CSS классы для виджетов"
+
+#: ../includes/widget-css-classes-settings.class.php:243
+msgid "Import/Export Settings"
+msgstr "Импорт/Экспорт настроек"
+
+#: ../includes/widget-css-classes-settings.class.php:245
+msgid "Export Settings"
+msgstr "Экспорт настроек"
+
+#: ../includes/widget-css-classes-settings.class.php:249
+msgid "Import Settings"
+msgstr "Импорт настроек"
+
+#: ../includes/widget-css-classes.class.php:34
+msgid "CSS ID"
+msgstr "CSS идентификатор"
+
+#: ../includes/widget-css-classes.class.php:40
+#: ../includes/widget-css-classes.class.php:47
+msgid "CSS Class"
+msgstr "CSS класс"
+
+#: ../includes/widget-css-classes.class.php:49
+msgid "Select"
+msgstr "Выбрать"
+
+#: ../includes/widget-css-classes.class.php:147
+msgid "widget-"
+msgstr "widget-"
+
+#: ../includes/widget-css-classes.class.php:151
+msgid "widget-first"
+msgstr "widget-first"
+
+#: ../includes/widget-css-classes.class.php:152
+msgid "widget-last"
+msgstr "widget-last"
+
+#: ../includes/widget-css-classes.class.php:162
+msgid "widget-even"
+msgstr "widget-even"
+
+#: ../includes/widget-css-classes.class.php:163
+msgid "widget-odd"
+msgstr "widget-odd"
