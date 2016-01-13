@@ -104,6 +104,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * Fix: Ids index notice
 * i18n: Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
 * i18n: Added Russian translation by Наталия Завьялова
+* i18n: Added Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
 
 = 1.2.9 =
 * Changed h2 to h1 on settings page
@@ -203,6 +204,8 @@ Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.w
 Dutch translation and predefined classes fix by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
 
 Russian translation by Наталия Завьялова
+
+Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
 
 Fix ids notice by [Ricardo Lüders](http://www.luders.com.br/)
 
