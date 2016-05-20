@@ -31,7 +31,7 @@ class WCSSC {
 
 		if ( WCSSC_Loader::$settings['show_id'] == 1 || WCSSC_Loader::$settings['type'] > 0 ) {
 			//$fields .= "<div class='wcssc' style='border: 1px solid #ddd; padding: 5px; background: #fafafa; margin: 1em 0; line-height: 1.5;'>\n";
-			//$fields .= "<div class='wcssc'>\n";
+			$fields .= "<div class='wcssc'>\n";
 
 			// show id field
 			if ( WCSSC_Loader::$settings['show_id'] == 1 ) {
@@ -83,7 +83,7 @@ class WCSSC {
 				$fields .= "\t</ul></p>\n";
 			}
 
-			//$fields .= "</div>\n";
+			$fields .= "</div>\n";
 		}
 
 		do_action( 'widget_css_classes_form', $fields, $instance );
@@ -101,12 +101,14 @@ class WCSSC {
 	 * @since 1.0
 	 */
 	public static function update_widget( $instance, $new_instance ) {
+		if ( !isset( $new_instance['classes'] ) ) $new_instance['classes'] = null;
+		if ( !isset( $new_instance['classes-defined'] ) ) $new_instance['classes-defined'] = array();
 		$instance['classes'] = $new_instance['classes'];
 		$instance['classes-defined'] = $new_instance['classes-defined'];
 		if (WCSSC_Loader::$settings['show_id'] == 1) {
 			$instance['ids']     = $new_instance['ids'];
 		}
-		if ( is_array( $instance['classes-defined'] ) ) {
+		if ( ! empty( $instance['classes-defined'] ) && is_array( $instance['classes-defined'] ) ) {
 			// Merge predefined classes with input classes
 			$text_classes = explode( ' ', $instance['classes'] );
 			foreach ( $instance['classes-defined'] as $key => $value ) {
@@ -133,7 +135,11 @@ class WCSSC {
 	public static function add_widget_classes( $params ) {
 
 		global $wp_registered_widgets, $widget_number;
-
+		
+		if ( ! isset( $params[0] ) ) {
+			return $params;
+		}
+		
 		$arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
 		$this_id                = $params[0]['id']; // Get the id for the current sidebar we're processing
 		$widget_id              = $params[0]['widget_id'];
