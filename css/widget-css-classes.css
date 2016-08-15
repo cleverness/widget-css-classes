@@ -1,8 +1,9 @@
-.wcssc_copy span, .wcssc_remove span {
-	vertical-align: middle;
+.wcssc_copy span, .wcssc_remove span, .wcssc_sort span {
+	vertical-align: text-bottom;
 	margin: 0;
 	padding: 0;
 }
-.wcssc_copy, .wcssc_remove {
+.wcssc_copy, .wcssc_remove, .wcssc_sort {
 	text-decoration: none;
+}
 }
