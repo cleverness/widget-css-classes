@@ -86,6 +86,7 @@ class WCSSC_Settings {
 	}
 
 	function defined_classes_option() {
+		wp_enqueue_script( 'jquery-ui-sortable' );
 		$presets = explode( ';', $this->general_settings['defined_classes'] );
 		if ( count( $presets ) > 1 ) {
 			foreach ( $presets as $key => $preset ) {
