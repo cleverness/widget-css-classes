@@ -9,6 +9,10 @@
 .wcssc_sort {
 	display: none;
 }
+.wcssc_sort_fixed .wcssc_sort {
+	visibility: hidden;
+}
+
 .wcssc_sortable .wcssc_drop_placeholder {
 	background: #e5e5e5;
 	height: 30px;
