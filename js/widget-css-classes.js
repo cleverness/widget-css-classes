@@ -9,4 +9,11 @@ jQuery( document ).ready( function ( $ ) {
 		} );
 	} );
 
+	if ( $.isFunction( $.fn.sortable ) ) {
+		$('.wcssc_sortable').sortable({
+			items: 'p:not(.wcssc_sort_fixed)',
+			placeholder: 'wcssc_drop_placeholder'
+		}).disableSelection();
+	} 
+
 } );

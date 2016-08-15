@@ -6,4 +6,7 @@
 .wcssc_copy, .wcssc_remove, .wcssc_sort {
 	text-decoration: none;
 }
+.wcssc_sortable .wcssc_drop_placeholder {
+	background: #e5e5e5;
+	height: 30px;
 }
