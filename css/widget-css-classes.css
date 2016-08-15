@@ -8,6 +8,7 @@
 }
 .wcssc_sort {
 	display: none;
+	cursor: move;
 }
 .wcssc_sort_fixed .wcssc_sort {
 	visibility: hidden;
