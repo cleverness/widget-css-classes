@@ -5,7 +5,7 @@
  * Settings
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.1
+ * @version 1.3.0
  */
 
 /**
@@ -118,22 +118,26 @@ class WCSSC_Settings {
 		if ( isset( $_GET['wcssc_message'] ) ) {
 			switch ( $_GET['wcssc_message'] ) {
 				case 1:
+					$wcssc_message_class = 'updated';
 					$wcssc_message = esc_attr__( 'Settings Imported', 'widget-css-classes' );
 					break;
 				case 2:
+					$wcssc_message_class = 'error';
 					$wcssc_message = esc_attr__( 'Invalid Settings File', 'widget-css-classes' );
 					break;
 				case 3:
+					$wcssc_message_class = 'error';
 					$wcssc_message = esc_attr__( 'No Settings File Selected', 'widget-css-classes' );
 					break;
 				default:
+					$wcssc_message_class = '';
 					$wcssc_message = '';
 					break;
 			}
 		}
 
 		if ( isset( $wcssc_message ) && $wcssc_message != '' ) {
-			echo '<div class="updated"><p>'.esc_html( $wcssc_message ).'</p></div>';
+			echo '<div class=" '. $wcssc_message_class .' "><p>'.esc_html( $wcssc_message ).'</p></div>';
 		}
 
 		// export settings

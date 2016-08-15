@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.0
+ * @version 1.3.0
  */
 
 /**

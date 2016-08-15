@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Widget CSS Classes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-13 14:41+0100\n"
-"PO-Revision-Date: 2016-01-13 14:44+0100\n"
+"POT-Creation-Date: 2016-01-13 15:15+0100\n"
+"PO-Revision-Date: 2016-01-13 15:16+0100\n"
 "Last-Translator: Borisa Djuraskovic <borisad@webhostinghub.com>\n"
 "Language-Team:  <cindy@cleverness.org>\n"
-"Language: sr_RS\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,15 +17,15 @@ msgstr ""
 
 #: ../includes/widget-css-classes-library.class.php:31
 msgid "Settings"
-msgstr "Postavke"
+msgstr "Настройки"
 
 #: ../includes/widget-css-classes-library.class.php:45
 msgid "Version"
-msgstr "Verzija"
+msgstr "Версия"
 
 #: ../includes/widget-css-classes-library.class.php:46
 msgid "Donate"
-msgstr "Donirati"
+msgstr "Пожертвовать"
 
 #: ../includes/widget-css-classes-loader.class.php:40
 #: ../widget-css-classes.php:55
@@ -33,108 +33,109 @@ msgid ""
 "Widget CSS Classes requires WordPress 3.3 or newer. <a href=\"http://codex."
 "wordpress.org/Upgrading_WordPress\">Please update.</a>"
 msgstr ""
-"Widget CSS Classes potrebno WordPress 3.3 ili noviji. <a href=\"http://codex."
-"wordpress.org/Upgrading_WordPress\">Prosze zaktualizovać.</a>"
+"Для «CSS классы для виджетов»  требуется WordPress 3.3 или новее. <a href="
+"\"http://codex.wordpress.org/Upgrading_WordPress\">Пожалуйста, обновите.</a>"
 
 #: ../includes/widget-css-classes-settings.class.php:39
 #: ../includes/widget-css-classes-settings.class.php:42
 msgid "Widget CSS Classes Settings"
-msgstr "Widget CSS Classes postavke"
+msgstr "Настройки плагина «CSS классы для виджетов»"
 
 #: ../includes/widget-css-classes-settings.class.php:43
 msgid "Add Widget Number Classes"
-msgstr "Dodaj Widget Numbern klase"
+msgstr "Добавить нумерованные классы"
 
 #: ../includes/widget-css-classes-settings.class.php:44
 msgid "Add First/Last Classes"
-msgstr "Dodaj prve/poslednje klase"
+msgstr "Добавить First/Last классы"
 
 #: ../includes/widget-css-classes-settings.class.php:45
 msgid "Add Even/Odd Classes"
-msgstr "Dodaj jednake/nejednake klase"
+msgstr "Добавить Even/Odd классы"
 
 #: ../includes/widget-css-classes-settings.class.php:46
 msgid "Show Additional Field for ID"
-msgstr "Prikaži dodatno polje za ID"
+msgstr "Показать дополнительное поле для ID"
 
 #: ../includes/widget-css-classes-settings.class.php:47
 msgid "Class Field Type"
-msgstr "Tip polja klase"
+msgstr "Тип поля для класса"
 
 #: ../includes/widget-css-classes-settings.class.php:48
 msgid "Predefined Classes"
-msgstr "Unapred definisane klase"
+msgstr "Предопределенный классов"
 
 #: ../includes/widget-css-classes-settings.class.php:53
 #: ../includes/widget-css-classes-settings.class.php:60
 #: ../includes/widget-css-classes-settings.class.php:67
 #: ../includes/widget-css-classes-settings.class.php:74
 msgid "Yes"
-msgstr "Da"
+msgstr "Да"
 
 #: ../includes/widget-css-classes-settings.class.php:54
 #: ../includes/widget-css-classes-settings.class.php:61
 #: ../includes/widget-css-classes-settings.class.php:68
 #: ../includes/widget-css-classes-settings.class.php:75
 msgid "No"
-msgstr "Ne"
+msgstr "Нет"
 
 #: ../includes/widget-css-classes-settings.class.php:81
 msgid "Text"
-msgstr "Tekst"
+msgstr "Текст"
 
 #: ../includes/widget-css-classes-settings.class.php:82
 msgid "Predefined"
-msgstr "Predefinisane"
+msgstr "Предопределенный"
 
 #: ../includes/widget-css-classes-settings.class.php:83
 msgid "Both"
-msgstr "Oboje"
+msgstr "Обе"
 
 #: ../includes/widget-css-classes-settings.class.php:84
 msgid "Hide"
-msgstr "Sakriti"
+msgstr "Скрыть"
 
 #: ../includes/widget-css-classes-settings.class.php:116
 msgid "Import/Export"
-msgstr "Import/Export"
+msgstr "Импорт/Экспорт"
 
 #: ../includes/widget-css-classes-settings.class.php:121
 msgid "Settings Imported"
-msgstr "Postavke unete"
+msgstr "Настройки импорта"
 
 #: ../includes/widget-css-classes-settings.class.php:124
 msgid "Invalid Settings File"
-msgstr "Fajl sa nepostojećim postavke"
+msgstr "Недопустимый файл настроек"
 
 #: ../includes/widget-css-classes-settings.class.php:127
 msgid "No Settings File Selected"
-msgstr "Polje bez postavki izabrano"
+msgstr "Не выбран файл настроек"
 
 #: ../includes/widget-css-classes-settings.class.php:202
 msgid "Widget CSS Classes"
-msgstr "Widget CSS klase"
+msgstr "CSS классы для виджетов"
 
 #: ../includes/widget-css-classes-settings.class.php:247
 msgid "Import/Export Settings"
-msgstr "Import/Export postavke"
+msgstr "Импорт/Экспорт настроек"
 
 #: ../includes/widget-css-classes-settings.class.php:249
 msgid "Export Settings"
-msgstr "Export postavke"
+msgstr "Экспорт настроек"
 
 #: ../includes/widget-css-classes-settings.class.php:253
 msgid "Import Settings"
-msgstr "Import postavke"
+msgstr "Импорт настроек"
 
 #: ../includes/widget-css-classes.class.php:38
 msgid "CSS ID"
-msgstr "CSS ID"
+msgstr "CSS идентификатор"
 
 #: ../includes/widget-css-classes.class.php:44
 #: ../includes/widget-css-classes.class.php:66
+#, fuzzy
 msgid "CSS Classes"
-msgstr "CSS klasa"
+msgstr "CSS класс"
 
 #: ../includes/widget-css-classes.class.php:223
 msgid "widget-"
@@ -142,25 +143,25 @@ msgstr "widget-"
 
 #: ../includes/widget-css-classes.class.php:227
 msgid "widget-first"
-msgstr "widget-prvi"
+msgstr "widget-first"
 
 #: ../includes/widget-css-classes.class.php:228
 msgid "widget-last"
-msgstr "widget-poslednji"
+msgstr "widget-last"
 
 #: ../includes/widget-css-classes.class.php:238
 msgid "widget-even"
-msgstr "widget-jednako"
+msgstr "widget-even"
 
 #: ../includes/widget-css-classes.class.php:239
 msgid "widget-odd"
-msgstr "widget-nejednako"
+msgstr "widget-odd"
 
 #~ msgid "Define Classes for Dropdown"
-#~ msgstr "Definisati klase za Dropdown"
+#~ msgstr "Определить классы для выпадающего списка"
 
 #~ msgid "Dropdown"
-#~ msgstr "Dropdown"
+#~ msgstr "Выпадающий список"
 
 #~ msgid "Select"
-#~ msgstr "Izaberi"
+#~ msgstr "Выбрать"
