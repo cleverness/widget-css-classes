@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.7
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -97,6 +97,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 = 1.4.0 =
 * Feature: Sort Pre-defined classes (thanks Jory Hogeveen)
 * Security: Prevent unauthenticated import of settings
+* Fix: Notice message when classes is empty (thanks Jory Hogeveen)
 
 = 1.3.0 =
 * Feature: Change dropdown to checkboxes for multiple class selection

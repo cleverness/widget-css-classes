@@ -21,21 +21,21 @@ class WCSSC_Settings {
 	private $plugin_tabs = array();
 	private $general_settings = array();
 
-	function __construct() {
+	public function __construct() {
 		add_action( 'admin_init', array( $this, 'load_settings' ) );
 		add_action( 'admin_init', array( $this, 'register_general_settings' ) );
 		add_action( 'admin_init', array( $this, 'register_importexport_settings' ) );
 		add_action( 'admin_menu', array( $this, 'add_admin_menus' ) );
 	}
 
-	function load_settings() {
+	public function load_settings() {
 		$this->general_settings = get_option( $this->general_key );
 	}
 
-	function section_general_desc() {
+	public function section_general_desc() {
 	}
 
-	function register_general_settings() {
+	public function register_general_settings() {
 		$this->plugin_tabs[$this->general_key] = esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' );
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
@@ -49,34 +49,34 @@ class WCSSC_Settings {
 		do_action( 'widget_css_classes_settings' );
 	}
 
-	function show_number_option() { ?>
+	public function show_number_option() { ?>
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
-	function show_location_option() {
+	public function show_location_option() {
 		?>
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
-	function show_evenodd_option() {
+	public function show_evenodd_option() {
 		?>
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
     <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
-	function show_id_option() {
+	public function show_id_option() {
 		?>
 		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
 		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
-	function type_option() {
+	public function type_option() {
 		?>
 		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
 		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?>&nbsp;&nbsp;
@@ -85,7 +85,7 @@ class WCSSC_Settings {
 	<?php
 	}
 
-	function defined_classes_option() {
+	public function defined_classes_option() {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		$presets = explode( ';', $this->general_settings['defined_classes'] );
 		?>
@@ -126,76 +126,83 @@ class WCSSC_Settings {
 		<?php
 	}
 
-	function register_importexport_settings() {
-		$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', 'widget-css-classes' );
+	public function register_importexport_settings() {
 
-		if ( isset( $_GET['wcssc_message'] ) ) {
-			switch ( $_GET['wcssc_message'] ) {
-				case 1:
-					$wcssc_message_class = 'updated';
-					$wcssc_message = esc_attr__( 'Settings Imported', 'widget-css-classes' );
-					break;
-				case 2:
-					$wcssc_message_class = 'error';
-					$wcssc_message = esc_attr__( 'Invalid Settings File', 'widget-css-classes' );
-					break;
-				case 3:
-					$wcssc_message_class = 'error';
-					$wcssc_message = esc_attr__( 'No Settings File Selected', 'widget-css-classes' );
-					break;
-				default:
-					$wcssc_message_class = '';
-					$wcssc_message = '';
-					break;
-			}
-		}
+		if ( current_user_can('manage_options' ) ) {
 
-		if ( isset( $wcssc_message ) && $wcssc_message != '' ) {
-			echo '<div class=" '. $wcssc_message_class .' "><p>'.esc_html( $wcssc_message ).'</p></div>';
-		}
+			$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', 'widget-css-classes' );
 
-		// export settings
-		if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
-			header( "Content-Disposition: attachment; filename=widget-css-classes-settings.txt" );
-			header( 'Content-Type: text/plain; charset=utf-8' );
-			$general = get_option( 'WCSSC_options' );
-
-			echo "[START=WCSSC SETTINGS]\n";
-			foreach ( $general as $id => $text )
-				echo "$id\t".json_encode( $text )."\n";
-			echo "[STOP=WCSSC SETTINGS]";
-			exit;
-		}
-
-		// import settings
-		if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
-			$wcssc_message = '';
-			if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
-				$import = explode( "\n", file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
-				if ( array_shift( $import ) == "[START=WCSSC SETTINGS]" && array_pop( $import ) == "[STOP=WCSSC SETTINGS]" ) {
-					foreach ( $import as $import_option ) {
-						list( $key, $value ) = explode( "\t", $import_option );
-						$options[$key] = json_decode( sanitize_text_field( $value ) );
-						if ( $options['dropdown'] ) { // Update for 1.3.0
-							$options['defined_classes'] = $options['dropdown'];
-							unset( $options['dropdown'] );
-						}
-					}
-					update_option( 'WCSSC_options', $options );
-					$wcssc_message = 1;
-				} else {
-					$wcssc_message = 2;
+			if ( isset( $_GET['wcssc_message'] ) ) {
+				switch ( $_GET['wcssc_message'] ) {
+					case 1:
+						$wcssc_message_class = 'updated';
+						$wcssc_message       = esc_attr__( 'Settings Imported', 'widget-css-classes' );
+						break;
+					case 2:
+						$wcssc_message_class = 'error';
+						$wcssc_message       = esc_attr__( 'Invalid Settings File', 'widget-css-classes' );
+						break;
+					case 3:
+						$wcssc_message_class = 'error';
+						$wcssc_message       = esc_attr__( 'No Settings File Selected', 'widget-css-classes' );
+						break;
+					default:
+						$wcssc_message_class = '';
+						$wcssc_message       = '';
+						break;
 				}
-			} else {
-				$wcssc_message = 3;
 			}
 
-			wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message='.esc_attr( $wcssc_message ) ) );
-			exit;
+			if ( isset( $wcssc_message ) && $wcssc_message != '' ) {
+				echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
+			}
+
+			// export settings
+			if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
+				header( "Content-Disposition: attachment; filename=widget-css-classes-settings.txt" );
+				header( 'Content-Type: text/plain; charset=utf-8' );
+				$general = get_option( 'WCSSC_options' );
+
+				echo "[START=WCSSC SETTINGS]\n";
+				foreach ( $general as $id => $text ) {
+					echo "$id\t" . json_encode( $text ) . "\n";
+				}
+				echo "[STOP=WCSSC SETTINGS]";
+				exit;
+			}
+
+			// import settings
+			if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
+				$wcssc_message = '';
+				if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
+					$import = explode( "\n",
+						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
+					if ( array_shift( $import ) == "[START=WCSSC SETTINGS]" && array_pop( $import ) == "[STOP=WCSSC SETTINGS]" ) {
+						foreach ( $import as $import_option ) {
+							list( $key, $value ) = explode( "\t", $import_option );
+							$options[ $key ] = json_decode( sanitize_text_field( $value ) );
+							if ( $options['dropdown'] ) { // Update for 1.3.0
+								$options['defined_classes'] = $options['dropdown'];
+								unset( $options['dropdown'] );
+							}
+						}
+						update_option( 'WCSSC_options', $options );
+						$wcssc_message = 1;
+					} else {
+						$wcssc_message = 2;
+					}
+				} else {
+					$wcssc_message = 3;
+				}
+
+				wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message=' . esc_attr( $wcssc_message ) ) );
+				exit;
+			}
+
 		}
 	}
 
-	function validate_input( $input ) {
+	public function validate_input( $input ) {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
@@ -216,7 +223,7 @@ class WCSSC_Settings {
 		return $output;
 	}
 
-	function add_admin_menus() {
+	public function add_admin_menus() {
 		add_options_page( esc_attr__( 'Widget CSS Classes', 'widget-css-classes' ), esc_attr__( 'Widget CSS Classes', 'widget-css-classes' ), 'manage_options', 'widget-css-classes-settings', array( $this, 'plugin_options_page' ) );
 	}
 
@@ -226,7 +233,7 @@ class WCSSC_Settings {
 	 * settings key. Uses the plugin_options_tabs method
 	 * to render the tabs.
 	 */
-	function plugin_options_page() {
+	public function plugin_options_page() {
 		$tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 		?>
 	<div class="wrap">
@@ -249,7 +256,7 @@ class WCSSC_Settings {
 	 * them one by one. Provides the heading for the
 	 * plugin_options_page method.
 	 */
-	function plugin_options_tabs() {
+	public function plugin_options_tabs() {
 		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
 		echo '<h1 class="nav-tab-wrapper">';
@@ -260,7 +267,7 @@ class WCSSC_Settings {
 		echo '</h1>';
 	}
 
-	function importexport_fields() {
+	public function importexport_fields() {
 		?>
 	<h3><?php esc_html_e( 'Import/Export Settings', 'widget-css-classes' ); ?></h3>
 
