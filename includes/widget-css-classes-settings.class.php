@@ -86,18 +86,26 @@ class WCSSC_Settings {
 	}
 
 	function defined_classes_option() {
+		wp_enqueue_script( 'jquery-ui-sortable' );
 		$presets = explode( ';', $this->general_settings['defined_classes'] );
+		?>
+		<div class="wcssc_sortable">
+		<?php
 		if ( count( $presets ) > 1 ) {
 			foreach ( $presets as $key => $preset ) {
 				if ( $preset != '' ) {
 				?>
-					<p><input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
-					<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
+					<p class="wcssc_defined_classes">
+						<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
+						<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
+						<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
+					</p>
 				<?php
 				}
 			}
 			?>
-			<p class="wcssc_defined_classes">
+			<p class="wcssc_defined_classes wcssc_sort_fixed">
+				<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
 				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="" />
 				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
@@ -105,11 +113,17 @@ class WCSSC_Settings {
 		<?php
 		} else {
 			?>
-			<p class="wcssc_defined_classes"><input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
-			<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
-			<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></p>
+			<p class="wcssc_defined_classes wcssc_sort_fixed">
+				<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
+				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
+				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
+				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
+			</p>
 		<?php
 		}
+		?>
+		</div>
+		<?php
 	}
 
 	function register_importexport_settings() {
