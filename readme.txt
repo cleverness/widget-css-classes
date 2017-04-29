@@ -1,5 +1,5 @@
 === Widget CSS Classes ===
-Contributors: elusivelight
+Contributors: elusivelight, keraweb
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org
 Author URI: http://cleverness.org
 Plugin URI: http://cleverness.org/plugins/widget-css-classes
