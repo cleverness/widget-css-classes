@@ -26,7 +26,7 @@ class WCSSC {
 	public static function extend_widget_form( $widget, $return, $instance ) {
 		$instance = wp_parse_args( $instance, array(
 			'classes' => null,
-		    'classes-defined' => array(),
+			'classes-defined' => array(),
 		) );
 
 		$fields = '';
@@ -51,7 +51,7 @@ class WCSSC {
 			}
 
 			// show predefined
-			if ( 1 === (int) WCSSC_Loader::$settings['type'] || 3 === (int) WCSSC_Loader::$settings['type'] ) {
+			if ( 2 === (int) WCSSC_Loader::$settings['type'] || 3 === (int) WCSSC_Loader::$settings['type'] ) {
 
 				// Merge input classes with predefined classes
 				$predefined_classes = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
