@@ -64,7 +64,7 @@ class WCSSC_Lib {
 		}
 
 		// check if the db version is the same as the db version constant
-		if ( (int) WCSSC_DB_VERSION !== (int) $installed_version ) {
+		if ( (string) WCSSC_DB_VERSION !== (string) $installed_version ) {
 			// update options
 			self::set_options( $installed_version );
 			update_option( 'WCSSC_db_version', WCSSC_DB_VERSION );
@@ -80,7 +80,7 @@ class WCSSC_Lib {
 	 */
 	public static function set_options( $version ) {
 
-		if ( 0 === (int) $version ) {
+		if ( empty( $version ) ) {
 			// add default options
 			$options = array(
 				'show_id'         => 0,
@@ -96,14 +96,14 @@ class WCSSC_Lib {
 
 		} else {
 
-			if ( $version < 1.2 ) {
+			if ( version_compare( $version, 1.2, '<' ) ) {
 				$general_options         = get_option( 'WCSSC_options' );
 				$general_options['show_number']   = 1;
 				$general_options['show_location'] = 1;
 				$general_options['show_evenodd']  = 1;
 				update_option( 'WCSSC_options', $general_options );
 			}
-			if ( $version < 1.3 ) {
+			if ( version_compare( $version, 1.3, '<' ) ) {
 				$general_options = get_option( 'WCSSC_options' );
 				// Hide option is now 0 instead of 3
 				if ( isset( $general_options['type'] ) && 3 === (int) $general_options['type'] ) {
