@@ -1,3 +1,11 @@
+/**
+ * Widget CSS Classes Plugin
+ *
+ * @author C.M. Kendrick <cindy@cleverness.org>
+ * @package widget-css-classes
+ * @version 1.4.0
+ */
+
 jQuery( document ).ready( function ( $ ) {
 
 	$( '.wcssc_copy' ).relCopy( {} );
@@ -15,6 +23,6 @@ jQuery( document ).ready( function ( $ ) {
 			items: 'p:not(.wcssc_sort_fixed)',
 			placeholder: 'wcssc_drop_placeholder'
 		}).disableSelection();
-	} 
+	}
 
 } );
