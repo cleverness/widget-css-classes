@@ -193,13 +193,28 @@ class WCSSC {
 		// Add classes
 		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
+			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
+			/**
+			 * Modify the list of CSS classes.
+			 * Can also be used for ordering etc.
+			 *
+			 * @since  1.4.1
+			 * @param  array      $classes
+			 * @param  string     $widget_id
+			 * @param  int        $widget_number
+			 * @param  array      $widget_opt
+			 * @param  WP_Widget  $widget_obj
+			 * @return array
+			 */
+			$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
+
 			if ( 1 === (int) $widget_css_classes['type'] || 3 === (int) $widget_css_classes['type'] ) {
 				// Add all classes
-				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[ $widget_num ]['classes']} ", $params[0]['before_widget'], 1 );
+				$classes = implode( ' ', $classes );
+				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$classes} ", $params[0]['before_widget'], 1 );
 			} elseif ( 2 === (int) $widget_css_classes['type'] ) {
 				// Only add predefined classes
 				$predefined_classes = explode( ';', $widget_css_classes['defined_classes'] );
-				$classes = explode( ' ', $widget_opt[ $widget_num ]['classes'] );
 				foreach ( $classes as $key => $value ) {
 					if ( in_array( $value, $predefined_classes, true ) ) {
 						$value = esc_attr( $value );
