@@ -5,6 +5,9 @@ engines:
     config:
       languages:
         - php
+    checks:
+      Similar code:
+        enabled: false
   fixme:
     enabled: true
   phpmd:
