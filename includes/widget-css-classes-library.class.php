@@ -18,10 +18,10 @@ class WCSSC_Lib {
 	/**
 	 * Add Settings link to plugin's entry on the Plugins page
 	 * @static
-	 * @param $links
-	 * @param $file
+	 * @param  array  $links
+	 * @param  string $file
 	 * @return array
-	 * @since 1.0
+	 * @since  1.0
 	 */
 	public static function add_settings_link( $links, $file ) {
 		static $this_plugin;
@@ -97,12 +97,13 @@ class WCSSC_Lib {
 		} else {
 
 			if ( version_compare( $version, 1.2, '<' ) ) {
-				$general_options         = get_option( 'WCSSC_options' );
+				$general_options = get_option( 'WCSSC_options' );
 				$general_options['show_number']   = 1;
 				$general_options['show_location'] = 1;
 				$general_options['show_evenodd']  = 1;
 				update_option( 'WCSSC_options', $general_options );
 			}
+
 			if ( version_compare( $version, 1.3, '<' ) ) {
 				$general_options = get_option( 'WCSSC_options' );
 				// Hide option is now 0 instead of 3

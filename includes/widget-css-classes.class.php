@@ -282,10 +282,10 @@ class WCSSC {
 	/**
 	 * Updates the Widget with the classes
 	 * @static
-	 * @param $instance
-	 * @param $new_instance
+	 * @param  $instance
+	 * @param  $new_instance
 	 * @return array
-	 * @since 1.0
+	 * @since  1.0
 	 */
 	public static function update_widget( $instance, $new_instance ) {
 		$new_instance = wp_parse_args( $new_instance, array(
@@ -318,9 +318,9 @@ class WCSSC {
 	/**
 	 * Adds the classes to the widget in the front-end
 	 * @static
-	 * @param $params
+	 * @param  $params
 	 * @return mixed
-	 * @since 1.0
+	 * @since  1.0
 	 */
 	public static function add_widget_classes( $params ) {
 
@@ -455,6 +455,16 @@ class WCSSC {
 
 		} // End if().
 
+		/**
+		 * Modify the widget parameters, normally to add extra classes.
+		 *
+		 * @param  array      $params
+		 * @param  string     $widget_id
+		 * @param  int        $widget_number
+		 * @param  array      $widget_opt
+		 * @param  WP_Widget  $widget_obj
+		 * @return array
+		 */
 		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
 		return $params;
