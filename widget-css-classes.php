@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Widget CSS Classes
-Version: 1.3.0
+Version: 1.4.0
 Description: Add custom, first, last, even, odd, and numbered classes to your widgets.
 Author: C.M. Kendrick
 Author URI: http://cleverness.org
@@ -18,16 +18,16 @@ add_action( 'wp_loaded', 'widget_css_classes_frontend_hook' );
  */
 function widget_css_classes_loader() {
 
-	$languages_path = plugin_basename( dirname( __FILE__ ).'/languages' );
-	load_plugin_textdomain( 'widget-css-classes', FALSE, $languages_path );
+	$languages_path = plugin_basename( dirname( __FILE__ ) . '/languages' );
+	load_plugin_textdomain( 'widget-css-classes', false, $languages_path );
 
 	if ( is_admin() ) {
 
-		if ( !defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.2.8' );
-		if ( !defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
-		if ( !defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
-		if ( !defined( 'WCSSC_PLUGIN_DIR' ) ) define( 'WCSSC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-		if ( !defined( 'WCSSC_PLUGIN_URL' ) ) define( 'WCSSC_PLUGIN_URL', plugins_url( '', __FILE__ ) );
+		if ( ! defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.2.8' );
+		if ( ! defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
+		if ( ! defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
+		if ( ! defined( 'WCSSC_PLUGIN_DIR' ) ) define( 'WCSSC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+		if ( ! defined( 'WCSSC_PLUGIN_URL' ) ) define( 'WCSSC_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
 		include_once 'includes/widget-css-classes-loader.class.php';
 		WCSSC_Loader::init();
@@ -40,7 +40,7 @@ function widget_css_classes_loader() {
  * It must be added after register_sidebars is called
  */
 function widget_css_classes_frontend_hook() {
-	if ( !is_admin() ) {
+	if ( ! is_admin() ) {
 		include_once 'includes/widget-css-classes.class.php';
 		add_filter( 'dynamic_sidebar_params', array( 'WCSSC', 'add_widget_classes' ) );
 	}
@@ -57,8 +57,8 @@ function widget_css_classes_activation() {
 		exit( $exit_msg );
 	}
 
-	if ( !defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.3' );
-	if ( !defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
+	if ( ! defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.3' );
+	if ( ! defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
 	include_once 'includes/widget-css-classes-library.class.php';
 
 	if ( get_option( 'WCSSC_db_version' ) ) {
@@ -68,7 +68,7 @@ function widget_css_classes_activation() {
 	}
 
 	// if the installed version is not the same as the current version, run the install function
-	if ( WCSSC_DB_VERSION != $installed_ver ) {
+	if ( (string) WCSSC_DB_VERSION !== (string) $installed_ver ) {
 		WCSSC_Lib::install_plugin();
 	}
 }

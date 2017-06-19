@@ -1,5 +1,5 @@
 === Widget CSS Classes ===
-Contributors: elusivelight
+Contributors: elusivelight, keraweb
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org
 Author URI: http://cleverness.org
 Plugin URI: http://cleverness.org/plugins/widget-css-classes
@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 4.4
-Stable tag: 1.3.0
+Tested up to: 4.7
+Stable tag: 1.4.0
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -94,6 +94,11 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
+= 1.4.0 =
+* Feature: Sort Pre-defined classes (thanks Jory Hogeveen)
+* Security: Prevent unauthenticated import of settings
+* Fix: Notice message when classes is empty (thanks Jory Hogeveen)
+
 = 1.3.0 =
 * Feature: Change dropdown to checkboxes for multiple class selection
 * Feature: Option to use both predefined and text input classes
@@ -157,6 +162,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * First version
 
 == Upgrade Notice ==
+
+= 1.4 =
+New feature, bug fix, security fix
 
 = 1.2.7 =
 Bug fix

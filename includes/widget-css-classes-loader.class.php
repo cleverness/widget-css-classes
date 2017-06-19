@@ -51,9 +51,9 @@ class WCSSC_Loader {
 	 * @since 1.0
 	 */
 	private static function include_files() {
-		include_once WCSSC_PLUGIN_DIR.'includes/widget-css-classes-library.class.php';
-		include_once WCSSC_PLUGIN_DIR.'includes/widget-css-classes-settings.class.php';
-		include_once WCSSC_PLUGIN_DIR.'includes/widget-css-classes.class.php';
+		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes-library.class.php';
+		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes-settings.class.php';
+		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes.class.php';
 	}
 
 	/**
@@ -77,11 +77,11 @@ class WCSSC_Loader {
 		$screen = get_current_screen();
 
 		// if on the settings page
-		if ( $screen->id == 'settings_page_widget-css-classes-settings' ) {
-			wp_enqueue_style( 'widget-css-classes_css', WCSSC_PLUGIN_URL.'/css/widget-css-classes.css' );
+		if ( 'settings_page_widget-css-classes-settings' === $screen->id ) {
+			wp_enqueue_style( 'widget-css-classes_css', WCSSC_PLUGIN_URL . '/css/widget-css-classes.css' );
 
-			wp_register_script( 'widget-css-classes_js', WCSSC_PLUGIN_URL.'/js/widget-css-classes.js', array( 'jquery' ), '1.0' );
-			wp_register_script( 'relcopy_js', WCSSC_PLUGIN_URL.'/js/relCopy.min.js', array( 'jquery' ), '1.0' );
+			wp_register_script( 'widget-css-classes_js', WCSSC_PLUGIN_URL . '/js/widget-css-classes.js', array( 'jquery' ), '1.0' );
+			wp_register_script( 'relcopy_js', WCSSC_PLUGIN_URL . '/js/relCopy.min.js', array( 'jquery' ), '1.0' );
 			wp_enqueue_script( 'widget-css-classes_js' );
 			wp_enqueue_script( 'relcopy_js' );
 		}

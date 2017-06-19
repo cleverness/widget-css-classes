@@ -1,0 +1,19 @@
+{
+	"name": "cleverness/widget-css-classes",
+	"type": "wordpress-plugin",
+	"description": "WordPress Plugin to add CSS classes to Widgets",
+	"keywords": [],
+	"homepage": "https://github.com/cleverness/widget-css-classes",
+	"license": "GPL-2.0+",
+	"authors": [],
+	"require": {
+		"composer/installers": "1.2.*",
+		"php": ">=5.2.4"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.8.*"
+	},
+	"extra": {
+		"installer-name": "widget-css-classes"
+	}
+}
