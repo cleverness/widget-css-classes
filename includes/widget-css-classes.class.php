@@ -16,6 +16,7 @@ class WCSSC {
 
 	/**
 	 * Default capability to display the WCC form in widgets.
+	 * @static
 	 * @since  1.4.1
 	 * @var    string
 	 */
@@ -72,7 +73,7 @@ class WCSSC {
 
 		if ( 1 === (int) WCSSC_Loader::$settings['show_id'] || WCSSC_Loader::$settings['type'] > 0 ) {
 			//$fields .= "<div class='wcssc' style='border: 1px solid #ddd; padding: 5px; background: #fafafa; margin: 1em 0; line-height: 1.5;'>\n";
-			$fields .= "<div class='wcssc'>\n";
+			$fields .= "<div class='wcssc' style='clear: both; margin: 1em 0;'>\n";
 
 			// show id field
 			if ( 1 === (int) WCSSC_Loader::$settings['show_id'] ) {
@@ -134,6 +135,8 @@ class WCSSC {
 
 	/**
 	 * Get the HTML for the ID input field.
+	 * @static
+	 * @since  1.4.1
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @return string
@@ -159,6 +162,8 @@ class WCSSC {
 
 	/**
 	 * Get the HTML for the class input field.
+	 * @static
+	 * @since  1.4.1
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @return string
@@ -185,6 +190,8 @@ class WCSSC {
 
 	/**
 	 * Get the HTML for the class input field.
+	 * @static
+	 * @since  1.4.1
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @param  bool      $do_class_field Will echo a class input field if not null. Pass false for a hidden field.
@@ -262,6 +269,8 @@ class WCSSC {
 
 	/**
 	 * Get the HTML for a hidden field.
+	 * @static
+	 * @since  1.4.1
 	 * @param  string $name
 	 * @param  string $value
 	 * @return string
@@ -272,6 +281,8 @@ class WCSSC {
 
 	/**
 	 * Get the HTML for a field label.
+	 * @static
+	 * @since  1.4.1
 	 * @param  string $label
 	 * @param  string $for
 	 * @return string
