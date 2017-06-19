@@ -15,13 +15,20 @@
 class WCSSC {
 
 	/**
+	 * Default capability to display the WCC form in widgets.
+	 * @since  1.4.1
+	 * @var    string
+	 */
+	private static $default_cap = 'edit_theme_options';
+
+	/**
 	 * Adds form fields to Widget
 	 * @static
-	 * @param $widget
-	 * @param $return
-	 * @param $instance
+	 * @param  WP_Widget $widget
+	 * @param  mixed     $return
+	 * @param  array     $instance
 	 * @return array
-	 * @since 1.0
+	 * @since  1.0
 	 */
 	public static function extend_widget_form( $widget, $return, $instance ) {
 		$instance = wp_parse_args( $instance, array(
@@ -29,6 +36,37 @@ class WCSSC {
 			'classes' => null,
 			'classes-defined' => array(),
 		) );
+
+		/**
+		 * Change the capability to access the CSS ID field.
+		 *
+		 * @since  1.4.1
+		 * @param  string
+		 * @return string
+		 */
+		$access_id = current_user_can( apply_filters( 'widget_css_classes_id_input_capability', self::$default_cap ) );
+
+		/**
+		 * Change the capability to access the CSS Classes field.
+		 *
+		 * @since  1.4.1
+		 * @param  string
+		 * @return string
+		 */
+		$access_class = current_user_can( apply_filters( 'widget_css_classes_class_input_capability', self::$default_cap ) );
+
+		/**
+		 * Change the capability to access the predefined CSS Classes select field.
+		 * NOTE: If the user cannot access the predefined classes the regular input field is disabled as well.
+		 *
+		 * @since  1.4.1
+		 * @param  string
+		 * @return string
+		 */
+		$access_predefined = current_user_can( apply_filters( 'widget_css_classes_class_select_capability', self::$default_cap, $access_class ) );
+		if ( ! $access_predefined ) {
+			$access_class = false;
+		}
 
 		$fields = '';
 
@@ -38,63 +76,207 @@ class WCSSC {
 
 			// show id field
 			if ( 1 === (int) WCSSC_Loader::$settings['show_id'] ) {
-				if ( ! isset( $instance['ids'] ) ) {
-					$instance['ids'] = null;
+				if ( $access_id ) {
+					$field = self::do_id_field( $widget, $instance );
+				} else {
+					$field = self::do_hidden( $widget->get_field_name( 'ids' ), $instance['ids'] );
 				}
-				$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-ids'>" . apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) ) . ":</label>
-				<input type='text' name='widget-{$widget->id_base}[{$widget->number}][ids]' id='widget-{$widget->id_base}-{$widget->number}-ids' value='{$instance['ids']}' class='widefat' /></p>\n";
+				$fields .= "\t" . $field . "\n";
 			}
 
-			// show text field only
+			// show classes text field only
 			if ( 1 === (int) WCSSC_Loader::$settings['type'] ) {
-				$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-classes'>" . apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) ) . ":</label>
-				<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' /></p>\n";
+				if ( $access_class ) {
+					$field = self::do_class_field( $widget, $instance );
+				} else {
+					$field = self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+				}
+				$fields .= "\t" . $field . "\n";
 			}
 
-			// show predefined
-			if ( 2 === (int) WCSSC_Loader::$settings['type'] || 3 === (int) WCSSC_Loader::$settings['type'] ) {
+			// show classes predefined only
+			if ( 2 === (int) WCSSC_Loader::$settings['type'] ) {
+				if ( $access_predefined ) {
+					$field = self::do_predefined_field( $widget, $instance, null );
+				} else {
+					$field = self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+				}
+				$fields .= "\t" . $field . "\n";
+			}
 
-				// Merge input classes with predefined classes
-				$predefined_classes = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
-				if ( isset( $instance['classes'] ) ) {
-					$text_classes = explode( ' ', $instance['classes'] );
-					foreach ( $text_classes as $key => $value ) {
-						if ( in_array( $value, $predefined_classes, true ) ) {
-							if ( ! in_array( $value, $instance['classes-defined'], true ) ) {
-								$instance['classes-defined'][] = $value;
-							}
-							unset( $text_classes[ $key ] );
-						}
-					}
-					$instance['classes'] = implode( ' ', $text_classes );
+			// show both
+			if ( 3 === (int) WCSSC_Loader::$settings['type'] ) {
+				$field = '';
+				if ( $access_predefined ) {
+					$field .= self::do_predefined_field( $widget, $instance, $access_class );
+				} else {
+					$field .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-
-				$fields .= "\t<p><label for='widget-{$widget->id_base}-{$widget->number}-classes'>" . apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) ) . ":</label>\n";
-				if ( 3 === (int) WCSSC_Loader::$settings['type'] ) {
-					// show text field
-					$fields .= "\t<input type='text' name='widget-{$widget->id_base}[{$widget->number}][classes]' id='widget-{$widget->id_base}-{$widget->number}-classes' value='{$instance['classes']}' class='widefat' style='margin-bottom: .5em;' />\n";
-				}
-				$fields .= "\t<ul id='widget-{$widget->id_base}-{$widget->number}-classes-defined' style='padding: 5px; max-height: 70px; overflow: hidden; overflow-y: auto; margin: -10px 0 0 0; border: 1px solid #ddd; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset; color: #32373c;'>\n";
-				foreach ( $predefined_classes as $preset ) {
-					if ( ! empty( $preset ) ) {
-						$preset_checked = '';
-						if ( in_array( $preset, $instance['classes-defined'], true ) ) {
-							$preset_checked = 'checked="checked"';
-						}
-						$id = 'widget-' . $widget->id_base . '-' . $widget->number . '-classes-defined-' . $preset;
-						$fields .= "\t<li><input id='{$id}' name='widget-{$widget->id_base}[{$widget->number}][classes-defined][]' type='checkbox' value='" . $preset . "' " . $preset_checked . "> <label for='{$id}'>" . $preset . "</label></li>\n";
-					}
-				}
-				$fields .= "\t</ul></p>\n";
+				$fields .= "\t" . $field . "\n";
 			}
 
 			$fields .= "</div>\n";
+
 		} // End if().
 
+		/**
+		 * Add extra fields to the widget form.
+		 *
+		 * @param  string  $fields    Current HTML.
+		 * @param  array   $instance  The widget instance.
+		 * @return string
+		 */
 		do_action( 'widget_css_classes_form', $fields, $instance );
 
 		echo $fields;
-		return $instance;
+		return $return;
+	}
+
+	/**
+	 * Get the HTML for the ID input field.
+	 * @param  WP_Widget $widget
+	 * @param  array     $instance
+	 * @return string
+	 */
+	private static function do_id_field( $widget, $instance ) {
+		$field = '';
+		$id = $widget->get_field_id( 'ids' );
+		$name = $widget->get_field_name( 'ids' );
+		/**
+		 * Change the label for the CSS ID form field.
+		 *
+		 * @param  string
+		 * @return string
+		 */
+		$label = apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) );
+
+		$field .= self::do_label( $label, $id );
+		$field .= "<input type='text' name='{$name}' id={$id}' value='{$instance['ids']}' class='widefat' />";
+
+		$field = '<p>' . $field . '</p>';
+		return $field;
+	}
+
+	/**
+	 * Get the HTML for the class input field.
+	 * @param  WP_Widget $widget
+	 * @param  array     $instance
+	 * @return string
+	 */
+	private static function do_class_field( $widget, $instance ) {
+		$field = '';
+		$id = $widget->get_field_id( 'classes' );
+		$name = $widget->get_field_name( 'classes' );
+
+		/**
+		 * Change the label for the CSS Classes form field.
+		 *
+		 * @param  string
+		 * @return string
+		 */
+		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
+		$field .= self::do_label( $label, $id );
+
+		$field .= "<input type='text' name='{$name}' id={$id}' value='{$instance['classes']}' class='widefat' />";
+
+		$field = '<p>' . $field . '</p>';
+		return $field;
+	}
+
+	/**
+	 * Get the HTML for the class input field.
+	 * @param  WP_Widget $widget
+	 * @param  array     $instance
+	 * @param  bool      $do_class_field Will echo a class input field if not null. Pass false for a hidden field.
+	 * @return string
+	 */
+	private static function do_predefined_field( $widget, $instance, $do_class_field = null ) {
+
+		$field = '';
+		$id = $widget->get_field_id( 'classes-defined' );
+		$name = $widget->get_field_name( 'classes-defined' );
+
+		/**
+		 * @see WCSSC::do_class_field()
+		 */
+		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
+
+		// Merge input classes with predefined classes
+		$predefined_classes = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
+		// Do we have existing classes and is the user allowed to select defined classes?
+		if ( ! empty( $instance['classes'] ) ) {
+			$text_classes = explode( ' ', $instance['classes'] );
+			foreach ( $text_classes as $key => $value ) {
+				if ( in_array( $value, $predefined_classes, true ) ) {
+					if ( ! in_array( $value, $instance['classes-defined'], true ) ) {
+						$instance['classes-defined'][] = $value;
+					}
+					unset( $text_classes[ $key ] );
+				}
+			}
+			$instance['classes'] = implode( ' ', $text_classes );
+		}
+
+		$style = array(
+			'padding'    => 'padding: 5px;',
+			'max-height' => 'max-height: 70px;',
+			'overflow'   => 'overflow: hidden;',
+			'overflow-y' => 'overflow-y: auto;',
+			'border'     => 'border: 1px solid #ddd;',
+			'box-shadow' => 'box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;',
+			'color'      => 'color: #32373c;',
+		    'margin-top' => 'margin-top: 1px;',
+		);
+
+		if ( null !== $do_class_field ) {
+			if ( $do_class_field ) {
+				$field .= self::do_class_field( $widget, $instance );
+				$style['margin-top'] = 'margin-top: -10px;';
+			} else {
+				$field .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+				$field .= self::do_label( $label, $id );
+			}
+		} else {
+			$field .= self::do_label( $label, $id );
+		}
+
+		$style = implode( ' ', $style );
+		$field .= "\t<ul id='{$id}' style='{$style}'>\n";
+		foreach ( $predefined_classes as $preset ) {
+			if ( ! empty( $preset ) ) {
+				$preset_checked = '';
+				if ( in_array( $preset, $instance['classes-defined'], true ) ) {
+					$preset_checked = ' checked="checked"';
+				}
+				$option_id = $id . '-' . esc_attr( $preset );
+				$option = "<label for='{$option_id}'>";
+				$option .= "<input id='{$option_id}' name='{$name}[]' type='checkbox' value='{$preset}' {$preset_checked} />";
+				$option .= ' ' . $preset . "</label>";
+				$field .= "\t<li>{$option}</li>\n";
+			}
+		}
+		$field .= "\t</ul>";
+		return $field;
+	}
+
+	/**
+	 * Get the HTML for a hidden field.
+	 * @param  string $name
+	 * @param  string $value
+	 * @return string
+	 */
+	private static function do_hidden( $name, $value ) {
+		return '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+	}
+
+	/**
+	 * Get the HTML for a field label.
+	 * @param  string $label
+	 * @param  string $for
+	 * @return string
+	 */
+	private static function do_label( $label, $for ) {
+		return '<label for="' . esc_attr( $for ) . '">' . $label . ":</label>\n";
 	}
 
 	/**
