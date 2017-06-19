@@ -201,8 +201,11 @@ class WCSSC {
 		 */
 		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
 
-		// Merge input classes with predefined classes
+		// Merge input classes with predefined classes.
 		$predefined_classes = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
+		// Remove any empty values.
+		$predefined_classes = array_filter( $predefined_classes );
+
 		// Do we have existing classes and is the user allowed to select defined classes?
 		if ( ! empty( $instance['classes'] ) ) {
 			$text_classes = explode( ' ', $instance['classes'] );
@@ -243,17 +246,15 @@ class WCSSC {
 		$style = implode( ' ', $style );
 		$field .= "\t<ul id='{$id}' style='{$style}'>\n";
 		foreach ( $predefined_classes as $preset ) {
-			if ( ! empty( $preset ) ) {
-				$preset_checked = '';
-				if ( in_array( $preset, $instance['classes-defined'], true ) ) {
-					$preset_checked = ' checked="checked"';
-				}
-				$option_id = $id . '-' . esc_attr( $preset );
-				$option = "<label for='{$option_id}'>";
-				$option .= "<input id='{$option_id}' name='{$name}[]' type='checkbox' value='{$preset}' {$preset_checked} />";
-				$option .= ' ' . $preset . "</label>";
-				$field .= "\t<li>{$option}</li>\n";
+			$preset_checked = '';
+			if ( in_array( $preset, $instance['classes-defined'], true ) ) {
+				$preset_checked = ' checked="checked"';
 			}
+			$option_id = $id . '-' . esc_attr( $preset );
+			$option = "<label for='{$option_id}'>";
+			$option .= "<input id='{$option_id}' name='{$name}[]' type='checkbox' value='{$preset}' {$preset_checked} />";
+			$option .= ' ' . $preset . '</label>';
+			$field .= "\t<li>{$option}</li>\n";
 		}
 		$field .= "\t</ul>";
 		return $field;
