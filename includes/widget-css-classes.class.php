@@ -32,8 +32,8 @@ class WCSSC {
 	 */
 	public static function extend_widget_form( $widget, $return, $instance ) {
 		$instance = wp_parse_args( $instance, array(
-			'ids' => null,
-			'classes' => null,
+			'ids' => '',
+			'classes' => '',
 			'classes-defined' => array(),
 		) );
 
