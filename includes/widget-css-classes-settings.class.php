@@ -158,7 +158,7 @@ class WCSSC_Settings {
 
 			// export settings
 			if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
-				header( "Content-Disposition: attachment; filename=widget-css-classes-settings.txt" );
+				header( 'Content-Disposition: attachment; filename=widget-css-classes-settings.txt' );
 				header( 'Content-Type: text/plain; charset=utf-8' );
 				$general = get_option( 'WCSSC_options' );
 
@@ -176,7 +176,7 @@ class WCSSC_Settings {
 				if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
 					$import = explode( "\n",
 						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
-					if ( array_shift( $import ) === "[START=WCSSC SETTINGS]" && array_pop( $import ) === "[STOP=WCSSC SETTINGS]" ) {
+					if ( array_shift( $import ) === '[START=WCSSC SETTINGS]' && array_pop( $import ) === '[STOP=WCSSC SETTINGS]' ) {
 						foreach ( $import as $import_option ) {
 							list( $key, $value ) = explode( "\t", $import_option );
 							$options[ $key ] = json_decode( sanitize_text_field( $value ) );
@@ -260,8 +260,8 @@ class WCSSC_Settings {
 
 		echo '<h1 class="nav-tab-wrapper">';
 		foreach ( $this->plugin_tabs as $tab_key => $tab_caption ) {
-			$active = $current_tab == $tab_key ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab '.esc_attr( $active ) . '" href="?page=' . esc_attr( $this->plugin_key ) . '&amp;tab='.esc_attr( $tab_key ) . '">'.esc_html( $tab_caption ) . '</a>';
+			$active = $current_tab === $tab_key ? 'nav-tab-active' : '';
+			echo '<a class="nav-tab ' . esc_attr( $active ) . '" href="?page=' . esc_attr( $this->plugin_key ) . '&amp;tab='.esc_attr( $tab_key ) . '">' . esc_html( $tab_caption ) . '</a>';
 		}
 		echo '</h1>';
 	}

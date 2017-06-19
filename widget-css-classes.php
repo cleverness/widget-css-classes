@@ -52,9 +52,9 @@ function widget_css_classes_frontend_hook() {
 function widget_css_classes_activation() {
 	global $wp_version;
 
-	$exit_msg = esc_html__( 'Widget CSS Classes requires WordPress 3.3 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update.</a>', 'widget-css-classes' );
-	if ( version_compare( $wp_version, "3.3", "<" ) ) {
-		exit( $exit_msg );
+	if ( version_compare( $wp_version, '3.3', '<' ) ) {
+		// @todo Add notice instead of exit();
+		exit( esc_html__( 'Widget CSS Classes requires WordPress 3.3 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update.</a>', 'widget-css-classes' ) );
 	}
 
 	if ( ! defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.3' );

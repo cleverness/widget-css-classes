@@ -317,6 +317,10 @@ class WCSSC {
 
 	/**
 	 * Adds the classes to the widget in the front-end
+	 *
+	 * // Disable variable check because of global $wp_registered_widgets.
+	 * @SuppressWarnings(PHPMD.LongVariables)
+	 *
 	 * @static
 	 * @param  $params
 	 * @return mixed
