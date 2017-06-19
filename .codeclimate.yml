@@ -15,6 +15,16 @@ engines:
     enabled: true
     config:
       standard: "Wordpress-Extra"
+    checks:
+      # Disable: Class file names should be based on the class name with "class-" prepended.
+      WordPress Files FileName InvalidClassFileName:
+        enabled: false
+      # Disable: Blank line found after control structure
+      WordPress WhiteSpace ControlStructureSpacing BlankLineAfterEnd:
+        enabled: false
+      # Disable: Inline control structures are not allowed
+      Generic ControlStructures InlineControlStructure NotAllowed:
+        enabled: false
 ratings:
   paths:
   - "**.php"
