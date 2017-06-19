@@ -51,38 +51,38 @@ class WCSSC_Settings {
 
 	public function show_number_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
 	<?php
 	}
 
 	public function show_location_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
 	<?php
 	}
 
 	public function show_evenodd_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
 	<?php
 	}
 
 	public function show_id_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
 	<?php
 	}
 
 	public function type_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?></label>
 	<?php
 	}
 
