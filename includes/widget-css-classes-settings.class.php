@@ -36,7 +36,7 @@ class WCSSC_Settings {
 	}
 
 	public function register_general_settings() {
-		$this->plugin_tabs[$this->general_key] = esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' );
+		$this->plugin_tabs[ $this->general_key ] = esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' );
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
 		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' ), array( $this, 'section_general_desc' ), $this->general_key );
@@ -49,39 +49,40 @@ class WCSSC_Settings {
 		do_action( 'widget_css_classes_settings' );
 	}
 
-	public function show_number_option() { ?>
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+	public function show_number_option() {
+		?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	public function show_location_option() {
 		?>
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	public function show_evenodd_option() {
 		?>
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-    <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	public function show_id_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?>
 	<?php
 	}
 
 	public function type_option() {
 		?>
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-		<input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?>&nbsp;&nbsp;
-        <input type="radio" name="<?php echo esc_attr( $this->general_key ).'[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?>&nbsp;&nbsp;
+		<input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'Hide', 'widget-css-classes' ); ?>
 	<?php
 	}
 
@@ -93,11 +94,11 @@ class WCSSC_Settings {
 		<?php
 		if ( count( $presets ) > 1 ) {
 			foreach ( $presets as $key => $preset ) {
-				if ( $preset != '' ) {
+				if ( ! empty( $preset ) ) {
 				?>
 					<p class="wcssc_defined_classes">
 						<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
-						<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes]['.esc_attr( $key ).']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
+						<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][' . esc_attr( $key ) . ']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
 						<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 					</p>
 				<?php
@@ -106,7 +107,7 @@ class WCSSC_Settings {
 			?>
 			<p class="wcssc_defined_classes wcssc_sort_fixed">
 				<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
-				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="" />
+				<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][]'; ?>" value="" />
 				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 			</p>
@@ -115,7 +116,7 @@ class WCSSC_Settings {
 			?>
 			<p class="wcssc_defined_classes wcssc_sort_fixed">
 				<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
-				<input type="text" name="<?php echo esc_attr( $this->general_key ).'[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
+				<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
 				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 			</p>
@@ -128,10 +129,12 @@ class WCSSC_Settings {
 
 	public function register_importexport_settings() {
 
-		if ( current_user_can('manage_options' ) ) {
+		if ( current_user_can( 'manage_options' ) ) {
 
 			$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', 'widget-css-classes' );
 
+			$wcssc_message_class = '';
+			$wcssc_message       = '';
 			if ( isset( $_GET['wcssc_message'] ) ) {
 				switch ( $_GET['wcssc_message'] ) {
 					case 1:
@@ -146,14 +149,10 @@ class WCSSC_Settings {
 						$wcssc_message_class = 'error';
 						$wcssc_message       = esc_attr__( 'No Settings File Selected', 'widget-css-classes' );
 						break;
-					default:
-						$wcssc_message_class = '';
-						$wcssc_message       = '';
-						break;
 				}
 			}
 
-			if ( isset( $wcssc_message ) && $wcssc_message != '' ) {
+			if ( ! empty( $wcssc_message ) ) {
 				echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
 			}
 
@@ -177,7 +176,7 @@ class WCSSC_Settings {
 				if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
 					$import = explode( "\n",
 						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
-					if ( array_shift( $import ) == "[START=WCSSC SETTINGS]" && array_pop( $import ) == "[STOP=WCSSC SETTINGS]" ) {
+					if ( array_shift( $import ) === "[START=WCSSC SETTINGS]" && array_pop( $import ) === "[STOP=WCSSC SETTINGS]" ) {
 						foreach ( $import as $import_option ) {
 							list( $key, $value ) = explode( "\t", $import_option );
 							$options[ $key ] = json_decode( sanitize_text_field( $value ) );
@@ -199,7 +198,7 @@ class WCSSC_Settings {
 				exit;
 			}
 
-		}
+		} // End if().
 	}
 
 	public function validate_input( $input ) {
@@ -207,15 +206,15 @@ class WCSSC_Settings {
 
 		foreach ( $input as $key => $value ) {
 
-			if ( isset( $input[$key] ) ) {
-				if ( $key == 'defined_classes' ) {
+			if ( isset( $input[ $key ] ) ) {
+				if ( 'defined_classes' === $key ) {
 					if ( is_array( $value ) ) {
-						$output[$key] = implode( ';', $input[$key] );
+						$output[ $key ] = implode( ';', $input[ $key ] );
 					} else {
-						$output[$key] = strip_tags( stripslashes( $input[$key] ) );
+						$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
 					}
 				} else {
-					$output[$key] = strip_tags( stripslashes( $input[$key] ) );
+					$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
 				}
 			}
 		}
@@ -242,8 +241,8 @@ class WCSSC_Settings {
 			<?php wp_nonce_field( 'update-options' ); ?>
 			<?php settings_fields( $tab ); ?>
 			<?php do_settings_sections( $tab ); ?>
-			<?php if ( $tab == 'importexport' ) $this->importexport_fields(); ?>
-			<?php if ( $tab != 'importexport' ) submit_button(); ?>
+			<?php if ( 'importexport' === $tab ) $this->importexport_fields(); ?>
+			<?php if ( 'importexport' !== $tab ) submit_button(); ?>
 		</form>
 	</div>
 	<?php
@@ -262,7 +261,7 @@ class WCSSC_Settings {
 		echo '<h1 class="nav-tab-wrapper">';
 		foreach ( $this->plugin_tabs as $tab_key => $tab_caption ) {
 			$active = $current_tab == $tab_key ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab '.esc_attr( $active ).'" href="?page='.esc_attr( $this->plugin_key ).'&amp;tab='.esc_attr( $tab_key ).'">'.esc_html( $tab_caption ).'</a>';
+			echo '<a class="nav-tab '.esc_attr( $active ) . '" href="?page=' . esc_attr( $this->plugin_key ) . '&amp;tab='.esc_attr( $tab_key ) . '">'.esc_html( $tab_caption ) . '</a>';
 		}
 		echo '</h1>';
 	}
