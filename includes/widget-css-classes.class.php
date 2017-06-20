@@ -461,6 +461,10 @@ class WCSSC {
 
 	/**
 	 * Get the widget option value. Also handles third party plugin compatibility.
+	 *
+	 * // Disable complexity check because of third part plugin handling.
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 *
 	 * @static
 	 * @since  1.4.1
 	 * @param  array  $widget_obj
