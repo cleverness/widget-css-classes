@@ -84,18 +84,9 @@ class WCSSC_Lib {
 	private static function update( $version ) {
 
 		if ( empty( $version ) ) {
-			// add default options
-			$options = array(
-				'fix_widget_params' => 0,
-				'show_id'           => 0,
-				'type'              => 1,
-				'defined_classes'   => '',
-				'show_number'       => 1,
-				'show_location'     => 1,
-				'show_evenodd'      => 1,
-			);
 
-			add_option( self::$settings_key, $options );
+			// add default options
+			self::update_settings( array() );
 			add_option( 'WCSSC_db_version', WCSSC_DB_VERSION );
 
 		} else {
@@ -122,6 +113,7 @@ class WCSSC_Lib {
 				unset( $options['dropdown'] );
 				update_option( self::$settings_key, $options );
 			}
+
 		} // End if().
 
 		self::$settings = get_option( self::$settings_key );
@@ -201,7 +193,7 @@ class WCSSC_Lib {
 	 */
 	public static function update_settings( $settings, $key = null ) {
 		self::set_settings( $settings, $key );
-		return update_option( self::$settings_key, self::$settings );
+		return update_option( self::$settings_key, self::get_settings() );
 	}
 
 }
