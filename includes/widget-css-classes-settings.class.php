@@ -41,41 +41,22 @@ class WCSSC_Settings {
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
 		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' ), array( $this, 'section_general_desc' ), $this->general_key );
-		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', 'widget-css-classes' ), array( $this, 'show_number_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', 'widget-css-classes' ), array( $this, 'show_location_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', 'widget-css-classes' ), array( $this, 'show_evenodd_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', 'widget-css-classes' ), array( $this, 'show_id_option' ), $this->general_key, 'section_general' );
+		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_number' ) );
+		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_location' ) );
+		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_evenodd' ) );
+		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_id' ) );
 		add_settings_field( 'type', esc_attr__( 'Class Field Type', 'widget-css-classes' ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'defined_classes', esc_attr__( 'Predefined Classes', 'widget-css-classes' ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
 		do_action( 'widget_css_classes_settings' );
 	}
 
-	public function show_number_option() {
+	public function show_yes_no_option( $args ) {
+		if ( ! $args['key'] ) return;
+		$key = (string) $args['key'];
 		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="1" <?php checked( $this->general_settings['show_number'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_number]'; ?>" value="0" <?php checked( $this->general_settings['show_number'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
-	<?php
-	}
-
-	public function show_location_option() {
-		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="1" <?php checked( $this->general_settings['show_location'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_location]'; ?>" value="0" <?php checked( $this->general_settings['show_location'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
-	<?php
-	}
-
-	public function show_evenodd_option() {
-		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="1" <?php checked( $this->general_settings['show_evenodd'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_evenodd]'; ?>" value="0" <?php checked( $this->general_settings['show_evenodd'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
-	<?php
-	}
-
-	public function show_id_option() {
-		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="1" <?php checked( $this->general_settings['show_id'], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[show_id]'; ?>" value="0" <?php checked( $this->general_settings['show_id'], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
-	<?php
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[' . $key . ']'; ?>" value="1" <?php checked( $this->general_settings[ $key ], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[' . $key . ']'; ?>" value="0" <?php checked( $this->general_settings[ $key ], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
+		<?php
 	}
 
 	public function type_option() {
