@@ -351,11 +351,24 @@ class WCSSC {
 		$widget_id              = $params[0]['widget_id'];
 		$widget_obj             = $wp_registered_widgets[ $widget_id ];
 		$widget_num             = $widget_obj['params'][0]['number'];
-		$widget_css_classes     = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
 		$widget_opt             = self::get_widget_opt( $widget_obj );
 
+		/**
+		 * Make sure all keys are there and remove invalid keys.
+		 * @see  WCSSC_Lib::set_settings()
+		 */
+		$settings = shortcode_atts( array(
+			'fix_widget_params' => 0,
+			'show_id'           => 0,
+			'type'              => 1,
+			'defined_classes'   => '',
+			'show_number'       => 1,
+			'show_location'     => 1,
+			'show_evenodd'      => 1,
+		), (array) get_option( 'WCSSC_options' ) );
+
 		// If set, try to fix invalid sidebar parameters.
-		if ( ! empty( $widget_css_classes['fix_widget_params'] ) ) {
+		if ( ! empty( $settings['fix_widget_params'] ) ) {
 			$params[0] = self::fix_widget_params( $params[0] );
 		}
 
@@ -377,13 +390,13 @@ class WCSSC {
 			 */
 			$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
-			if ( 1 === (int) $widget_css_classes['type'] || 3 === (int) $widget_css_classes['type'] ) {
+			if ( 1 === (int) $settings['type'] || 3 === (int) $settings['type'] ) {
 				// Add all classes
 				$classes = implode( ' ', $classes );
 				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$classes} ", $params[0]['before_widget'], 1 );
-			} elseif ( 2 === (int) $widget_css_classes['type'] ) {
+			} elseif ( 2 === (int) $settings['type'] ) {
 				// Only add predefined classes
-				$predefined_classes = explode( ';', $widget_css_classes['defined_classes'] );
+				$predefined_classes = explode( ';', $settings['defined_classes'] );
 				foreach ( $classes as $key => $value ) {
 					if ( in_array( $value, $predefined_classes, true ) ) {
 						$value = esc_attr( $value );
@@ -394,7 +407,7 @@ class WCSSC {
 		}
 
 		// Add id
-		if ( 1 === (int) $widget_css_classes['show_id'] ) {
+		if ( 1 === (int) $settings['show_id'] ) {
 			if ( isset( $widget_opt[ $widget_num ]['ids'] ) && ! empty( $widget_opt[ $widget_num ]['ids'] ) )
 				$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[ $widget_num ]['ids']}", $params[0]['before_widget'], 1 );
 		}
@@ -402,7 +415,7 @@ class WCSSC {
 		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
 
 		// Add first, last, even, and odd classes
-		if ( 1 === (int) $widget_css_classes['show_number'] || 1 === (int) $widget_css_classes['show_location'] || 1 === (int) $widget_css_classes['show_evenodd'] ) {
+		if ( 1 === (int) $settings['show_number'] || 1 === (int) $settings['show_location'] || 1 === (int) $settings['show_evenodd'] ) {
 			if ( ! $widget_number ) {
 				$widget_number = array();
 			}
@@ -419,11 +432,11 @@ class WCSSC {
 
 			$class = 'class="';
 
-			if ( 1 === (int) $widget_css_classes['show_number'] ) {
+			if ( 1 === (int) $settings['show_number'] ) {
 				$class .= apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ] . ' ';
 			}
 
-			if ( 1 === (int) $widget_css_classes['show_location'] ) {
+			if ( 1 === (int) $settings['show_location'] ) {
 				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
 				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
 				if ( 1 === (int) $widget_number[ $this_id ] ) {
@@ -434,7 +447,7 @@ class WCSSC {
 				}
 			}
 
-			if ( 1 === (int) $widget_css_classes['show_evenodd'] ) {
+			if ( 1 === (int) $settings['show_evenodd'] ) {
 				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
 				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
 				$class .= ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd . ' ' : $widget_even . ' ' );
@@ -508,6 +521,7 @@ class WCSSC {
 			if ( isset( $custom_sidebarcheck[0] ) && ( 'yes' === $custom_sidebarcheck[0] ) ) {
 				$widget_opt = get_option( 'widget_' . $id . '_' . substr( $widget_obj['callback'][0]->option_name, 7 ) );
 			} elseif ( isset( $widget_obj['callback'][0]->option_name ) ) {
+				// Default
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 			}
 		}

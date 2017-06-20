@@ -168,7 +168,10 @@ class WCSSC_Lib {
 		 */
 		$settings = apply_filters( 'widget_css_classes_set_settings', $settings );
 
-		// Make sure all keys are there and remove invalid keys.
+		/**
+		 * Make sure all keys are there and remove invalid keys.
+		 * @see  WCSSC::add_widget_classes()
+		 */
 		$settings = shortcode_atts( array(
 			'fix_widget_params' => 0,
 			'show_id'           => 0,
