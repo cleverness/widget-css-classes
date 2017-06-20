@@ -71,12 +71,12 @@ class WCSSC {
 
 		$fields = '';
 
-		if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) || WCSSC_Lib::get_settings( 'type' ) > 0 ) {
+		if ( WCSSC_Lib::get_settings( 'show_id' ) || WCSSC_Lib::get_settings( 'type' ) > 0 ) {
 			//$fields .= "<div class='wcssc' style='border: 1px solid #ddd; padding: 5px; background: #fafafa; margin: 1em 0; line-height: 1.5;'>\n";
 			$fields .= "<div class='wcssc' style='clear: both; margin: 1em 0;'>\n";
 
 			// show id field
-			if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) ) {
+			if ( WCSSC_Lib::get_settings( 'show_id' ) ) {
 				if ( $access_id ) {
 					$field = self::do_id_field( $widget, $instance );
 				} else {
@@ -305,7 +305,7 @@ class WCSSC {
 
 		$instance['classes'] = $new_instance['classes'];
 		$instance['classes-defined'] = $new_instance['classes-defined'];
-		if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) ) {
+		if ( WCSSC_Lib::get_settings( 'show_id' ) ) {
 			$instance['ids'] = $new_instance['ids'];
 		}
 		if ( ! empty( $instance['classes-defined'] ) && is_array( $instance['classes-defined'] ) ) {
@@ -351,10 +351,7 @@ class WCSSC {
 		$widget_num             = $widget_obj['params'][0]['number'];
 		$widget_opt             = self::get_widget_opt( $widget_obj );
 
-		/**
-		 * Make sure all keys are there and remove invalid keys.
-		 * @see  WCSSC_Lib::set_settings()
-		 */
+		// Make sure all keys are there and remove invalid keys.
 		$settings = shortcode_atts( WCSSC_Lib::get_default_settings(), WCSSC_Lib::get_settings() );
 
 		// If set, try to fix invalid sidebar parameters.

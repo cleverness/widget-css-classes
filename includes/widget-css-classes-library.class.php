@@ -20,7 +20,8 @@ class WCSSC_Lib {
 	private static $default_settings = null;
 
 	/**
-	 * Add Settings link to plugin's entry on the Plugins page
+	 * Add Settings link to plugin's entry on the Plugins page.
+	 *
 	 * @static
 	 * @param  array  $links
 	 * @param  string $file
@@ -42,7 +43,8 @@ class WCSSC_Lib {
 	}
 
 	/**
-	 * Add plugin info to admin footer
+	 * Add plugin info to admin footer.
+	 *
 	 * @static
 	 * @since 1.0
 	 */
@@ -54,7 +56,8 @@ class WCSSC_Lib {
 	}
 
 	/**
-	 * Run install function to see if upgrade is needed
+	 * Run install function to see if upgrade is needed.
+	 *
 	 * @static
 	 * @since 1.0
 	 */
@@ -77,7 +80,8 @@ class WCSSC_Lib {
 	}
 
 	/**
-	 * Install or Upgrade Options
+	 * Install or Upgrade Options.
+	 *
 	 * @static
 	 * @param $version
 	 * @since 1.0
@@ -150,7 +154,8 @@ class WCSSC_Lib {
 	public static function set_settings( $settings, $key = null ) {
 
 		if ( null !== $key ) {
-			if ( ! is_int( $key ) && ! is_string( $key ) ) {
+			// This plugin only has string type array keys.
+			if ( ! is_string( $key ) ) {
 				return false;
 			}
 			self::$settings = (array) self::$settings;
