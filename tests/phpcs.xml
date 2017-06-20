@@ -10,6 +10,8 @@
     <rule ref="WordPress-Extra">
         <!-- Class file names should be based on the class name with "class-" prepended. -->
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+        <!-- When an array uses associative keys, each value should start on a new line. -->
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeKeyFound" />
         <!-- Blank line found after control structure -->
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd" />
         <!-- Expected 1 space after closing brace; newline found -->
