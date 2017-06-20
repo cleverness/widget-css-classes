@@ -78,9 +78,9 @@ class WCSSC_Loader {
 
 		// if on the settings page
 		if ( 'settings_page_widget-css-classes-settings' === $screen->id ) {
-			wp_enqueue_style( 'widget-css-classes_css', WCSSC_PLUGIN_URL . '/css/widget-css-classes.css' );
+			wp_enqueue_style( 'widget-css-classes_css', WCSSC_PLUGIN_URL . '/css/widget-css-classes.css', array(), WCSSC_PLUGIN_VERSION );
 
-			wp_register_script( 'widget-css-classes_js', WCSSC_PLUGIN_URL . '/js/widget-css-classes.js', array( 'jquery' ), '1.0' );
+			wp_register_script( 'widget-css-classes_js', WCSSC_PLUGIN_URL . '/js/widget-css-classes.js', array( 'jquery' ), WCSSC_PLUGIN_VERSION );
 			wp_register_script( 'relcopy_js', WCSSC_PLUGIN_URL . '/js/relCopy.min.js', array( 'jquery' ), '1.0' );
 			wp_enqueue_script( 'widget-css-classes_js' );
 			wp_enqueue_script( 'relcopy_js' );
