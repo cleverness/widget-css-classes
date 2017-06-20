@@ -106,6 +106,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
   - `widget_css_classes_class_select_capability` predefined classes (also hides regular input if invalid)
 * **Compatibility**: WP External Links. [#17](https://github.com/cleverness/widget-css-classes/issues/17), thanks to Victor [@freelancephp](https://profiles.wordpress.org/freelancephp)
 * **Fix**: Form wrapper div style. [#18](https://github.com/cleverness/widget-css-classes/issues/18)
+* **Fix**: Enable sortable input selection (IE-11 fix). [#20](https://github.com/cleverness/widget-css-classes/issues/20)
 * **i18n**: Remove Dutch and Russian languages from plugin distribution (available on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/widget-css-classes)). [#23](https://github.com/cleverness/widget-css-classes/issues/23)
 * Started using TravisCI and CodeClimate. [#15](https://github.com/cleverness/widget-css-classes/issues/15)
 
