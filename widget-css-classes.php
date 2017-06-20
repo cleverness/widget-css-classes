@@ -21,6 +21,10 @@ function widget_css_classes_loader() {
 	$languages_path = plugin_basename( dirname( __FILE__ ) . '/languages' );
 	load_plugin_textdomain( 'widget-css-classes', false, $languages_path );
 
+	// Load plugin settings
+	include_once 'includes/widget-css-classes-library.class.php';
+	WCSSC_Lib::set_settings( get_option( WCSSC_Lib::$settings_key ) );
+
 	if ( is_admin() ) {
 
 		if ( ! defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.2.8' );
@@ -41,7 +45,6 @@ function widget_css_classes_loader() {
  */
 function widget_css_classes_frontend_hook() {
 	if ( ! is_admin() ) {
-		include_once 'includes/widget-css-classes-library.class.php';
 		include_once 'includes/widget-css-classes.class.php';
 		add_filter( 'dynamic_sidebar_params', array( 'WCSSC', 'add_widget_classes' ) );
 	}

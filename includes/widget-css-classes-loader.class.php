@@ -25,9 +25,6 @@ class WCSSC_Loader {
 		self::include_files();
 		self::add_wp_hooks();
 
-		// Load the plugin settings.
-		WCSSC_Lib::set_settings( get_option( WCSSC_Lib::$settings_key ) );
-
 		// Instantiate settings (admin) class.
 		new WCSSC_Settings();
 	}
@@ -47,7 +44,6 @@ class WCSSC_Loader {
 	 * @since 1.0
 	 */
 	private static function include_files() {
-		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes-library.class.php';
 		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes-settings.class.php';
 		include_once WCSSC_PLUGIN_DIR . 'includes/widget-css-classes.class.php';
 	}
