@@ -8,6 +8,13 @@
     <arg name="extensions" value="php" />
 
     <rule ref="WordPress-Extra">
-        <!--exclude name="WordPress.CSRF.NonceVerification.NoNonceVerification" /-->
+        <!-- Class file names should be based on the class name with "class-" prepended. -->
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+        <!-- Blank line found after control structure -->
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd" />
+        <!-- Expected 1 space after closing brace; newline found -->
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace" />
+        <!-- Inline control structures are not allowed -->
+        <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
     <rule/>
 </ruleset>

@@ -25,6 +25,9 @@ engines:
       # Disable: Blank line found after control structure
       WordPress WhiteSpace ControlStructureSpacing BlankLineAfterEnd:
         enabled: false
+      # Disable: Expected 1 space after closing brace; newline found
+      Squiz ControlStructures ControlSignature SpaceAfterCloseBrace:
+        enabled: false
       # Disable: Inline control structures are not allowed
       Generic ControlStructures InlineControlStructure NotAllowed:
         enabled: false
