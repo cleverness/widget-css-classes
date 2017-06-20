@@ -360,11 +360,11 @@ class WCSSC {
 		$settings = shortcode_atts( WCSSC_Lib::get_default_settings(), (array) get_option( 'WCSSC_options' ) );
 
 		// If set, try to fix invalid sidebar parameters.
-		if ( ! empty( $settings['fix_widget_params'] ) ) {
+		if ( $settings['fix_widget_params'] ) {
 			$params[0] = self::fix_widget_params( $params[0] );
 		}
 
-		// Add classes
+		// Add custom and predefined classes.
 		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
 			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
@@ -405,16 +405,16 @@ class WCSSC {
 			}
 		} // End if().
 
-		// Add id
-		if ( 1 === (int) $settings['show_id'] ) {
+		// Add id.
+		if ( $settings['show_id'] ) {
 			if ( isset( $widget_opt[ $widget_num ]['ids'] ) && ! empty( $widget_opt[ $widget_num ]['ids'] ) )
 				$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[ $widget_num ]['ids']}", $params[0]['before_widget'], 1 );
 		}
 		// Remove empty ID attr.
 		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
 
-		// Add first, last, even, and odd classes
-		if ( 1 === (int) $settings['show_number'] || 1 === (int) $settings['show_location'] || 1 === (int) $settings['show_evenodd'] ) {
+		// Add first, last, even, and odd classes.
+		if ( $settings['show_number'] || $settings['show_location'] || $settings['show_evenodd'] ) {
 			if ( ! $widget_number ) {
 				$widget_number = array();
 			}
@@ -431,11 +431,11 @@ class WCSSC {
 
 			$class = 'class="';
 
-			if ( 1 === (int) $settings['show_number'] ) {
+			if ( $settings['show_number'] ) {
 				$class .= apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ] . ' ';
 			}
 
-			if ( 1 === (int) $settings['show_location'] ) {
+			if ( $settings['show_location'] ) {
 				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
 				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
 				if ( 1 === (int) $widget_number[ $this_id ] ) {
@@ -446,7 +446,7 @@ class WCSSC {
 				}
 			}
 
-			if ( 1 === (int) $settings['show_evenodd'] ) {
+			if ( $settings['show_evenodd'] ) {
 				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
 				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
 				$class .= ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd . ' ' : $widget_even . ' ' );
