@@ -195,15 +195,19 @@ class WCSSC_Lib {
 
 		/**
 		 * Modify the plugin settings. Overwrites the DB values.
+		 * IMPORTANT: Do not change the variable types of the values! Type casting will be overruled.
+		 *
 		 * @since  1.5.0
 		 * @param  array $settings {
-		 *     @type bool  $fix_widget_params
-		 *     @type bool  $show_id
-		 *     @type int   $type
-		 *     @type array $defined_classes
-		 *     @type bool  $show_number
-		 *     @type bool  $show_location
-		 *     @type bool  $show_evenodd
+		 *     @type bool         $fix_widget_params
+		 *     @type bool         $show_id
+		 *     @type int          $type
+		 *     @type array|string $defined_classes  Array of predefined classes.
+		 *                                          Optionally allows a delimiter separated string.
+		 *                                          See WCSSC_Lib::parse_defined_classes().
+		 *     @type bool         $show_number
+		 *     @type bool         $show_location
+		 *     @type bool         $show_evenodd
 		 * }
 		 * @return array
 		 */
@@ -315,7 +319,7 @@ class WCSSC_Lib {
 
 		if ( null === self::$default_settings ) {
 
-			$default_settings = array(
+			self::$default_settings = array(
 				'fix_widget_params' => false,
 				'show_id'           => false,
 				'type'              => 1,
@@ -325,13 +329,21 @@ class WCSSC_Lib {
 				'show_evenodd'      => true,
 			);
 
+			// Prevent passing by reference.
+			$default_settings = self::$default_settings;
+
 			/**
 			 * Modify the plugin default settings. Doesn't change the DB values.
+			 * IMPORTANT: Do not change the variable types of the values! Type casting will be overruled.
+			 *
 			 * @since  1.5.0
-			 * @param  array
+			 * @param  array  $default_settings  See `widget_css_classes_set_settings` filter for parameters.
 			 * @return array
 			 */
-			self::$default_settings = apply_filters( 'widget_css_classes_default_settings', $default_settings );
+			$default_settings = apply_filters( 'widget_css_classes_default_settings', $default_settings );
+
+			// Validate default settings against the original defaults.
+			self::$default_settings = self::validate_settings( $default_settings, true );
 		}
 
 		return self::$default_settings;
