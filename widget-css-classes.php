@@ -57,6 +57,7 @@ function widget_css_classes_activation() {
 		exit( esc_html__( 'Widget CSS Classes requires WordPress 3.3 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update.</a>', 'widget-css-classes' ) );
 	}
 
+	if ( ! defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
 	if ( ! defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.3' );
 	if ( ! defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
 	include_once 'includes/widget-css-classes-library.class.php';
