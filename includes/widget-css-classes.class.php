@@ -71,12 +71,12 @@ class WCSSC {
 
 		$fields = '';
 
-		if ( 1 === (int) WCSSC_Loader::$settings['show_id'] || WCSSC_Loader::$settings['type'] > 0 ) {
+		if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) || WCSSC_Lib::get_settings( 'type' ) > 0 ) {
 			//$fields .= "<div class='wcssc' style='border: 1px solid #ddd; padding: 5px; background: #fafafa; margin: 1em 0; line-height: 1.5;'>\n";
 			$fields .= "<div class='wcssc' style='clear: both; margin: 1em 0;'>\n";
 
 			// show id field
-			if ( 1 === (int) WCSSC_Loader::$settings['show_id'] ) {
+			if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) ) {
 				if ( $access_id ) {
 					$field = self::do_id_field( $widget, $instance );
 				} else {
@@ -86,7 +86,7 @@ class WCSSC {
 			}
 
 			// show classes text field only
-			if ( 1 === (int) WCSSC_Loader::$settings['type'] ) {
+			if ( 1 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
 				if ( $access_class ) {
 					$field = self::do_class_field( $widget, $instance );
 				} else {
@@ -96,7 +96,7 @@ class WCSSC {
 			}
 
 			// show classes predefined only
-			if ( 2 === (int) WCSSC_Loader::$settings['type'] ) {
+			if ( 2 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
 				if ( $access_predefined ) {
 					$field = self::do_predefined_field( $widget, $instance, null );
 				} else {
@@ -106,7 +106,7 @@ class WCSSC {
 			}
 
 			// show both
-			if ( 3 === (int) WCSSC_Loader::$settings['type'] ) {
+			if ( 3 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
 				$field = '';
 				if ( $access_predefined ) {
 					$field .= self::do_predefined_field( $widget, $instance, $access_class );
@@ -209,7 +209,7 @@ class WCSSC {
 		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
 
 		// Merge input classes with predefined classes.
-		$predefined_classes = explode( ';', WCSSC_Loader::$settings['defined_classes'] );
+		$predefined_classes = explode( ';', WCSSC_Lib::get_settings( 'defined_classes' ) );
 		// Remove any empty values.
 		$predefined_classes = array_filter( $predefined_classes );
 
@@ -307,7 +307,7 @@ class WCSSC {
 
 		$instance['classes'] = $new_instance['classes'];
 		$instance['classes-defined'] = $new_instance['classes-defined'];
-		if ( 1 === (int) WCSSC_Loader::$settings['show_id'] ) {
+		if ( 1 === (int) WCSSC_Lib::get_settings( 'show_id' ) ) {
 			$instance['ids'] = $new_instance['ids'];
 		}
 		if ( ! empty( $instance['classes-defined'] ) && is_array( $instance['classes-defined'] ) ) {

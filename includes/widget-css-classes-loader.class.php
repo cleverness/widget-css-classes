@@ -14,7 +14,6 @@
  * @subpackage includes
  */
 class WCSSC_Loader {
-	public static $settings;
 
 	/**
 	 * Plugin Loader init
@@ -23,9 +22,13 @@ class WCSSC_Loader {
 	 */
 	public static function init() {
 		self::check_for_upgrade();
-		self::$settings  = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
 		self::include_files();
 		self::add_wp_hooks();
+
+		// Load the plugin settings.
+		WCSSC_Lib::set_settings( get_option( WCSSC_Lib::$settings_key ) );
+
+		// Instantiate settings (admin) class.
 		new WCSSC_Settings();
 	}
 

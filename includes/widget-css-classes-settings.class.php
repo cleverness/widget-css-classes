@@ -16,7 +16,7 @@
  */
 class WCSSC_Settings {
 
-	private $general_key = 'WCSSC_options';
+	private $general_key = '';
 	private $plugin_key = 'widget-css-classes-settings';
 	private $plugin_tabs = array();
 	private $general_settings = array();
@@ -29,7 +29,8 @@ class WCSSC_Settings {
 	}
 
 	public function load_settings() {
-		$this->general_settings = get_option( $this->general_key );
+		$this->general_settings = WCSSC_Lib::get_settings();
+		$this->general_key = WCSSC_Lib::$settings_key;
 	}
 
 	public function section_general_desc() {
@@ -89,20 +90,19 @@ class WCSSC_Settings {
 	public function defined_classes_option() {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		$presets = explode( ';', $this->general_settings['defined_classes'] );
+		$presets = array_filter( $presets );
 		?>
 		<div class="wcssc_sortable">
 		<?php
 		if ( count( $presets ) > 1 ) {
 			foreach ( $presets as $key => $preset ) {
-				if ( ! empty( $preset ) ) {
-				?>
-					<p class="wcssc_defined_classes">
-						<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
-						<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][' . esc_attr( $key ) . ']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
-						<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
-					</p>
-				<?php
-				}
+			?>
+				<p class="wcssc_defined_classes">
+					<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
+					<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][' . esc_attr( $key ) . ']'; ?>" value="<?php echo esc_attr( $preset ); ?>" />
+					<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
+				</p>
+			<?php
 			}
 			?>
 			<p class="wcssc_defined_classes wcssc_sort_fixed">
@@ -177,6 +177,7 @@ class WCSSC_Settings {
 					$import = explode( "\n",
 						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
 					if ( array_shift( $import ) === '[START=WCSSC SETTINGS]' && array_pop( $import ) === '[STOP=WCSSC SETTINGS]' ) {
+						$options = WCSSC_Lib::get_settings();
 						foreach ( $import as $import_option ) {
 							list( $key, $value ) = explode( "\t", $import_option );
 							$options[ $key ] = json_decode( sanitize_text_field( $value ) );
@@ -185,7 +186,7 @@ class WCSSC_Settings {
 								unset( $options['dropdown'] );
 							}
 						}
-						update_option( 'WCSSC_options', $options );
+						WCSSC_Lib::update_settings( $options );
 						$wcssc_message = 1;
 					} else {
 						$wcssc_message = 2;
