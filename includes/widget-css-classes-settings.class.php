@@ -20,6 +20,7 @@ class WCSSC_Settings {
 	private $plugin_key = 'widget-css-classes-settings';
 	private $plugin_tabs = array();
 	private $general_settings = array();
+	private $current_tab = '';
 
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'load_settings' ) );
@@ -38,6 +39,8 @@ class WCSSC_Settings {
 
 	public function register_general_settings() {
 		$this->plugin_tabs[ $this->general_key ] = esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' );
+		// @codingStandardsIgnoreLine >> yeah yeah, I know...
+		$this->current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
 		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' ), array( $this, 'section_general_desc' ), $this->general_key );
@@ -145,6 +148,7 @@ class WCSSC_Settings {
 
 				echo "[START=WCSSC SETTINGS]\n";
 				foreach ( $general as $id => $text ) {
+					// @codingStandardsIgnoreLine >> wp_json_encode is WP 4.1+
 					echo "$id\t" . json_encode( $text ) . "\n";
 				}
 				echo "[STOP=WCSSC SETTINGS]";
@@ -153,9 +157,11 @@ class WCSSC_Settings {
 
 			// import settings
 			if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
-				$wcssc_message = '';
+				$wcssc_message = 3;
 				if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
+					$wcssc_message = 2;
 					$import = explode( "\n",
+						// @codingStandardsIgnoreLine >> yeah yeah, I know...
 						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
 					if ( array_shift( $import ) === '[START=WCSSC SETTINGS]' && array_pop( $import ) === '[STOP=WCSSC SETTINGS]' ) {
 						$options = WCSSC_Lib::get_settings();
@@ -169,11 +175,7 @@ class WCSSC_Settings {
 						}
 						WCSSC_Lib::update_settings( $options );
 						$wcssc_message = 1;
-					} else {
-						$wcssc_message = 2;
 					}
-				} else {
-					$wcssc_message = 3;
 				}
 
 				wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message=' . esc_attr( $wcssc_message ) ) );
@@ -215,12 +217,11 @@ class WCSSC_Settings {
 	 * to render the tabs.
 	 */
 	public function plugin_options_page() {
-		$tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
+		$tab = $this->current_tab;
 		?>
 	<div class="wrap">
 		<?php $this->plugin_options_tabs(); ?>
 		<form method="post" action="options.php" enctype="multipart/form-data">
-			<?php wp_nonce_field( 'update-options' ); ?>
 			<?php settings_fields( $tab ); ?>
 			<?php do_settings_sections( $tab ); ?>
 			<?php if ( 'importexport' === $tab ) $this->importexport_fields(); ?>
@@ -238,28 +239,26 @@ class WCSSC_Settings {
 	 * plugin_options_page method.
 	 */
 	public function plugin_options_tabs() {
-		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
 		echo '<h1 class="nav-tab-wrapper">';
 		foreach ( $this->plugin_tabs as $tab_key => $tab_caption ) {
-			$active = $current_tab === $tab_key ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab ' . esc_attr( $active ) . '" href="?page=' . esc_attr( $this->plugin_key ) . '&amp;tab='.esc_attr( $tab_key ) . '">' . esc_html( $tab_caption ) . '</a>';
+			$active = $this->current_tab === $tab_key ? 'nav-tab-active' : '';
+			echo '<a class="nav-tab ' . esc_attr( $active ) . '" href="?page=' . esc_attr( $this->plugin_key ) . '&amp;tab=' . esc_attr( $tab_key ) . '">' . esc_html( $tab_caption ) . '</a>';
 		}
 		echo '</h1>';
 	}
 
 	public function importexport_fields() {
-		?>
-	<h3><?php esc_html_e( 'Import/Export Settings', 'widget-css-classes' ); ?></h3>
+	?>
+		<h3><?php esc_html_e( 'Import/Export Settings', 'widget-css-classes' ); ?></h3>
 
-	<p><a class="submit button" href="?widget-css-classes-settings-export"><?php esc_attr_e( 'Export Settings', 'widget-css-classes' ); ?></a></p>
+		<p><a class="submit button" href="?widget-css-classes-settings-export"><?php esc_attr_e( 'Export Settings', 'widget-css-classes' ); ?></a></p>
 
-	<p>
-		<input type="hidden" name="widget-css-classes-settings-import" id="widget-css-classes-settings-import" value="true" />
-		<?php submit_button( esc_attr__( 'Import Settings', 'widget-css-classes' ), 'button', 'widget-css-classes-settings-submit', false ); ?>
-		<input type="file" name="widget-css-classes-settings-import-file" id="widget-css-classes-settings-import-file" />
-	</p>
-
+		<p>
+			<input type="hidden" name="widget-css-classes-settings-import" id="widget-css-classes-settings-import" value="true" />
+			<?php submit_button( esc_attr__( 'Import Settings', 'widget-css-classes' ), 'button', 'widget-css-classes-settings-submit', false ); ?>
+			<input type="file" name="widget-css-classes-settings-import-file" id="widget-css-classes-settings-import-file" />
+		</p>
 	<?php
 	}
 }

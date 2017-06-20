@@ -363,7 +363,6 @@ class WCSSC {
 			} else {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 			}
-
 		}
 		// If Widget Context plugin is enabled, use it's callback
 		elseif ( in_array( 'widget-context/widget-context.php', $active_plugins, true ) ) {
