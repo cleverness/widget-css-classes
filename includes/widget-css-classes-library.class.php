@@ -232,6 +232,10 @@ class WCSSC_Lib {
 					continue;
 				}
 
+				if ( is_string( $value ) ) {
+					$settings[ $key ] = strip_tags( stripslashes( $value ) );
+				}
+
 				// Validate var types.
 				settype( $settings[ $key ], gettype( $defaults[ $key ] ) );
 			}
@@ -269,7 +273,11 @@ class WCSSC_Lib {
 			$new_classes = array_merge( $new_classes, $class );
 		}
 
-		return array_unique( array_filter( $new_classes ) );
+		$new_classes = array_unique( array_filter( $new_classes ) );
+		$new_classes = array_map( 'stripslashes', $new_classes );
+		$new_classes = array_map( 'strip_tags', $new_classes );
+
+		return $new_classes;
 	}
 
 	/**

@@ -58,8 +58,8 @@ class WCSSC_Settings {
 		if ( ! $args['key'] ) return;
 		$key = esc_attr( $args['key'] );
 		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="1" <?php checked( $this->general_settings[ $key ], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="0" <?php checked( $this->general_settings[ $key ], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="1" <?php checked( $this->general_settings[ $key ], true ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="0" <?php checked( $this->general_settings[ $key ], false ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
 		<?php
 	}
 
@@ -187,23 +187,8 @@ class WCSSC_Settings {
 	}
 
 	public function validate_input( $input ) {
-		$output = array();
-
-		foreach ( $input as $key => $value ) {
-
-			if ( isset( $input[ $key ] ) ) {
-				if ( 'defined_classes' === $key ) {
-					$input[ $key ] = array_filter( (array) $value );
-					if ( $input[ $key ] ) {
-						$output[ $key ] = $this->validate_input( $input[ $key ] );
-					}
-				} else {
-					$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
-				}
-			}
-		}
-
-		return $output;
+		WCSSC_Lib::set_settings( $input );
+		return WCSSC_Lib::get_settings();
 	}
 
 	public function add_admin_menus() {
