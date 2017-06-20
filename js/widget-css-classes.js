@@ -22,7 +22,7 @@ jQuery( document ).ready( function ( $ ) {
 		$('.wcssc_sortable').sortable({
 			items: 'p:not(.wcssc_sort_fixed)',
 			placeholder: 'wcssc_drop_placeholder'
-		}).disableSelection();
+		});
 	}
 
 } );
