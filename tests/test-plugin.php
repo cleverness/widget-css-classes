@@ -24,6 +24,7 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 	 */
 	function test_settings() {
 
+		// Test array, these values should all be parsed to the correct types and format.
 		$settings = array(
 			'non_existing_key'  => 'test',
 			'fix_widget_params' => 0,
@@ -35,8 +36,7 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 			'show_evenodd'      => 1,
 		);
 
-		WCSSC_Lib::update_settings( $settings );
-
+		// Compare array, this is what the resulting settings should be after parsing.
 		$compare = array(
 			'fix_widget_params' => false,
 			'show_id'           => true,
@@ -47,6 +47,16 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 			'show_evenodd'      => true,
 		);
 
+		// Trigger update.
+		WCSSC_Lib::update_settings( $settings );
+
+		// Compare full array after validation.
 		$this->assertEquals( $compare, WCSSC_Lib::get_settings() );
+
+		// Test get_settings() with key parameter.
+		$this->assertTrue( WCSSC_Lib::get_settings( 'show_id' ) );
+		$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) );
+		$this->assertEquals( 3, WCSSC_Lib::get_settings( 'type' ) );
+		$this->assertNull( WCSSC_Lib::get_settings( 'non_existing_key' ) );
 	}
 }
