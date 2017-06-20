@@ -368,6 +368,14 @@ class WCSSC {
 		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
 			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
+			$defined_classes = array_filter( explode( ';', $settings['defined_classes'] ) );
+
+			// Order classes by predefined classes order and append the other (custom) classes.
+			if ( ! empty( $defined_classes ) ) {
+				// Order classes selection by predefined classes order and append the other (custom) classes.
+				$classes = array_filter( array_unique( array_merge( array_intersect( $defined_classes, $classes ), $classes ) ) );
+			}
+
 			/**
 			 * Modify the list of CSS classes.
 			 * Can also be used for ordering etc.
@@ -388,15 +396,14 @@ class WCSSC {
 				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$classes} ", $params[0]['before_widget'], 1 );
 			} elseif ( 2 === (int) $settings['type'] ) {
 				// Only add predefined classes
-				$predefined_classes = explode( ';', $settings['defined_classes'] );
 				foreach ( $classes as $key => $value ) {
-					if ( in_array( $value, $predefined_classes, true ) ) {
+					if ( in_array( $value, $defined_classes, true ) ) {
 						$value = esc_attr( $value );
 						$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$value} ", $params[0]['before_widget'], 1 );
 					}
 				}
 			}
-		}
+		} // End if().
 
 		// Add id
 		if ( 1 === (int) $settings['show_id'] ) {
