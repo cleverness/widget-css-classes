@@ -41,6 +41,7 @@ function widget_css_classes_loader() {
  */
 function widget_css_classes_frontend_hook() {
 	if ( ! is_admin() ) {
+		include_once 'includes/widget-css-classes-library.class.php';
 		include_once 'includes/widget-css-classes.class.php';
 		add_filter( 'dynamic_sidebar_params', array( 'WCSSC', 'add_widget_classes' ) );
 	}

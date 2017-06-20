@@ -17,6 +17,7 @@ class WCSSC_Lib {
 
 	public static $settings_key = 'WCSSC_options';
 	private static $settings = array();
+	private static $default_settings = null;
 
 	/**
 	 * Add Settings link to plugin's entry on the Plugins page
@@ -161,9 +162,9 @@ class WCSSC_Lib {
 		}
 
 		/**
-		 * Modify the plugin settings.
+		 * Modify the plugin settings. Overwrites the DB values.
 		 * @since  1.4.1
-		 * @param  array|false
+		 * @param  array
 		 * @return array
 		 */
 		$settings = apply_filters( 'widget_css_classes_set_settings', $settings );
@@ -172,15 +173,7 @@ class WCSSC_Lib {
 		 * Make sure all keys are there and remove invalid keys.
 		 * @see  WCSSC::add_widget_classes()
 		 */
-		$settings = shortcode_atts( array(
-			'fix_widget_params' => 0,
-			'show_id'           => 0,
-			'type'              => 1,
-			'defined_classes'   => '',
-			'show_number'       => 1,
-			'show_location'     => 1,
-			'show_evenodd'      => 1,
-		), $settings );
+		$settings = shortcode_atts( self::get_default_settings(), $settings );
 
 		self::$settings = $settings;
 		return true;
@@ -197,6 +190,38 @@ class WCSSC_Lib {
 	public static function update_settings( $settings, $key = null ) {
 		self::set_settings( $settings, $key );
 		return update_option( self::$settings_key, self::get_settings() );
+	}
+
+	/**
+	 * Get the default settings for this plugin.
+	 * @static
+	 * @return array
+	 * @since  1.4.1
+	 */
+	public static function get_default_settings() {
+
+		if ( null === self::$default_settings ) {
+
+			$default_settings = array(
+				'fix_widget_params' => 0,
+				'show_id'           => 0,
+				'type'              => 1,
+				'defined_classes'   => '',
+				'show_number'       => 1,
+				'show_location'     => 1,
+				'show_evenodd'      => 1,
+			);
+
+			/**
+			 * Modify the plugin default settings. Doesn't change the DB values.
+			 * @since  1.4.1
+			 * @param  array
+			 * @return array
+			 */
+			self::$default_settings = apply_filters( 'widget_css_classes_default_settings', $default_settings );
+		}
+
+		return self::$default_settings;
 	}
 
 }

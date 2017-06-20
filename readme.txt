@@ -97,7 +97,8 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 = 1.4.1 =
 * **Feature:** Option to try and fix the widget parameters if they are invalid. [#24](https://github.com/cleverness/widget-css-classes/issues/24)
 * **Enhancement**: Classes filter for frontend (for sorting or modifications). [#19](https://github.com/cleverness/widget-css-classes/issues/19)
-* **Enhancement**: Plugin settings filter (`widget_css_classes_set_settings`). [#16](https://github.com/cleverness/widget-css-classes/issues/16)
+* **Enhancement**: Plugin settings filter (`widget_css_classes_set_settings`), overwrites user settings. [#16](https://github.com/cleverness/widget-css-classes/issues/16)
+* **Enhancement**: Plugin default settings filter (`widget_css_classes_default_settings`). [#4](https://github.com/cleverness/widget-css-classes/issues/4)
 * **Enhancement**: Capability filters for form fields. [#21](https://github.com/cleverness/widget-css-classes/issues/21)
   - `widget_css_classes_id_input_capability` free ID input
   - `widget_css_classes_class_input_capability` free classes input

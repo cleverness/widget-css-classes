@@ -357,15 +357,7 @@ class WCSSC {
 		 * Make sure all keys are there and remove invalid keys.
 		 * @see  WCSSC_Lib::set_settings()
 		 */
-		$settings = shortcode_atts( array(
-			'fix_widget_params' => 0,
-			'show_id'           => 0,
-			'type'              => 1,
-			'defined_classes'   => '',
-			'show_number'       => 1,
-			'show_location'     => 1,
-			'show_evenodd'      => 1,
-		), (array) get_option( 'WCSSC_options' ) );
+		$settings = shortcode_atts( WCSSC_Lib::get_default_settings(), (array) get_option( 'WCSSC_options' ) );
 
 		// If set, try to fix invalid sidebar parameters.
 		if ( ! empty( $settings['fix_widget_params'] ) ) {
