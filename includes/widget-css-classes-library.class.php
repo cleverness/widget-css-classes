@@ -166,27 +166,27 @@ class WCSSC_Lib {
 			return false;
 		}
 
+		// Pre-validate to make sure the user get's the correct formatted data according to the docs.
+		$settings = self::validate_settings( $settings, false );
+
 		/**
 		 * Modify the plugin settings. Overwrites the DB values.
 		 * @since  1.4.1
-		 * @param  array
+		 * @param  array $settings {
+		 *     @type bool  $fix_widget_params
+		 *     @type bool  $show_id
+		 *     @type int   $type
+		 *     @type array $defined_classes
+		 *     @type bool  $show_number
+		 *     @type bool  $show_location
+		 *     @type bool  $show_evenodd
+		 * }
 		 * @return array
 		 */
 		$settings = apply_filters( 'widget_css_classes_set_settings', $settings );
 
-		// Parse defined_classes to array.
-		if ( ! is_array( $settings['defined_classes'] ) ) {
-			// Convert to comma separated list.
-			$settings['defined_classes'] = str_replace( array( ';', ' ', '|' ), ',', (string) $settings['defined_classes'] );
-			// Convert to array and remove empty and duplicate values.
-			$settings['defined_classes'] = array_unique( array_filter( explode( ',', $settings['defined_classes'] ) ) );
-		}
-
-		/**
-		 * Make sure all keys are there and remove invalid keys.
-		 * @see  WCSSC::add_widget_classes()
-		 */
-		$settings = shortcode_atts( self::get_default_settings(), $settings );
+		// Full settings validation.
+		$settings = self::validate_settings( $settings, true );
 
 		self::$settings = $settings;
 		return true;
@@ -194,6 +194,7 @@ class WCSSC_Lib {
 
 	/**
 	 * Update plugin settings. Also sets the current settings.
+	 *
 	 * @static
 	 * @param  mixed       $settings
 	 * @param  string|int  $key
@@ -206,7 +207,74 @@ class WCSSC_Lib {
 	}
 
 	/**
+	 * Validate plugin settings.
+	 *
+	 * @static
+	 * @param  array  $settings
+	 * @param  bool   $parse
+	 * @return array
+	 * @since  1.4.1
+	 */
+	private static function validate_settings( $settings, $parse = true ) {
+
+		$defaults = self::get_default_settings();
+
+		// Make sure all keys are there and remove invalid keys.
+		$settings = shortcode_atts( $defaults, $settings );
+
+		if ( $parse ) {
+			// Parse all settings.
+			foreach ( $settings as $key => $value ) {
+
+				if ( 'defined_classes' === $key ) {
+					// Parse defined_classes to array.
+					$settings['defined_classes'] = self::parse_defined_classes( $value );
+					continue;
+				}
+
+				// Validate var types.
+				settype( $settings[ $key ], gettype( $defaults[ $key ] ) );
+			}
+		} else {
+			// Only apply typecasting to defined classes.
+			$settings['defined_classes'] = (array) $settings['defined_classes'];
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Parse defined_classes to array.
+	 *
+	 * @static
+	 * @param  array|string  $classes
+	 * @return array
+	 * @since  1.4.1
+	 */
+	private static function parse_defined_classes( $classes ) {
+		$replace = array( ';', ' ', '|' );
+
+		// Parse defined_classes to array.
+		if ( ! is_array( $classes ) ) {
+			// Convert to comma separated list.
+			$classes = str_replace( $replace, ',', (string) $classes );
+			// Convert to array and remove empty and duplicate values.
+			return array_unique( array_filter( explode( ',', $classes ) ) );
+		}
+
+		$new_classes = array();
+		// Parse each value the same way.
+		foreach ( $classes as $key => $class ) {
+			$class = self::parse_defined_classes( $class );
+			$new_classes = array_merge( $new_classes, $class );
+		}
+
+		return array_unique( array_filter( $new_classes ) );
+	}
+
+	/**
 	 * Get the default settings for this plugin.
+	 *
 	 * @static
 	 * @return array
 	 * @since  1.4.1
@@ -216,13 +284,13 @@ class WCSSC_Lib {
 		if ( null === self::$default_settings ) {
 
 			$default_settings = array(
-				'fix_widget_params' => 0,
-				'show_id'           => 0,
+				'fix_widget_params' => false,
+				'show_id'           => false,
 				'type'              => 1,
 				'defined_classes'   => array(),
-				'show_number'       => 1,
-				'show_location'     => 1,
-				'show_evenodd'      => 1,
+				'show_number'       => true,
+				'show_location'     => true,
+				'show_evenodd'      => true,
 			);
 
 			/**

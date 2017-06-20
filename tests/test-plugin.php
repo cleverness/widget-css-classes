@@ -38,13 +38,13 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 		WCSSC_Lib::update_settings( $settings );
 
 		$compare = array(
-			'fix_widget_params' => 0,
-			'show_id'           => 1,
+			'fix_widget_params' => false,
+			'show_id'           => true,
 			'type'              => 3,
 			'defined_classes'   => array( 'test', 'semicolon', 'space', 'comma' ),
-			'show_number'       => 1,
-			'show_location'     => 0,
-			'show_evenodd'      => 1,
+			'show_number'       => true,
+			'show_location'     => false,
+			'show_evenodd'      => true,
 		);
 
 		$this->assertEquals( $compare, WCSSC_Lib::get_settings() );
