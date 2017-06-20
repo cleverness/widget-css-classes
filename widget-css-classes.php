@@ -1,13 +1,13 @@
 <?php
-/*
-Plugin Name: Widget CSS Classes
-Version: 1.4.0
-Description: Add custom, first, last, even, odd, and numbered classes to your widgets.
-Author: C.M. Kendrick
-Author URI: http://cleverness.org
-Plugin URI: http://cleverness.org/plugins/widget-css-classes
-Text Domain: widget-css-classes
-*/
+/**
+ * Plugin Name: Widget CSS Classes
+ * Version: 1.4.0
+ * Description: Add custom, first, last, even, odd, and numbered classes to your widgets.
+ * Author: C.M. Kendrick
+ * Author URI: http://cleverness.org
+ * Plugin URI: http://cleverness.org/plugins/widget-css-classes
+ * Text Domain: widget-css-classes
+ */
 
 add_action( 'init', 'widget_css_classes_loader' );
 add_action( 'wp_loaded', 'widget_css_classes_frontend_hook' );

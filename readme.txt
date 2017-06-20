@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 4.7
-Stable tag: 1.4.0
+Tested up to: 4.8
+Stable tag: 1.4.1
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -93,6 +93,21 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 4. Generated HTML
 
 == Changelog ==
+
+= 1.4.1 =
+* **Feature:** Option to try and fix the widget parameters if they are invalid. [#24](https://github.com/cleverness/widget-css-classes/issues/24)
+* **Enhancement**: Classes filter for frontend (for sorting or modifications). [#19](https://github.com/cleverness/widget-css-classes/issues/19)
+* **Enhancement**: Plugin settings filter (`widget_css_classes_set_settings`). [#16](https://github.com/cleverness/widget-css-classes/issues/16)
+* **Enhancement**: Capability filters for form fields. [#21](https://github.com/cleverness/widget-css-classes/issues/21)
+  - `widget_css_classes_id_input_capability` free ID input
+  - `widget_css_classes_class_input_capability` free classes input
+  - `widget_css_classes_class_select_capability` predefined classes (also hides regular input if invalid)
+* **Compatibility**: WP External Links. [#17](https://github.com/cleverness/widget-css-classes/issues/17), thanks to Victor [@freelancephp](https://profiles.wordpress.org/freelancephp)
+* **Fix**: Form wrapper div style. [#18](https://github.com/cleverness/widget-css-classes/issues/18)
+* **i18n**: Form wrapper div style. [#18](https://github.com/cleverness/widget-css-classes/issues/18)
+* Started using TravisCI and CodeClimate. [#15](https://github.com/cleverness/widget-css-classes/issues/15)
+
+Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/pull/22)
 
 = 1.4.0 =
 * Feature: Sort Pre-defined classes (thanks Jory Hogeveen)
