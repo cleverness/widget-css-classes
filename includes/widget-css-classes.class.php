@@ -354,8 +354,9 @@ class WCSSC {
 		$widget_css_classes     = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
 		$widget_opt             = null;
 
+		$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
 		// If Widget Logic plugin is enabled, use it's callback
-		if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+		if ( in_array( 'widget-logic/widget_logic.php', $active_plugins, true ) ) {
 			$widget_logic_options = get_option( 'widget_logic' );
 			if ( isset( $widget_logic_options['widget_logic-options-filter'] ) && 'checked' === $widget_logic_options['widget_logic-options-filter'] ) {
 				$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
@@ -363,14 +364,19 @@ class WCSSC {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
 			}
 
+		}
 		// If Widget Context plugin is enabled, use it's callback
-		} elseif ( in_array( 'widget-context/widget-context.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+		elseif ( in_array( 'widget-context/widget-context.php', $active_plugins, true ) ) {
 			$callback = isset( $widget_obj['callback_original_wc'] ) ? $widget_obj['callback_original_wc'] : null;
 			$callback = ! $callback && isset( $widget_obj['callback'] ) ? $widget_obj['callback'] : null;
 
 			if ( $callback && is_array( $widget_obj['callback'] ) ) {
 				$widget_opt = get_option( $callback[0]->option_name );
 			}
+		}
+		// If Widget Output filter is enabled (f.e. by WP External Links plugin), don't use it's callback but the original callback
+		elseif ( isset( $widget_obj['_wo_original_callback'] ) ) {
+			$widget_opt = get_option( $widget_obj['_wo_original_callback'][0]->option_name );
 		}
 
 		// Default callback
