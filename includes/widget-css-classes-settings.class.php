@@ -55,7 +55,7 @@ class WCSSC_Settings {
 
 	public function show_yes_no_option( $args ) {
 		if ( ! $args['key'] ) return;
-		$key = (string) $args['key'];
+		$key = esc_attr( $args['key'] );
 		?>
 		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[' . $key . ']'; ?>" value="1" <?php checked( $this->general_settings[ $key ], 1 ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
 		<label><input type="radio" name="<?php echo esc_attr( $this->general_key ) . '[' . $key . ']'; ?>" value="0" <?php checked( $this->general_settings[ $key ], 0 ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
