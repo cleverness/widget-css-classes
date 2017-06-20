@@ -58,5 +58,32 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 		$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) );
 		$this->assertEquals( 3, WCSSC_Lib::get_settings( 'type' ) );
 		$this->assertNull( WCSSC_Lib::get_settings( 'non_existing_key' ) );
+
+		/**
+		 * Filter `widget_css_classes_set_settings` tests.
+		 * Gets triggered by WCSSC_Lib::update_settings()
+		 * @see WCSSC_Lib::set_settings()
+		 * @see WCSSC_UnitTest::filter_widget_css_classes_set_settings()
+		 */
+		add_filter( 'widget_css_classes_set_settings', array( $this, 'filter_widget_css_classes_set_settings' ) );
+
+		// Trigger update.
+		WCSSC_Lib::update_settings( WCSSC_Lib::get_settings() );
+
+		// Test new settings changed by the filter.
+		$this->assertFalse( WCSSC_Lib::get_settings( 'show_id' ) );
+		$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+		$this->assertEquals( 1, WCSSC_Lib::get_settings( 'type' ) );
+	}
+
+	/**
+	 * Helper function for `widget_css_classes_set_settings` filter.
+	 * @param  array $settings
+	 * @return array
+	 */
+	function filter_widget_css_classes_set_settings( $settings ) {
+		$settings['show_id'] = ''; // false.
+		$settings['type'] = true; // 1
+		return $settings;
 	}
 }
