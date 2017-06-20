@@ -93,26 +93,26 @@ class WCSSC_Lib {
 		} else {
 
 			if ( version_compare( $version, '1.2', '<' ) ) {
-				$options = get_option( self::$settings_key );
-				$options['show_number']   = 1;
-				$options['show_location'] = 1;
-				$options['show_evenodd']  = 1;
-				update_option( self::$settings_key, $options );
+				$settings = get_option( self::$settings_key );
+				$settings['show_number']   = 1;
+				$settings['show_location'] = 1;
+				$settings['show_evenodd']  = 1;
+				self::update_settings( $settings );
 			}
 
 			if ( version_compare( $version, '1.3', '<' ) ) {
-				$options = get_option( self::$settings_key );
+				$settings = get_option( self::$settings_key );
 				// Hide option is now 0 instead of 3
-				if ( isset( $options['type'] ) && 3 === (int) $options['type'] ) {
-					$options['type'] = 0;
+				if ( isset( $settings['type'] ) && 3 === (int) $settings['type'] ) {
+					$settings['type'] = 0;
 				}
 				// dropdown settings are renamed to defined_classes
-				if ( ! isset( $options['dropdown'] ) ) {
-					$options['dropdown'] = '';
+				if ( ! isset( $settings['dropdown'] ) ) {
+					$settings['dropdown'] = '';
 				}
-				$options['defined_classes'] = $options['dropdown'];
-				unset( $options['dropdown'] );
-				update_option( self::$settings_key, $options );
+				$settings['defined_classes'] = $settings['dropdown'];
+				unset( $settings['dropdown'] );
+				self::update_settings( $settings );
 			}
 
 		} // End if().
