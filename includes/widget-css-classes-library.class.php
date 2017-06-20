@@ -66,7 +66,7 @@ class WCSSC_Lib {
 		// check if the db version is the same as the db version constant
 		if ( (string) WCSSC_DB_VERSION !== (string) $installed_version ) {
 			// update options
-			self::set_options( $installed_version );
+			self::update( $installed_version );
 			update_option( 'WCSSC_db_version', WCSSC_DB_VERSION );
 		}
 
@@ -78,7 +78,7 @@ class WCSSC_Lib {
 	 * @param $version
 	 * @since 1.0
 	 */
-	public static function set_options( $version ) {
+	private static function update( $version ) {
 
 		if ( empty( $version ) ) {
 			// add default options

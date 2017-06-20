@@ -25,7 +25,7 @@ class WCSSC_Loader {
 		self::check_for_upgrade();
 		self::$settings  = ( get_option( 'WCSSC_options' ) ? get_option( 'WCSSC_options' ) : array() );
 		self::include_files();
-		self::call_wp_hooks();
+		self::add_wp_hooks();
 		new WCSSC_Settings();
 	}
 
@@ -54,7 +54,7 @@ class WCSSC_Loader {
 	 * @static
 	 * @since 1.0
 	 */
-	private static function call_wp_hooks() {
+	private static function add_wp_hooks() {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts_styles' ) );
 		add_action( 'in_widget_form', array( 'WCSSC', 'extend_widget_form' ), 10, 3 );
 		add_filter( 'widget_update_callback', array( 'WCSSC', 'update_widget' ), 10, 2 );
