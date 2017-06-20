@@ -55,12 +55,19 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 
 		// Test get_settings() with key parameter.
 		$this->assertTrue( WCSSC_Lib::get_settings( 'show_id' ) );
-		$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) );
 		$this->assertEquals( 3, WCSSC_Lib::get_settings( 'type' ) );
 		$this->assertNull( WCSSC_Lib::get_settings( 'non_existing_key' ) );
 
+		// @todo assertNotTrue() not available in PHP 5.2 unit tests
+		$this->wcssc_assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+	}
+
+	/**
+	 * Test filter `widget_css_classes_set_settings`
+	 */
+	function test_filter_set_settings() {
+
 		/**
-		 * Filter `widget_css_classes_set_settings` tests.
 		 * Gets triggered by WCSSC_Lib::update_settings()
 		 * @see WCSSC_Lib::set_settings()
 		 * @see WCSSC_UnitTest::filter_widget_css_classes_set_settings()
@@ -75,9 +82,25 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 		$this->assertEquals( 1, WCSSC_Lib::get_settings( 'type' ) );
 
 		// @todo assertNotTrue() not available in PHP 5.2 unit tests
-		//$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+		$this->wcssc_assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+	}
+
+///////////////////////////////////////////////
+//           HELPER FUNCTIONS
+///////////////////////////////////////////////
+
+	/**
+	 * Temp fix for assertNotTrue() not available in PHP 5.2 unit tests.
+	 * @param  mixed  $condition
+	 */
+	function wcssc_assertNotTrue( $condition ) {
+		if ( is_callable( array( $this, 'assertNotTrue' ) ) ) {
+			$this->assertNotTrue( $condition );
+			return;
+		}
+		// Fallback.
 		$invalid = true;
-		if ( true !== WCSSC_Lib::get_settings( 'type' ) ) {
+		if ( true !== $condition ) {
 			$invalid = false;
 		}
 		$this->assertFalse( $invalid );
