@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.8
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -94,7 +94,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 == Changelog ==
 
-= 1.4.1 =
+= 1.5.0 =
 * **Feature:** Option to try and fix the widget parameters if they are invalid. [#24](https://github.com/cleverness/widget-css-classes/issues/24)
 * **Enhancement**: Sort classes based on the predefined classes on the frontend by default. [#19](https://github.com/cleverness/widget-css-classes/issues/19)
 * **Enhancement**: Classes filter for frontend (for sorting or modifications). [#19](https://github.com/cleverness/widget-css-classes/issues/19)

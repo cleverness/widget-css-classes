@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.3.0
+ * @version 1.5.0
  */
 
 /**
@@ -17,7 +17,7 @@ class WCSSC {
 	/**
 	 * Default capability to display the WCC form in widgets.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @var    string
 	 */
 	private static $default_cap = 'edit_theme_options';
@@ -41,7 +41,7 @@ class WCSSC {
 		/**
 		 * Change the capability to access the CSS ID field.
 		 *
-		 * @since  1.4.1
+		 * @since  1.5.0
 		 * @param  string
 		 * @return string
 		 */
@@ -50,7 +50,7 @@ class WCSSC {
 		/**
 		 * Change the capability to access the CSS Classes field.
 		 *
-		 * @since  1.4.1
+		 * @since  1.5.0
 		 * @param  string
 		 * @return string
 		 */
@@ -60,7 +60,7 @@ class WCSSC {
 		 * Change the capability to access the predefined CSS Classes select field.
 		 * NOTE: If the user cannot access the predefined classes the regular input field is disabled as well.
 		 *
-		 * @since  1.4.1
+		 * @since  1.5.0
 		 * @param  string
 		 * @return string
 		 */
@@ -136,7 +136,7 @@ class WCSSC {
 	/**
 	 * Get the HTML for the ID input field.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @return string
@@ -163,7 +163,7 @@ class WCSSC {
 	/**
 	 * Get the HTML for the class input field.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @return string
@@ -191,7 +191,7 @@ class WCSSC {
 	/**
 	 * Get the HTML for the class input field.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  WP_Widget $widget
 	 * @param  array     $instance
 	 * @param  bool      $do_class_field Will echo a class input field if not null. Pass false for a hidden field.
@@ -268,7 +268,7 @@ class WCSSC {
 	/**
 	 * Get the HTML for a hidden field.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  string $name
 	 * @param  string $value
 	 * @return string
@@ -280,7 +280,7 @@ class WCSSC {
 	/**
 	 * Get the HTML for a field label.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  string $label
 	 * @param  string $for
 	 * @return string
@@ -375,7 +375,7 @@ class WCSSC {
 			 * Modify the list of CSS classes.
 			 * Can also be used for ordering etc.
 			 *
-			 * @since  1.4.1
+			 * @since  1.5.0
 			 * @param  array      $classes
 			 * @param  string     $widget_id
 			 * @param  int        $widget_number
@@ -473,7 +473,7 @@ class WCSSC {
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
 	 *
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  array  $widget_obj
 	 * @return mixed
 	 */
@@ -526,7 +526,7 @@ class WCSSC {
 	/**
 	 * Try to fix the widget parameters if they are invalid.
 	 * @static
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 * @param  array $params
 	 * @return array
 	 */

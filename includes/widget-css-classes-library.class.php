@@ -5,7 +5,7 @@
 * Method library
 * @author C.M. Kendrick <cindy@cleverness.org>
 * @package widget-css-classes
-* @version 1.3.0
+* @version 1.5.0
 */
 
 /**
@@ -15,8 +15,27 @@
 */
 class WCSSC_Lib {
 
+	/**
+	 * The plugin settings option key.
+	 * @var   string
+	 * @since 1.5.0
+	 */
 	public static $settings_key = 'WCSSC_options';
+
+	/**
+	 * The current plugin settings.
+	 * @see   WCSSC_Lib::set_settings()
+	 * @var   array
+	 * @since 1.5.0
+	 */
 	private static $settings = array();
+
+	/**
+	 * The default plugin settings.
+	 * @see   WCSSC_Lib::get_default_settings()
+	 * @var   array
+	 * @since 1.5.0
+	 */
 	private static $default_settings = null;
 
 	/**
@@ -119,6 +138,11 @@ class WCSSC_Lib {
 				self::update_settings( $settings );
 			}
 
+			if ( version_compare( $version, '1.5', '<' ) ) {
+				$settings = get_option( self::$settings_key );
+				self::update_settings( $settings );
+			}
+
 		} // End if().
 
 		self::$settings = get_option( self::$settings_key );
@@ -130,7 +154,7 @@ class WCSSC_Lib {
 	 * @static
 	 * @param  string|int  $key
 	 * @return mixed
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	public static function get_settings( $key = null ) {
 		if ( null !== $key ) {
@@ -149,7 +173,7 @@ class WCSSC_Lib {
 	 * @param  mixed       $settings
 	 * @param  string|int  $key
 	 * @return bool
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	public static function set_settings( $settings, $key = null ) {
 
@@ -171,7 +195,7 @@ class WCSSC_Lib {
 
 		/**
 		 * Modify the plugin settings. Overwrites the DB values.
-		 * @since  1.4.1
+		 * @since  1.5.0
 		 * @param  array $settings {
 		 *     @type bool  $fix_widget_params
 		 *     @type bool  $show_id
@@ -199,7 +223,7 @@ class WCSSC_Lib {
 	 * @param  mixed       $settings
 	 * @param  string|int  $key
 	 * @return bool
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	public static function update_settings( $settings, $key = null ) {
 		self::set_settings( $settings, $key );
@@ -213,7 +237,7 @@ class WCSSC_Lib {
 	 * @param  array  $settings
 	 * @param  bool   $parse
 	 * @return array
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	private static function validate_settings( $settings, $parse = true ) {
 
@@ -253,7 +277,7 @@ class WCSSC_Lib {
 	 * @static
 	 * @param  array|string  $classes
 	 * @return array
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	private static function parse_defined_classes( $classes ) {
 		$replace = array( ';', ' ', '|' );
@@ -285,7 +309,7 @@ class WCSSC_Lib {
 	 *
 	 * @static
 	 * @return array
-	 * @since  1.4.1
+	 * @since  1.5.0
 	 */
 	public static function get_default_settings() {
 
@@ -303,7 +327,7 @@ class WCSSC_Lib {
 
 			/**
 			 * Modify the plugin default settings. Doesn't change the DB values.
-			 * @since  1.4.1
+			 * @since  1.5.0
 			 * @param  array
 			 * @return array
 			 */

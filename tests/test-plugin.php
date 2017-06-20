@@ -4,7 +4,7 @@
  *
  * @author Jory Hogeveen <info@keraweb.nl>
  * @package widget-css-classes
- * @version 1.4.1
+ * @version 1.5.0
  */
 
 class WCSSC_UnitTest extends WP_UnitTestCase {
