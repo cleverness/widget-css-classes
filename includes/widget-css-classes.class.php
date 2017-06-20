@@ -209,9 +209,7 @@ class WCSSC {
 		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
 
 		// Merge input classes with predefined classes.
-		$predefined_classes = explode( ';', WCSSC_Lib::get_settings( 'defined_classes' ) );
-		// Remove any empty values.
-		$predefined_classes = array_filter( $predefined_classes );
+		$predefined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
 
 		// Do we have existing classes and is the user allowed to select defined classes?
 		if ( ! empty( $instance['classes'] ) ) {
@@ -368,7 +366,7 @@ class WCSSC {
 		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
 			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
-			$defined_classes = array_filter( explode( ';', $settings['defined_classes'] ) );
+			$defined_classes = $settings['defined_classes'];
 
 			// Order classes by predefined classes order and append the other (custom) classes.
 			if ( ! empty( $defined_classes ) ) {

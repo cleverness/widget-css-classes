@@ -74,8 +74,7 @@ class WCSSC_Settings {
 
 	public function defined_classes_option() {
 		wp_enqueue_script( 'jquery-ui-sortable' );
-		$presets = explode( ';', $this->general_settings['defined_classes'] );
-		$presets = array_filter( $presets );
+		$presets = $this->general_settings['defined_classes'];
 		?>
 		<div class="wcssc_sortable">
 		<?php
@@ -98,10 +97,11 @@ class WCSSC_Settings {
 			</p>
 		<?php
 		} else {
+			$value = ( ! empty( $this->general_settings['defined_classes'][0] ) ) ? $this->general_settings['defined_classes'][0] : '';
 			?>
 			<p class="wcssc_defined_classes wcssc_sort_fixed">
 				<a class="wcssc_sort" href="#"><span class="dashicons dashicons-sort"></span></a>
-				<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][]'; ?>" value="<?php echo esc_attr( $this->general_settings['defined_classes'] ); ?>" />
+				<input type="text" name="<?php echo esc_attr( $this->general_key ) . '[defined_classes][]'; ?>" value="<?php echo esc_attr( $value ); ?>" />
 				<a href="#" class="wcssc_copy" rel=".wcssc_defined_classes"><span class="dashicons dashicons-plus-alt"></span></a>
 				<a class="wcssc_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a>
 			</p>
@@ -193,10 +193,9 @@ class WCSSC_Settings {
 
 			if ( isset( $input[ $key ] ) ) {
 				if ( 'defined_classes' === $key ) {
-					if ( is_array( $value ) ) {
-						$output[ $key ] = implode( ';', $input[ $key ] );
-					} else {
-						$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
+					$input[ $key ] = array_filter( (array) $value );
+					if ( $input[ $key ] ) {
+						$output[ $key ] = $this->validate_input( $input[ $key ] );
 					}
 				} else {
 					$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );

@@ -169,6 +169,14 @@ class WCSSC_Lib {
 		 */
 		$settings = apply_filters( 'widget_css_classes_set_settings', $settings );
 
+		// Parse defined_classes to array.
+		if ( ! is_array( $settings['defined_classes'] ) ) {
+			// Convert to comma separated list.
+			$settings['defined_classes'] = str_replace( array( ';', ' ', '|' ), ',', (string) $settings['defined_classes'] );
+			// Convert to array and remove empty and duplicate values.
+			$settings['defined_classes'] = array_unique( array_filter( explode( ',', $settings['defined_classes'] ) ) );
+		}
+
 		/**
 		 * Make sure all keys are there and remove invalid keys.
 		 * @see  WCSSC::add_widget_classes()
@@ -206,7 +214,7 @@ class WCSSC_Lib {
 				'fix_widget_params' => 0,
 				'show_id'           => 0,
 				'type'              => 1,
-				'defined_classes'   => '',
+				'defined_classes'   => array(),
 				'show_number'       => 1,
 				'show_location'     => 1,
 				'show_evenodd'      => 1,
