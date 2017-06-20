@@ -393,6 +393,11 @@ class WCSSC {
 			}
 		}
 
+		// If set, try to fix invalid sidebar parameters.
+		if ( ! empty( $widget_css_classes['fix_widget_params'] ) ) {
+			$params[0] = self::fix_widget_params( $params[0] );
+		}
+
 		// Add classes
 		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
@@ -432,6 +437,8 @@ class WCSSC {
 			if ( isset( $widget_opt[ $widget_num ]['ids'] ) && ! empty( $widget_opt[ $widget_num ]['ids'] ) )
 				$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[ $widget_num ]['ids']}", $params[0]['before_widget'], 1 );
 		}
+		// Remove empty ID attr.
+		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
 
 		// Add first, last, even, and odd classes
 		if ( 1 === (int) $widget_css_classes['show_number'] || 1 === (int) $widget_css_classes['show_location'] || 1 === (int) $widget_css_classes['show_evenodd'] ) {
@@ -488,6 +495,29 @@ class WCSSC {
 		 */
 		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
+		return $params;
+	}
+
+	/**
+	 * Try to fix the widget parameters if they are invalid.
+	 * @static
+	 * @since  1.4.1
+	 * @param  array $params
+	 * @return array
+	 */
+	private static function fix_widget_params( $params ) {
+		if ( empty( $params['before_widget'] ) || ! strpos( $params['before_widget'], 'class="' ) ) {
+
+			if ( empty( $params['before_widget'] ) ) {
+				$params['before_widget'] = '';
+			}
+			$params['before_widget'] = '<div id="" class="">' . $params['before_widget'];
+
+			if ( empty( $params['after_widget'] ) ) {
+				$params['after_widget'] = '';
+			}
+			$params['after_widget'] = $params['after_widget'] . '</div>';
+		}
 		return $params;
 	}
 

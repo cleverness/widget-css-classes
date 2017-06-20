@@ -86,12 +86,13 @@ class WCSSC_Lib {
 		if ( empty( $version ) ) {
 			// add default options
 			$options = array(
-				'show_id'         => 0,
-				'type'            => 1,
-				'defined_classes' => '',
-				'show_number'     => 1,
-				'show_location'   => 1,
-				'show_evenodd'    => 1,
+				'fix_widget_params' => 0,
+				'show_id'           => 0,
+				'type'              => 1,
+				'defined_classes'   => '',
+				'show_number'       => 1,
+				'show_location'     => 1,
+				'show_evenodd'      => 1,
 			);
 
 			add_option( self::$settings_key, $options );
@@ -177,12 +178,13 @@ class WCSSC_Lib {
 
 		// Make sure all keys are there and remove invalid keys.
 		$settings = shortcode_atts( array(
-			'show_id'         => 0,
-			'type'            => 1,
-			'defined_classes' => '',
-			'show_number'     => 1,
-			'show_location'   => 1,
-			'show_evenodd'    => 1,
+			'fix_widget_params' => 0,
+			'show_id'           => 0,
+			'type'              => 1,
+			'defined_classes'   => '',
+			'show_number'       => 1,
+			'show_location'     => 1,
+			'show_evenodd'      => 1,
 		), $settings );
 
 		self::$settings = $settings;
