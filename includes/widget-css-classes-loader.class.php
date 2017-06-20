@@ -35,13 +35,6 @@ class WCSSC_Loader {
 	 * @since 1.0
 	 */
 	private static function check_for_upgrade() {
-		global $wp_version;
-
-		if ( version_compare( $wp_version, '3.3', '<' ) ) {
-			// @todo Add notice instead of exit();
-			exit( esc_html__( 'Widget CSS Classes requires WordPress 3.3 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update.</a>', 'widget-css-classes' ) );
-		}
-
 		widget_css_classes_activation();
 	}
 
