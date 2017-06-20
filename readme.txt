@@ -101,9 +101,9 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 * **Enhancement**: Plugin settings filter (`widget_css_classes_set_settings`), overwrites user settings. [#16](https://github.com/cleverness/widget-css-classes/issues/16)
 * **Enhancement**: Plugin default settings filter (`widget_css_classes_default_settings`). [#4](https://github.com/cleverness/widget-css-classes/issues/4)
 * **Enhancement**: Capability filters for form fields. [#21](https://github.com/cleverness/widget-css-classes/issues/21)
-  - `widget_css_classes_id_input_capability` free ID input
-  - `widget_css_classes_class_input_capability` free classes input
-  - `widget_css_classes_class_select_capability` predefined classes (also hides regular input if invalid)
+  - `widget_css_classes_id_input_capability` ID input
+  - `widget_css_classes_class_input_capability` classes input
+  - `widget_css_classes_class_select_capability` predefined classes select (also hides classes input if invalid)
 * **Compatibility**: WP External Links. [#17](https://github.com/cleverness/widget-css-classes/issues/17), thanks to Victor [@freelancephp](https://profiles.wordpress.org/freelancephp)
 * **Fix**: Form wrapper div style. [#18](https://github.com/cleverness/widget-css-classes/issues/18), thanks to Chuck Reynolds [@ryno267](https://profiles.wordpress.org/ryno267)
 * **Fix**: Enable sortable input selection (IE-11 fix). [#20](https://github.com/cleverness/widget-css-classes/issues/20)
