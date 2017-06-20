@@ -72,8 +72,15 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 
 		// Test new settings changed by the filter.
 		$this->assertFalse( WCSSC_Lib::get_settings( 'show_id' ) );
-		$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
 		$this->assertEquals( 1, WCSSC_Lib::get_settings( 'type' ) );
+
+		// @todo assertNotTrue() not available in PHP 5.2 unit tests
+		//$this->assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+		$invalid = true;
+		if ( true !== WCSSC_Lib::get_settings( 'type' ) ) {
+			$invalid = false;
+		}
+		$this->assertFalse( $invalid );
 	}
 
 	/**
