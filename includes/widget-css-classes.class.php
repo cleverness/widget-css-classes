@@ -359,8 +359,20 @@ class WCSSC {
 			$params[0] = self::fix_widget_params( $params[0] );
 		}
 
+		// Add id.
+		if ( WCSSC_Lib::get_settings( 'show_id' ) && ! empty( $widget_opt[ $widget_num ]['ids'] ) ) {
+			$params[0]['before_widget'] = preg_replace(
+				'/id="[^"]*/',
+				"id=\"{$widget_opt[ $widget_num ]['ids']}",
+				$params[0]['before_widget'],
+				1
+			);
+		}
+		// Remove empty ID attr.
+		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
+
 		// Add custom and predefined classes.
-		if ( isset( $widget_opt[ $widget_num ]['classes'] ) && ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
+		if ( ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
 			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
 			$defined_classes = $settings['defined_classes'];
@@ -399,14 +411,6 @@ class WCSSC {
 				}
 			}
 		} // End if().
-
-		// Add id.
-		if ( $settings['show_id'] ) {
-			if ( isset( $widget_opt[ $widget_num ]['ids'] ) && ! empty( $widget_opt[ $widget_num ]['ids'] ) )
-				$params[0]['before_widget'] = preg_replace( '/id="[^"]*/', "id=\"{$widget_opt[ $widget_num ]['ids']}", $params[0]['before_widget'], 1 );
-		}
-		// Remove empty ID attr.
-		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
 
 		// Add first, last, even, and odd classes.
 		if ( $settings['show_number'] || $settings['show_location'] || $settings['show_evenodd'] ) {
