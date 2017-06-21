@@ -351,11 +351,8 @@ class WCSSC {
 		$widget_num             = $widget_obj['params'][0]['number'];
 		$widget_opt             = self::get_widget_opt( $widget_obj );
 
-		// Make sure all keys are there and remove invalid keys.
-		$settings = shortcode_atts( WCSSC_Lib::get_default_settings(), WCSSC_Lib::get_settings() );
-
 		// If set, try to fix invalid sidebar parameters.
-		if ( $settings['fix_widget_params'] ) {
+		if ( WCSSC_Lib::get_settings( 'fix_widget_params' ) ) {
 			$params[0] = self::fix_widget_params( $params[0] );
 		}
 
@@ -375,7 +372,7 @@ class WCSSC {
 		if ( ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
 			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
-			$defined_classes = $settings['defined_classes'];
+			$defined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
 
 			// Order classes by predefined classes order and append the other (custom) classes.
 			if ( ! empty( $defined_classes ) ) {
@@ -397,11 +394,13 @@ class WCSSC {
 			 */
 			$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
-			if ( 1 === (int) $settings['type'] || 3 === (int) $settings['type'] ) {
+			$type = WCSSC_Lib::get_settings( 'type' );
+
+			if ( 1 === (int) $type || 3 === (int) $type ) {
 				// Add all classes
 				$classes = implode( ' ', $classes );
 				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$classes} ", $params[0]['before_widget'], 1 );
-			} elseif ( 2 === (int) $settings['type'] ) {
+			} elseif ( 2 === (int) $type ) {
 				// Only add predefined classes
 				foreach ( $classes as $key => $value ) {
 					if ( in_array( $value, $defined_classes, true ) ) {
@@ -413,7 +412,10 @@ class WCSSC {
 		} // End if().
 
 		// Add first, last, even, and odd classes.
-		if ( $settings['show_number'] || $settings['show_location'] || $settings['show_evenodd'] ) {
+		if ( WCSSC_Lib::get_settings( 'show_number' ) ||
+		     WCSSC_Lib::get_settings( 'show_location' ) ||
+		     WCSSC_Lib::get_settings( 'show_evenodd' )
+		) {
 			if ( ! $widget_number ) {
 				$widget_number = array();
 			}
@@ -430,11 +432,11 @@ class WCSSC {
 
 			$class = 'class="';
 
-			if ( $settings['show_number'] ) {
+			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
 				$class .= apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ] . ' ';
 			}
 
-			if ( $settings['show_location'] ) {
+			if ( WCSSC_Lib::get_settings( 'show_location' ) ) {
 				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
 				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
 				if ( 1 === (int) $widget_number[ $this_id ] ) {
@@ -445,7 +447,7 @@ class WCSSC {
 				}
 			}
 
-			if ( $settings['show_evenodd'] ) {
+			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
 				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
 				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
 				$class .= ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd . ' ' : $widget_even . ' ' );
