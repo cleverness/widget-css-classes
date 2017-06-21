@@ -154,7 +154,7 @@ class WCSSC {
 		$label = apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) );
 
 		$field .= self::do_label( $label, $id );
-		$field .= "<input type='text' name='{$name}' id={$id}' value='{$instance['ids']}' class='widefat' />";
+		$field .= "<input type='text' name='{$name}' id='{$id}' value='{$instance['ids']}' class='widefat' />";
 
 		$field = '<p>' . $field . '</p>';
 		return $field;
@@ -182,7 +182,7 @@ class WCSSC {
 		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
 		$field .= self::do_label( $label, $id );
 
-		$field .= "<input type='text' name='{$name}' id={$id}' value='{$instance['classes']}' class='widefat' />";
+		$field .= "<input type='text' name='{$name}' id='{$id}' value='{$instance['classes']}' class='widefat' />";
 
 		$field = '<p>' . $field . '</p>';
 		return $field;
