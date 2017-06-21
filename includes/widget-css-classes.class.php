@@ -368,44 +368,45 @@ class WCSSC {
 		// Remove empty ID attr.
 		$params[0]['before_widget'] = str_replace( 'id="" ', '', $params[0]['before_widget'] );
 
+		// All classes array.
+		$classes = array();
+
 		// Add custom and predefined classes.
 		if ( ! empty( $widget_opt[ $widget_num ]['classes'] ) ) {
 
-			$classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
+			$custom_classes = explode( ' ', (string) $widget_opt[ $widget_num ]['classes'] );
 			$defined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
 
 			// Order classes by predefined classes order and append the other (custom) classes.
 			if ( ! empty( $defined_classes ) ) {
 				// Order classes selection by predefined classes order and append the other (custom) classes.
-				$classes = array_filter( array_unique( array_merge( array_intersect( $defined_classes, $classes ), $classes ) ) );
+				$custom_classes = array_filter( array_unique( array_merge( array_intersect( $defined_classes, $custom_classes ), $custom_classes ) ) );
 			}
 
 			/**
-			 * Modify the list of CSS classes.
+			 * Modify the list of custom CSS classes.
 			 * Can also be used for ordering etc.
 			 *
 			 * @since  1.5.0
-			 * @param  array      $classes
+			 * @param  array      $custom_classes
 			 * @param  string     $widget_id
 			 * @param  int        $widget_number
 			 * @param  array      $widget_opt
 			 * @param  WP_Widget  $widget_obj
 			 * @return array
 			 */
-			$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
+			$custom_classes = (array) apply_filters( 'widget_css_classes_custom', $custom_classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
 
 			$type = WCSSC_Lib::get_settings( 'type' );
 
 			if ( 1 === (int) $type || 3 === (int) $type ) {
 				// Add all classes
-				$classes = implode( ' ', $classes );
-				$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$classes} ", $params[0]['before_widget'], 1 );
+				$classes = array_merge( $classes, $custom_classes );
 			} elseif ( 2 === (int) $type ) {
 				// Only add predefined classes
-				foreach ( $classes as $key => $value ) {
+				foreach ( $custom_classes as $key => $value ) {
 					if ( in_array( $value, $defined_classes, true ) ) {
-						$value = esc_attr( $value );
-						$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$value} ", $params[0]['before_widget'], 1 );
+						$classes[] = $value;
 					}
 				}
 			}
@@ -416,12 +417,9 @@ class WCSSC {
 		     WCSSC_Lib::get_settings( 'show_location' ) ||
 		     WCSSC_Lib::get_settings( 'show_evenodd' )
 		) {
+
 			if ( ! $widget_number ) {
 				$widget_number = array();
-			}
-
-			if ( ! isset( $arr_registered_widgets[ $this_id ] ) || ! is_array( $arr_registered_widgets[ $this_id ] ) ) {
-				return $params;
 			}
 
 			if ( isset( $widget_number[ $this_id ] ) ) {
@@ -430,32 +428,60 @@ class WCSSC {
 				$widget_number[ $this_id ] = 1;
 			}
 
-			$class = 'class="';
-
 			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
-				$class .= apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ] . ' ';
+				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ];
+				array_unshift( $classes, $class );
 			}
 
-			if ( WCSSC_Lib::get_settings( 'show_location' ) ) {
+			if ( WCSSC_Lib::get_settings( 'show_location' ) &&
+			     isset( $arr_registered_widgets[ $this_id ] ) &&
+			     is_array( $arr_registered_widgets[ $this_id ] )
+			) {
 				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
 				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
 				if ( 1 === (int) $widget_number[ $this_id ] ) {
-					$class .= $widget_first . ' ';
+					array_unshift( $classes, $widget_first );
 				}
 				if ( count( $arr_registered_widgets[ $this_id ] ) === (int) $widget_number[ $this_id ] ) {
-					$class .= $widget_last . ' ';
+					array_unshift( $classes, $widget_last );
 				}
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
 				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
 				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
-				$class .= ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd . ' ' : $widget_even . ' ' );
+				$class = ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
+				array_unshift( $classes, $class );
 			}
 
-			$params[0]['before_widget'] = str_replace( 'class="', $class, $params[0]['before_widget'] );
-
 		} // End if().
+
+		/**
+		 * Modify the list of extra CSS classes.
+		 * Can also be used for ordering etc.
+		 *
+		 * @since  1.5.0
+		 * @param  array      $classes
+		 * @param  string     $widget_id
+		 * @param  int        $widget_number
+		 * @param  array      $widget_opt
+		 * @param  WP_Widget  $widget_obj
+		 * @return array
+		 */
+		$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
+
+		// Only unique, non-empty values, separated by space, escaped for HTML attributes.
+		$classes = esc_attr( implode( ' ', array_filter( array_unique( $classes ) ) ) );
+
+		if ( ! empty( $classes ) ) {
+			// Add the classes.
+			$params[0]['before_widget'] = preg_replace(
+				'/class="/',
+				"class=\"{$classes} ",
+				$params[0]['before_widget'],
+				1
+			);
+		}
 
 		/**
 		 * Modify the widget parameters, normally to add extra classes.
