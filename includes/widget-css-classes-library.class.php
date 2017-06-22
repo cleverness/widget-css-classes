@@ -71,8 +71,11 @@ class WCSSC_Lib {
 	 */
 	public static function admin_footer() {
 		$plugin_data = get_plugin_data( WCSSC_FILE );
-		echo $plugin_data['Title'] . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] ) . ' | ' . $plugin_data['Author'] .
-			' | <a href="http://codebrainmedia.com">CodeBrain Media</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', WCSSC_Lib::DOMAIN ) . '</a>
+		echo $plugin_data['Title'] // @codingStandardsIgnoreLine >> no valid esc function.
+		     . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
+		     . ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
+			 . ' | <a href="http://codebrainmedia.com">CodeBrain Media</a>'
+		     . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', WCSSC_Lib::DOMAIN ) . '</a>
 		<br />';
 	}
 

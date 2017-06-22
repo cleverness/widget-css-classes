@@ -69,7 +69,7 @@ class WCSSC_Settings {
 		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="0" <?php checked( $this->general_settings[ $key ], false ); ?> /> <?php esc_attr_e( 'No', WCSSC_Lib::DOMAIN ); ?></label>
 		<?php
 		if ( ! empty( $args['desc'] ) ) {
-			echo WCSSC::do_description( $args['desc'] );
+			echo WCSSC::do_description( $args['desc'] ); // @codingStandardsIgnoreLine >> no valid esc function.
 		}
 	}
 
