@@ -171,7 +171,7 @@ class WCSSC {
 		 * @param  string
 		 * @return string
 		 */
-		$label = apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', 'widget-css-classes' ) );
+		$label = apply_filters( 'widget_css_classes_id', esc_html__( 'CSS ID', WCSSC_Lib::DOMAIN ) );
 
 		$field .= self::do_label( $label, $id );
 		$field .= "<input type='text' name='{$name}' id='{$id}' value='{$instance['ids']}' class='widefat' />";
@@ -199,7 +199,7 @@ class WCSSC {
 		 * @param  string
 		 * @return string
 		 */
-		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
+		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', WCSSC_Lib::DOMAIN ) );
 		$field .= self::do_label( $label, $id );
 
 		$field .= "<input type='text' name='{$name}' id='{$id}' value='{$instance['classes']}' class='widefat' />";
@@ -226,7 +226,7 @@ class WCSSC {
 		/**
 		 * @see WCSSC::do_class_field()
 		 */
-		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', 'widget-css-classes' ) );
+		$label = apply_filters( 'widget_css_classes_class', esc_html__( 'CSS Classes', WCSSC_Lib::DOMAIN ) );
 
 		// Merge input classes with predefined classes.
 		$predefined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
@@ -483,7 +483,7 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
-				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . self::$widget_counter[ $this_id ];
+				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', WCSSC_Lib::DOMAIN ) ) . self::$widget_counter[ $this_id ];
 				array_unshift( $classes, $class );
 			}
 
@@ -491,8 +491,8 @@ class WCSSC {
 			     isset( $arr_registered_widgets[ $this_id ] ) &&
 			     is_array( $arr_registered_widgets[ $this_id ] )
 			) {
-				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
-				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
+				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', WCSSC_Lib::DOMAIN ) );
+				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', WCSSC_Lib::DOMAIN ) );
 				if ( 1 === (int) self::$widget_counter[ $this_id ] ) {
 					array_unshift( $classes, $widget_first );
 				}
@@ -502,8 +502,8 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
-				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
-				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
+				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', WCSSC_Lib::DOMAIN ) );
+				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', WCSSC_Lib::DOMAIN ) );
 				$class = ( ( self::$widget_counter[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
 				array_unshift( $classes, $class );
 			}

@@ -15,6 +15,8 @@
 */
 class WCSSC_Lib {
 
+	const DOMAIN = 'widget-css-classes';
+
 	/**
 	 * The plugin settings option key.
 	 * @var   string
@@ -54,7 +56,7 @@ class WCSSC_Lib {
 		}
 
 		if ( $file === $this_plugin ) {
-			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', 'widget-css-classes' ) . '</a>';
+			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', WCSSC_Lib::DOMAIN ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 
@@ -69,8 +71,8 @@ class WCSSC_Lib {
 	 */
 	public static function admin_footer() {
 		$plugin_data = get_plugin_data( WCSSC_FILE );
-		echo $plugin_data['Title'] . ' | ' . esc_attr__( 'Version', 'widget-css-classes' ) . ' ' . esc_html( $plugin_data['Version'] ) . ' | ' . $plugin_data['Author'] .
-			' | <a href="http://codebrainmedia.com">CodeBrain Media</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', 'widget-css-classes' ) . '</a>
+		echo $plugin_data['Title'] . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] ) . ' | ' . $plugin_data['Author'] .
+			' | <a href="http://codebrainmedia.com">CodeBrain Media</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', WCSSC_Lib::DOMAIN ) . '</a>
 		<br />';
 	}
 

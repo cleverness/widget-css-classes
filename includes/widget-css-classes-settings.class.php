@@ -38,19 +38,22 @@ class WCSSC_Settings {
 	}
 
 	public function register_general_settings() {
-		$this->plugin_tabs[ $this->general_key ] = esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' );
+		$this->plugin_tabs[ $this->general_key ] = esc_attr__( 'Widget CSS Classes Settings', WCSSC_Lib::DOMAIN );
 		// @codingStandardsIgnoreLine >> yeah yeah, I know...
 		$this->current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : $this->general_key;
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
-		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', 'widget-css-classes' ), array( $this, 'section_general_desc' ), $this->general_key );
-		add_settings_field( 'fix_widget_params', esc_attr__( 'Wrap widget in a <div> if the parameters are invalid', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'fix_widget_params' ) );
-		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_number' ) );
-		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_location' ) );
-		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_evenodd' ) );
-		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', 'widget-css-classes' ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_id' ) );
-		add_settings_field( 'type', esc_attr__( 'Class Field Type', 'widget-css-classes' ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
-		add_settings_field( 'defined_classes', esc_attr__( 'Predefined Classes', 'widget-css-classes' ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
+		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', WCSSC_Lib::DOMAIN ), array( $this, 'section_general_desc' ), $this->general_key );
+		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_number' ) );
+		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_location' ) );
+		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_evenodd' ) );
+		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_id' ) );
+		add_settings_field( 'type', esc_attr__( 'Class Field Type', WCSSC_Lib::DOMAIN ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
+		add_settings_field( 'defined_classes', esc_attr__( 'Predefined Classes', WCSSC_Lib::DOMAIN ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
+		add_settings_field( 'fix_widget_params', esc_attr__( 'Fix widget parameters', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'fix_widget_params',
+			'desc' => esc_html__( 'Wrap widget in a <div> element if the parameters are invalid.', WCSSC_Lib::DOMAIN ),
+		) );
 		do_action( 'widget_css_classes_settings' );
 	}
 
@@ -58,17 +61,20 @@ class WCSSC_Settings {
 		if ( ! $args['key'] ) return;
 		$key = esc_attr( $args['key'] );
 		?>
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="1" <?php checked( $this->general_settings[ $key ], true ); ?> /> <?php esc_attr_e( 'Yes', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="0" <?php checked( $this->general_settings[ $key ], false ); ?> /> <?php esc_attr_e( 'No', 'widget-css-classes' ); ?></label>
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="1" <?php checked( $this->general_settings[ $key ], true ); ?> /> <?php esc_attr_e( 'Yes', WCSSC_Lib::DOMAIN ); ?></label> &nbsp;
+		<label><input type="radio" name="<?php echo esc_attr( $this->general_key . '[' . $key . ']' ); ?>" value="0" <?php checked( $this->general_settings[ $key ], false ); ?> /> <?php esc_attr_e( 'No', WCSSC_Lib::DOMAIN ); ?></label>
 		<?php
+		if ( ! empty( $args['desc'] ) ) {
+			echo WCSSC::do_description( $args['desc'] );
+		}
 	}
 
 	public function type_option() {
 		?>
-		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?></label> &nbsp;
-		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'None', 'widget-css-classes' ); ?></label>
+		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="1" <?php checked( $this->general_settings['type'], 1 ); ?> /> <?php esc_attr_e( 'Text', WCSSC_Lib::DOMAIN ); ?></label> &nbsp;
+		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', WCSSC_Lib::DOMAIN ); ?></label> &nbsp;
+		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', WCSSC_Lib::DOMAIN ); ?></label> &nbsp;
+		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'None', WCSSC_Lib::DOMAIN ); ?></label>
 		<?php
 	}
 
@@ -116,7 +122,7 @@ class WCSSC_Settings {
 
 		if ( current_user_can( 'manage_options' ) ) {
 
-			$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', 'widget-css-classes' );
+			$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', WCSSC_Lib::DOMAIN );
 
 			$wcssc_message_class = '';
 			$wcssc_message       = '';
@@ -124,15 +130,15 @@ class WCSSC_Settings {
 				switch ( $_GET['wcssc_message'] ) {
 					case 1:
 						$wcssc_message_class = 'updated';
-						$wcssc_message       = esc_attr__( 'Settings Imported', 'widget-css-classes' );
+						$wcssc_message       = esc_attr__( 'Settings Imported', WCSSC_Lib::DOMAIN );
 						break;
 					case 2:
 						$wcssc_message_class = 'error';
-						$wcssc_message       = esc_attr__( 'Invalid Settings File', 'widget-css-classes' );
+						$wcssc_message       = esc_attr__( 'Invalid Settings File', WCSSC_Lib::DOMAIN );
 						break;
 					case 3:
 						$wcssc_message_class = 'error';
-						$wcssc_message       = esc_attr__( 'No Settings File Selected', 'widget-css-classes' );
+						$wcssc_message       = esc_attr__( 'No Settings File Selected', WCSSC_Lib::DOMAIN );
 						break;
 				}
 			}
@@ -192,7 +198,7 @@ class WCSSC_Settings {
 	}
 
 	public function add_admin_menus() {
-		add_options_page( esc_attr__( 'Widget CSS Classes', 'widget-css-classes' ), esc_attr__( 'Widget CSS Classes', 'widget-css-classes' ), 'manage_options', 'widget-css-classes-settings', array( $this, 'plugin_options_page' ) );
+		add_options_page( esc_attr__( 'Widget CSS Classes', WCSSC_Lib::DOMAIN ), esc_attr__( 'Widget CSS Classes', WCSSC_Lib::DOMAIN ), 'manage_options', 'widget-css-classes-settings', array( $this, 'plugin_options_page' ) );
 	}
 
 	/*
@@ -235,13 +241,13 @@ class WCSSC_Settings {
 
 	public function importexport_fields() {
 	?>
-		<h3><?php esc_html_e( 'Import/Export Settings', 'widget-css-classes' ); ?></h3>
+		<h3><?php esc_html_e( 'Import/Export Settings', WCSSC_Lib::DOMAIN ); ?></h3>
 
-		<p><a class="submit button" href="?widget-css-classes-settings-export"><?php esc_attr_e( 'Export Settings', 'widget-css-classes' ); ?></a></p>
+		<p><a class="submit button" href="?widget-css-classes-settings-export"><?php esc_attr_e( 'Export Settings', WCSSC_Lib::DOMAIN ); ?></a></p>
 
 		<p>
 			<input type="hidden" name="widget-css-classes-settings-import" id="widget-css-classes-settings-import" value="true" />
-			<?php submit_button( esc_attr__( 'Import Settings', 'widget-css-classes' ), 'button', 'widget-css-classes-settings-submit', false ); ?>
+			<?php submit_button( esc_attr__( 'Import Settings', WCSSC_Lib::DOMAIN ), 'button', 'widget-css-classes-settings-submit', false ); ?>
 			<input type="file" name="widget-css-classes-settings-import-file" id="widget-css-classes-settings-import-file" />
 		</p>
 	<?php
