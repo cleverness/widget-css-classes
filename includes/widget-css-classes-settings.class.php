@@ -16,11 +16,11 @@
  */
 class WCSSC_Settings {
 
-	private $general_key = '';
-	private $plugin_key = 'widget-css-classes-settings';
-	private $plugin_tabs = array();
-	private $general_settings = array();
-	private $current_tab = '';
+	protected $general_key = '';
+	protected $plugin_key = 'widget-css-classes-settings';
+	protected $plugin_tabs = array();
+	protected $general_settings = array();
+	protected $current_tab = '';
 
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'load_settings' ) );
@@ -69,7 +69,7 @@ class WCSSC_Settings {
 		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="2" <?php checked( $this->general_settings['type'], 2 ); ?> /> <?php esc_attr_e( 'Predefined', 'widget-css-classes' ); ?></label> &nbsp;
 		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="3" <?php checked( $this->general_settings['type'], 3 ); ?> /> <?php esc_attr_e( 'Both', 'widget-css-classes' ); ?></label> &nbsp;
 		<label><input type="radio" class="wcssc_type" name="<?php echo esc_attr( $this->general_key ) . '[type]'; ?>" value="0" <?php checked( $this->general_settings['type'], 0 ); ?> /> <?php esc_attr_e( 'None', 'widget-css-classes' ); ?></label>
-	<?php
+		<?php
 	}
 
 	public function defined_classes_option() {

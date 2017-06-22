@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget CSS Classes Plugin Loader
+ * Widget CSS Classes Plugin Loader.
  *
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
@@ -9,14 +9,14 @@
  */
 
 /**
- * Loader class
+ * Loader class.
  * @package widget-css-classes
  * @subpackage includes
  */
 class WCSSC_Loader {
 
 	/**
-	 * Plugin Loader init
+	 * Plugin Loader init.
 	 * @static
 	 * @since 1.0
 	 */
@@ -30,7 +30,7 @@ class WCSSC_Loader {
 	}
 
 	/**
-	 * Check to see if plugin has an upgrade
+	 * Check to see if plugin has an upgrade.
 	 * @static
 	 * @since 1.0
 	 */
@@ -39,7 +39,7 @@ class WCSSC_Loader {
 	}
 
 	/**
-	 * Calls the plugin files for inclusion
+	 * Calls the plugin files for inclusion.
 	 * @static
 	 * @since 1.0
 	 */
@@ -49,7 +49,7 @@ class WCSSC_Loader {
 	}
 
 	/**
-	 * Adds WordPress hooks for actions and filters
+	 * Adds WordPress hooks for actions and filters.
 	 * @static
 	 * @since 1.0
 	 */
@@ -61,14 +61,14 @@ class WCSSC_Loader {
 	}
 
 	/**
-	 * Load the plugin CSS, JS and Help tab
+	 * Load the plugin CSS, JS and Help tab.
 	 * @static
 	 * @since 1.0
 	 */
 	public static function enqueue_scripts_styles() {
 		$screen = get_current_screen();
 
-		// if on the settings page
+		// if on the settings page.
 		if ( 'settings_page_widget-css-classes-settings' === $screen->id ) {
 			wp_enqueue_style( 'widget-css-classes_css', WCSSC_PLUGIN_URL . '/css/widget-css-classes.css', array(), WCSSC_PLUGIN_VERSION );
 			wp_enqueue_script( 'widget-css-classes_js', WCSSC_PLUGIN_URL . '/js/widget-css-classes.js', array( 'jquery' ), WCSSC_PLUGIN_VERSION );
