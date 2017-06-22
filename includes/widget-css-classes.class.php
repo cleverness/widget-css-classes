@@ -23,12 +23,52 @@ class WCSSC {
 	public static $widget_counter = array();
 
 	/**
-	 * Default capability to display the WCC form in widgets.
+	 * Default capabilities to display the WCC form in widgets.
 	 * @static
 	 * @since  1.5.0
-	 * @var    string
+	 * @var    array
 	 */
-	private static $default_cap = 'edit_theme_options';
+	private static $caps = array(
+		'ids'     => 'edit_theme_options',
+		'classes' => 'edit_theme_options',
+		'defined' => 'edit_theme_options',
+	);
+
+	public static function init() {
+		static $done;
+		if ( $done ) return;
+
+		/**
+		 * Change the capability to access the CSS ID field.
+		 *
+		 * @since  1.5.0
+		 * @param  string
+		 * @return string
+		 */
+		self::$caps['ids'] = apply_filters( 'widget_css_classes_id_input_capability', self::$caps['ids'] );
+
+		/**
+		 * Change the capability to access the CSS Classes field.
+		 *
+		 * @since  1.5.0
+		 * @param  string
+		 * @return string
+		 */
+		self::$caps['classes'] = apply_filters( 'widget_css_classes_class_input_capability', self::$caps['classes'] );
+
+		/**
+		 * Change the capability to access the predefined CSS Classes select field.
+		 * NOTE: If the user cannot access the predefined classes the regular input field is disabled as well.
+		 *
+		 * @since  1.5.0
+		 * @param  string
+		 * @param  string
+		 * @return string
+		 */
+		self::$caps['defined'] = apply_filters( 'widget_css_classes_class_select_capability', self::$caps['defined'], self::$caps['classes'] );
+
+		$done = true;
+	}
 
 	/**
 	 * Adds form fields to Widget
@@ -40,39 +80,16 @@ class WCSSC {
 	 * @since  1.0
 	 */
 	public static function extend_widget_form( $widget, $return, $instance ) {
+		self::init();
 		$instance = wp_parse_args( $instance, array(
 			'ids' => '',
 			'classes' => '',
 			'classes-defined' => array(),
 		) );
 
-		/**
-		 * Change the capability to access the CSS ID field.
-		 *
-		 * @since  1.5.0
-		 * @param  string
-		 * @return string
-		 */
-		$access_id = current_user_can( apply_filters( 'widget_css_classes_id_input_capability', self::$default_cap ) );
-
-		/**
-		 * Change the capability to access the CSS Classes field.
-		 *
-		 * @since  1.5.0
-		 * @param  string
-		 * @return string
-		 */
-		$access_class = current_user_can( apply_filters( 'widget_css_classes_class_input_capability', self::$default_cap ) );
-
-		/**
-		 * Change the capability to access the predefined CSS Classes select field.
-		 * NOTE: If the user cannot access the predefined classes the regular input field is disabled as well.
-		 *
-		 * @since  1.5.0
-		 * @param  string
-		 * @return string
-		 */
-		$access_predefined = current_user_can( apply_filters( 'widget_css_classes_class_select_capability', self::$default_cap, $access_class ) );
+		$access_id = current_user_can( self::$caps['ids'] );
+		$access_class = current_user_can( self::$caps['classes'] );
+		$access_predefined = current_user_can( self::$caps['defined'] );
 		if ( ! $access_predefined ) {
 			$access_class = false;
 		}
