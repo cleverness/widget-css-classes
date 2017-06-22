@@ -57,8 +57,12 @@ function widget_css_classes_activation() {
 	global $wp_version;
 
 	if ( version_compare( $wp_version, '3.3', '<' ) ) {
-		// @todo Add notice instead of exit();
-		exit( esc_html__( 'Widget CSS Classes requires WordPress 3.3 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update.</a>', 'widget-css-classes' ) );
+		// Add admin notice.
+		add_action( 'admin_notices', 'widget_css_classes_notice_wp_version' );
+		// Deactivate.
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		return;
 	}
 
 	if ( ! defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
@@ -79,3 +83,17 @@ function widget_css_classes_activation() {
 }
 
 register_activation_hook( __FILE__, 'widget_css_classes_activation' );
+
+/**
+ * Wrong WP version admin notice.
+ */
+function widget_css_classes_notice_wp_version() {
+	echo '<div class="notice notice-error is-dismissible"><p>';
+	echo sprintf(
+		// Translators: %1$s stands for the WP version and %2$s stands for "Please update" (a link).
+		esc_html__( 'Widget CSS Classes requires WordPress %1$s or newer. %2$s', 'widget-css-classes' ),
+		'3.3',
+		'<a target="_blank" href="http://codex.wordpress.org/Upgrading_WordPress">' . esc_html__( 'Please update', 'widget-css-classes' ) . '.</a>'
+	);
+	echo '</p></div>';
+}
