@@ -324,41 +324,47 @@ class WCSSC {
 			'classes-defined' => array(),
 		) );
 
-		$access_id = current_user_can( self::$caps['ids'] );
+		if ( current_user_can( self::$caps['ids'] ) && WCSSC_Lib::get_settings( 'show_id' ) ) {
+			$instance['ids'] = sanitize_text_field( $new_instance['ids'] );
+		}
+
 		$access_class = current_user_can( self::$caps['classes'] );
 		$access_predefined = current_user_can( self::$caps['defined'] );
 		if ( ! $access_predefined ) {
 			$access_class = false;
 		}
 
-		if ( $access_id && WCSSC_Lib::get_settings( 'show_id' ) ) {
-			$instance['ids'] = sanitize_text_field( $new_instance['ids'] );
-		}
+		if ( ( $access_class || $access_predefined ) && WCSSC_Lib::get_settings( 'type' ) ) {
 
-		if ( $access_predefined && ( ! empty( $new_instance['classes'] ) || ! empty( $new_instance['classes-defined'] ) ) ) {
-
-			// Get the new predefined classes that are enabled.
-			$defined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
-			$new_classes = array_intersect( (array) $new_instance['classes-defined'], $defined_classes );
+			// Get the new predefined classes.
+			$new_classes = (array) $new_instance['classes-defined'];
 
 			// Merge predefined classes with input classes. Overwrite existing.
 			if ( $access_class ) {
-				$new_classes = array_unique( array_merge( explode( ' ', (string) $new_instance['classes'] ), $new_classes ) );
+				$new_classes = array_merge( explode( ' ', (string) $new_instance['classes'] ), $new_classes );
 			}
-			// User can only set predefined classes, use the original and append the new classes.
+			// User can only set predefined classes, use the original and append the new classes with validation.
 			elseif ( ! empty( $instance['classes'] ) ) {
+				// Get the available predefined classes.
+				$defined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
+				// Remove values that don't exist as predefined.
+				$new_classes = array_intersect( $new_classes, $defined_classes );
 				// Get the classes existing in the original instance, removing the ones that are predefined.
 				$cur_classes = array_diff( explode( ' ', (string) $instance['classes'] ), $defined_classes );
 				// Merge with the new predefined selection.
-				$new_classes = array_unique( array_merge( $cur_classes, $new_classes ) );
+				$new_classes = array_merge( $cur_classes, $new_classes );
 			}
 
-			$instance['classes'] = sanitize_text_field( implode( ' ', array_filter( $new_classes ) ) );
+			// Remove empty and duplicate values and overwrite the original instance.
+			$new_classes = array_filter( array_unique( $new_classes ) );
+			$instance['classes'] = sanitize_text_field( implode( ' ', $new_classes ) );
 		}
+
 		// Do not store predefined array in widget, no need
 		unset( $instance['classes-defined'] );
 
 		do_action( 'widget_css_classes_update', $instance, $new_instance );
+
 		return $instance;
 	}
 
