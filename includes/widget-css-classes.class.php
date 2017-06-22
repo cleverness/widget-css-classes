@@ -100,7 +100,7 @@ class WCSSC {
 			//$fields .= "<div class='wcssc' style='border: 1px solid #ddd; padding: 5px; background: #fafafa; margin: 1em 0; line-height: 1.5;'>\n";
 			$fields .= '<div class="wcssc" style="clear: both; margin: 1em 0;">';
 
-			// show id field
+			// show id field.
 			if ( WCSSC_Lib::get_settings( 'show_id' ) ) {
 				if ( $access_id ) {
 					$fields .= self::do_id_field( $widget, $instance );
@@ -109,31 +109,31 @@ class WCSSC {
 				}
 			}
 
-			// show classes text field only
-			if ( 1 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
-				if ( $access_class ) {
-					$fields .= self::do_class_field( $widget, $instance );
-				} else {
-					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
-				}
-			}
-
-			// show classes predefined only
-			if ( 2 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
-				if ( $access_predefined ) {
-					$fields .= self::do_predefined_field( $widget, $instance, null );
-				} else {
-					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
-				}
-			}
-
-			// show both
-			if ( 3 === (int) WCSSC_Lib::get_settings( 'type' ) ) {
-				if ( $access_predefined ) {
-					$fields .= self::do_predefined_field( $widget, $instance, $access_class );
-				} else {
-					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
-				}
+			switch ( WCSSC_Lib::get_settings( 'type' ) ) {
+				case 1:
+					// show classes text field only.
+					if ( $access_class ) {
+						$fields .= self::do_class_field( $widget, $instance );
+					} else {
+						$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+					}
+				break;
+				case 2:
+					// show classes predefined only.
+					if ( $access_predefined ) {
+						$fields .= self::do_predefined_field( $widget, $instance, null );
+					} else {
+						$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+					}
+				break;
+				case 3:
+					// show both.
+					if ( $access_predefined ) {
+						$fields .= self::do_predefined_field( $widget, $instance, $access_class );
+					} else {
+						$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
+					}
+				break;
 			}
 
 			$fields .= '</div>';
@@ -269,7 +269,7 @@ class WCSSC {
 		}
 
 		$style = implode( ' ', $style );
-		$field .= "\t<ul id='{$id}' style='{$style}'>\n";
+		$field .= "<ul id='{$id}' style='{$style}'>";
 		foreach ( $predefined_classes as $preset ) {
 			$preset_checked = '';
 			if ( in_array( $preset, $instance['classes-defined'], true ) ) {
