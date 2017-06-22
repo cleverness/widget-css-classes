@@ -8,6 +8,16 @@
 
 jQuery( document ).ready( function ( $ ) {
 
+	// Change opacity if predefined classes is disabled.
+	$( 'input.wcssc_type' ).on( 'change', function() {
+		var val = $(this).val();
+		if ( '2' === val || '3' === val ) {
+			$('.wcssc_defined_classes').parents('tr').css({'opacity':''});
+		} else {
+			$('.wcssc_defined_classes').parents('tr').css({'opacity':'.5'});
+		}
+	} ).filter(':checked').trigger('change');
+
 	$( '.wcssc_copy' ).relCopy( {} );
 
 	$( 'p' ).on( 'click', '.wcssc_remove', function(e) {
