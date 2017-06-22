@@ -316,13 +316,14 @@ class WCSSC_Lib {
 		if ( null === self::$default_settings ) {
 
 			self::$default_settings = array(
-				'fix_widget_params' => false,
 				'show_id'           => false,
 				'type'              => 1,
 				'defined_classes'   => array(),
 				'show_number'       => true,
 				'show_location'     => true,
 				'show_evenodd'      => true,
+				'fix_widget_params' => false,
+				'filter_unique'     => false,
 			);
 
 			// Prevent passing by reference.

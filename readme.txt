@@ -96,6 +96,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 = 1.5.0 =
 * **Feature:** Option to try and fix the widget parameters if they are invalid. [#24](https://github.com/cleverness/widget-css-classes/issues/24)
+* **Feature:** Option to remove duplicate classes. [#25](https://github.com/cleverness/widget-css-classes/issues/25)
 * **Enhancement:** Sort classes based on the predefined classes on the frontend by default. [#19](https://github.com/cleverness/widget-css-classes/issues/19)
 * **Enhancement:** Classes filter for frontend (for sorting or modifications). [#19](https://github.com/cleverness/widget-css-classes/issues/19)
   - `widget_css_classes`: modify all classes added by this plugin.

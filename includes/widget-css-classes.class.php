@@ -529,12 +529,7 @@ class WCSSC {
 
 		if ( ! empty( $classes ) ) {
 			// Add the classes.
-			$params[0]['before_widget'] = preg_replace(
-				'/class="/',
-				"class=\"{$classes} ",
-				$params[0]['before_widget'],
-				1
-			);
+			$params[0]['before_widget'] = self::append_to_attribute( $params[0]['before_widget'], 'class', $classes, true );
 		}
 
 		/**
@@ -550,6 +545,81 @@ class WCSSC {
 		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_num, $widget_opt, $widget_obj );
 
 		return $params;
+	}
+
+	/**
+	 * Find an attribute and add the data as a HTML string.
+	 *
+	 * @see    WCC_Genesis_Widget_Column_Classes::append_to_attribute()
+	 * @link   https://github.com/JoryHogeveen/genesis-widget-column-classes/blob/master/genesis-widget-column-classes.php
+	 *
+	 * @static
+	 * @since  1.5.0
+	 *
+	 * @param  string  $str            The HTML string.
+	 * @param  string  $attr           The attribute to find.
+	 * @param  string  $content_extra  The content that needs to be appended.
+	 * @param  bool    $unique         Do we need to filter for unique values?
+	 *
+	 * @return string
+	 */
+	public static function append_to_attribute( $str, $attr, $content_extra, $unique = false ) {
+
+		// Check if attribute has single or double quotes.
+		// @codingStandardsIgnoreLine
+		if ( $start = stripos( $str, $attr . '="' ) ) {
+			// Double.
+			$quote = '"';
+
+		// @codingStandardsIgnoreLine
+		} elseif ( $start = stripos( $str, $attr . "='" ) ) {
+			// Single.
+			$quote = "'";
+
+		} else {
+			// Not found
+			return $str;
+		}
+
+		// Add quote (for filtering purposes).
+		$attr .= '=' . $quote;
+
+		$content_extra = trim( $content_extra );
+
+		if ( $unique ) {
+
+			// Set start pointer to after the quote.
+			$start += strlen( $attr );
+			// Find first quote after the start pointer.
+			$end = strpos( $str, $quote, $start );
+			// Get the current content.
+			$content = explode( ' ', substr( $str, $start, $end - $start ) );
+			// Get our extra content.
+			$content_extra = explode( ' ', $content_extra );
+			foreach ( $content_extra as $class ) {
+				if ( ! empty( $class ) && ! in_array( $class, $content, true ) ) {
+					// This one can be added!
+					$content[] = $class;
+				}
+			}
+			// Remove duplicates and empty values.
+			$content = array_filter( array_unique( $content ) );
+			// Convert to space separated string.
+			$content = implode( ' ', $content );
+			// Get HTML before content.
+			$before_content = substr( $str, 0, $start );
+			// Get HTML after content.
+			$after_content = substr( $str, $end );
+
+			// Combine the string again.
+			$str = $before_content . $content . $after_content;
+
+		} else {
+			$str = str_replace( $attr, $attr . $content_extra . ' ' , $str );
+		}
+
+		// Return full HTML string.
+		return $str;
 	}
 
 	/**

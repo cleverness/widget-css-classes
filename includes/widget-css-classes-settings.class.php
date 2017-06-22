@@ -54,6 +54,10 @@ class WCSSC_Settings {
 			'key' => 'fix_widget_params',
 			'desc' => esc_html__( 'Wrap widget in a <div> element if the parameters are invalid.', WCSSC_Lib::DOMAIN ),
 		) );
+		add_settings_field( 'filter_unique', esc_attr__( 'Remove duplicate classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'filter_unique',
+			'desc' => esc_html__( 'Plugins that run after this plugin could still add duplicates.', WCSSC_Lib::DOMAIN ),
+		) );
 		do_action( 'widget_css_classes_settings' );
 	}
 
