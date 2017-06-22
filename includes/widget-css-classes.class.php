@@ -529,7 +529,12 @@ class WCSSC {
 
 		if ( ! empty( $classes ) ) {
 			// Add the classes.
-			$params[0]['before_widget'] = self::append_to_attribute( $params[0]['before_widget'], 'class', $classes, true );
+			$params[0]['before_widget'] = self::append_to_attribute(
+				$params[0]['before_widget'],
+				'class',
+				$classes,
+				(boolean) WCSSC_Lib::get_settings( 'filter_unique' )
+			);
 		}
 
 		/**
@@ -615,7 +620,12 @@ class WCSSC {
 			$str = $before_content . $content . $after_content;
 
 		} else {
-			$str = str_replace( $attr, $attr . $content_extra . ' ' , $str );
+			$str = preg_replace(
+				'/' . preg_quote( $attr, '/' ) . '/',
+				$attr . $content_extra . ' ' ,
+				$str,
+				1
+			);
 		}
 
 		// Return full HTML string.
