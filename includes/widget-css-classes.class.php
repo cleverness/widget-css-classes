@@ -293,20 +293,31 @@ class WCSSC {
 	 * @param  string $value
 	 * @return string
 	 */
-	private static function do_hidden( $name, $value ) {
+	public static function do_hidden( $name, $value ) {
 		return '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
 	}
 
 	/**
-	 * Get the HTML for a field label.
+	 * Get the HTML for a field label. Label gets appended with a colon (:).
 	 * @static
 	 * @since  1.5.0
 	 * @param  string $label
 	 * @param  string $for
 	 * @return string
 	 */
-	private static function do_label( $label, $for ) {
-		return '<label for="' . esc_attr( $for ) . '">' . $label . ":</label>\n";
+	public static function do_label( $label, $for ) {
+		return '<label for="' . esc_attr( $for ) . '">' . $label . ':</label>';
+	}
+
+	/**
+	 * Get the HTML for a field description paragraph.
+	 * @static
+	 * @since  1.5.0
+	 * @param  string $text
+	 * @return string
+	 */
+	public static function do_description( $text ) {
+		return '<p class="description">' . $text . '</p>';
 	}
 
 	/**
