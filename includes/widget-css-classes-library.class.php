@@ -107,7 +107,9 @@ class WCSSC_Lib {
 	 */
 	private static function update( $version ) {
 
-		if ( empty( $version ) ) {
+		$settings = get_option( self::$settings_key );
+
+		if ( empty( $settings ) ) {
 
 			// add default options
 			self::update_settings( array() );
@@ -116,15 +118,12 @@ class WCSSC_Lib {
 		} else {
 
 			if ( version_compare( $version, '1.2', '<' ) ) {
-				$settings = get_option( self::$settings_key );
 				$settings['show_number']   = 1;
 				$settings['show_location'] = 1;
 				$settings['show_evenodd']  = 1;
-				self::update_settings( $settings );
 			}
 
 			if ( version_compare( $version, '1.3', '<' ) ) {
-				$settings = get_option( self::$settings_key );
 				// Hide option is now 0 instead of 3
 				if ( isset( $settings['type'] ) && 3 === (int) $settings['type'] ) {
 					$settings['type'] = 0;
@@ -135,17 +134,12 @@ class WCSSC_Lib {
 				}
 				$settings['defined_classes'] = $settings['dropdown'];
 				unset( $settings['dropdown'] );
-				self::update_settings( $settings );
 			}
 
-			if ( version_compare( $version, '1.5', '<' ) ) {
-				$settings = get_option( self::$settings_key );
-				self::update_settings( $settings );
-			}
+			self::update_settings( $settings );
 
-		} // End if().
+		}
 
-		self::$settings = get_option( self::$settings_key );
 	}
 
 	/**
