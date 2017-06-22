@@ -19,6 +19,9 @@ engines:
     config:
       standard: "Wordpress-Extra"
     checks:
+      # Disable: The $domain arg must be a single string literal, not "". Sniff not working (class constant).
+      WordPress WP I18n NonSingularStringLiteralDomain:
+        enabled: false
       # Disable: Class file names should be based on the class name with "class-" prepended.
       WordPress Files FileName InvalidClassFileName:
         enabled: false
