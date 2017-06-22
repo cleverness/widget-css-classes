@@ -34,17 +34,19 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 			'show_number'       => 1,
 			'show_location'     => 0,
 			'show_evenodd'      => 1,
+			//'filter_unique'     => false, // This value should be appended.
 		);
 
 		// Compare array, this is what the resulting settings should be after parsing.
 		$compare = array(
-			'fix_widget_params' => false,
 			'show_id'           => true,
 			'type'              => 3,
 			'defined_classes'   => array( 'test', 'semicolon', 'space', 'comma' ),
 			'show_number'       => true,
 			'show_location'     => false,
 			'show_evenodd'      => true,
+			'fix_widget_params' => false,
+			'filter_unique'     => false,
 		);
 
 		// Trigger update.
@@ -83,6 +85,69 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 
 		// @todo assertNotTrue() not available in PHP 5.2 unit tests
 		$this->wcssc_assertNotTrue( WCSSC_Lib::get_settings( 'type' ) ); // Should be parsed to an integer.
+	}
+
+	/**
+	 * Check append_to_attribute() method
+	 */
+	function test_append_to_attribute() {
+
+		$tests = array(
+			array(
+				'start'  => '<div class="test">',
+				'data'   => 'one two three',
+				'result' => '<div class="test one two three">',
+			),
+			array(
+				'start'  => '<div class="test one two">',
+				'data'   => 'one two three',
+				'result' => '<div class="test one two three">',
+			),
+			array(
+				'start'  => '<div class="test one one two">',
+				'data'   => 'one two three',
+				'result' => '<div class="test one two three">',
+			),
+			array(
+				'start'  => '<div class="test one two">',
+				'data'   => 'one one two three',
+				'result' => '<div class="test one two three">',
+			),
+			// Single quotes.
+			array(
+				'start'  => "<div class='test'>",
+				'data'   => 'one two three',
+				'result' => "<div class='test one two three'>",
+			),
+			array(
+				'start'  => "<div class='test one two'>",
+				'data'   => 'one one two three',
+				'result' => "<div class='test one two three'>",
+			),
+			// Multiple elements (only first attribute found should be modified).
+			array(
+				'start'  => '<div class="test one one two"><p class="test"></p>',
+				'data'   => 'one two three',
+				'result' => '<div class="test one two three"><p class="test"></p>',
+			),
+			// @todo Should this happen?
+			array(
+				'start'  => '<div><p class="test"></p>',
+				'data'   => 'one two three',
+				'result' => '<div><p class="test one two three"></p>',
+			),
+		);
+
+		// Unique result tests.
+		foreach ( $tests as $test ) {
+			$this->assertEquals( $test['result'], WCSSC::append_to_attribute( $test['start'], 'class', $test['data'], true ) );
+		}
+
+		unset( $tests[0] );
+
+		foreach ( $tests as $test ) {
+			$this->assertNotEquals( $test['result'], WCSSC::append_to_attribute( $test['start'], 'class', $test['data'], false ) );
+		}
 	}
 
 ///////////////////////////////////////////////
