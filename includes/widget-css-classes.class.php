@@ -626,7 +626,7 @@ class WCSSC {
 				$str,
 				1
 			);
-		}
+		} // End if().
 
 		// Return full HTML string.
 		return $str;
