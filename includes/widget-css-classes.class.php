@@ -344,7 +344,7 @@ class WCSSC {
 				$new_classes = array_merge( explode( ' ', (string) $new_instance['classes'] ), $new_classes );
 			}
 			// User can only set predefined classes, use the original and append the new classes with validation.
-			elseif ( ! empty( $instance['classes'] ) ) {
+			else {
 				// Get the available predefined classes.
 				$defined_classes = WCSSC_Lib::get_settings( 'defined_classes' );
 				// Remove values that don't exist as predefined.
