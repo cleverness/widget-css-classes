@@ -15,6 +15,14 @@
 class WCSSC {
 
 	/**
+	 * Counter variable for the number of widgets per sidebar ID.
+	 * @static
+	 * @since  1.5.0
+	 * @var    array
+	 */
+	public static $widget_counter = array();
+
+	/**
 	 * Default capability to display the WCC form in widgets.
 	 * @static
 	 * @since  1.5.0
@@ -333,7 +341,7 @@ class WCSSC {
 	 */
 	public static function add_widget_classes( $params ) {
 
-		global $wp_registered_widgets, $widget_number;
+		global $wp_registered_widgets;
 
 		if ( ! isset( $params[0] ) ) {
 			return $params;
@@ -385,12 +393,12 @@ class WCSSC {
 			 * @since  1.5.0
 			 * @param  array      $custom_classes
 			 * @param  string     $widget_id
-			 * @param  int        $widget_number
+			 * @param  int        $widget_num
 			 * @param  array      $widget_opt
 			 * @param  WP_Widget  $widget_obj
 			 * @return array
 			 */
-			$custom_classes = (array) apply_filters( 'widget_css_classes_custom', $custom_classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
+			$custom_classes = (array) apply_filters( 'widget_css_classes_custom', $custom_classes, $widget_id, $widget_num, $widget_opt, $widget_obj );
 
 			$type = WCSSC_Lib::get_settings( 'type' );
 
@@ -413,18 +421,18 @@ class WCSSC {
 		     WCSSC_Lib::get_settings( 'show_evenodd' )
 		) {
 
-			if ( ! $widget_number ) {
-				$widget_number = array();
+			if ( ! self::$widget_counter ) {
+				self::$widget_counter = array();
 			}
 
-			if ( isset( $widget_number[ $this_id ] ) ) {
-				$widget_number[ $this_id ]++;
+			if ( isset( self::$widget_counter[ $this_id ] ) ) {
+				self::$widget_counter[ $this_id ]++;
 			} else {
-				$widget_number[ $this_id ] = 1;
+				self::$widget_counter[ $this_id ] = 1;
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
-				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . $widget_number[ $this_id ];
+				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', 'widget-css-classes' ) ) . self::$widget_counter[ $this_id ];
 				array_unshift( $classes, $class );
 			}
 
@@ -434,10 +442,10 @@ class WCSSC {
 			) {
 				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', 'widget-css-classes' ) );
 				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', 'widget-css-classes' ) );
-				if ( 1 === (int) $widget_number[ $this_id ] ) {
+				if ( 1 === (int) self::$widget_counter[ $this_id ] ) {
 					array_unshift( $classes, $widget_first );
 				}
-				if ( count( $arr_registered_widgets[ $this_id ] ) === (int) $widget_number[ $this_id ] ) {
+				if ( count( $arr_registered_widgets[ $this_id ] ) === (int) self::$widget_counter[ $this_id ] ) {
 					array_unshift( $classes, $widget_last );
 				}
 			}
@@ -445,7 +453,7 @@ class WCSSC {
 			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
 				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', 'widget-css-classes' ) );
 				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', 'widget-css-classes' ) );
-				$class = ( ( $widget_number[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
+				$class = ( ( self::$widget_counter[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
 				array_unshift( $classes, $class );
 			}
 
@@ -458,12 +466,12 @@ class WCSSC {
 		 * @since  1.5.0
 		 * @param  array      $classes
 		 * @param  string     $widget_id
-		 * @param  int        $widget_number
+		 * @param  int        $widget_num
 		 * @param  array      $widget_opt
 		 * @param  WP_Widget  $widget_obj
 		 * @return array
 		 */
-		$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_number, $widget_opt, $widget_obj );
+		$classes = (array) apply_filters( 'widget_css_classes', $classes, $widget_id, $widget_num, $widget_opt, $widget_obj );
 
 		// Only unique, non-empty values, separated by space, escaped for HTML attributes.
 		$classes = esc_attr( implode( ' ', array_filter( array_unique( $classes ) ) ) );
@@ -483,12 +491,12 @@ class WCSSC {
 		 *
 		 * @param  array      $params
 		 * @param  string     $widget_id
-		 * @param  int        $widget_number
+		 * @param  int        $widget_num
 		 * @param  array      $widget_opt
 		 * @param  WP_Widget  $widget_obj
 		 * @return array
 		 */
-		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_number, $widget_opt, $widget_obj );
+		do_action( 'widget_css_classes_add_classes', $params, $widget_id, $widget_num, $widget_opt, $widget_obj );
 
 		return $params;
 	}
