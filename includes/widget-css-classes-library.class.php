@@ -115,36 +115,32 @@ class WCSSC_Lib {
 		$settings = get_option( self::$settings_key );
 
 		if ( empty( $settings ) ) {
-
 			// add default options
 			self::update_settings( array() );
 			add_option( 'WCSSC_db_version', WCSSC_DB_VERSION );
-
-		} else {
-
-			if ( version_compare( $version, '1.2', '<' ) ) {
-				$settings['show_number']   = 1;
-				$settings['show_location'] = 1;
-				$settings['show_evenodd']  = 1;
-			}
-
-			if ( version_compare( $version, '1.3', '<' ) ) {
-				// Hide option is now 0 instead of 3
-				if ( isset( $settings['type'] ) && 3 === (int) $settings['type'] ) {
-					$settings['type'] = 0;
-				}
-				// dropdown settings are renamed to defined_classes
-				if ( ! isset( $settings['dropdown'] ) ) {
-					$settings['dropdown'] = '';
-				}
-				$settings['defined_classes'] = $settings['dropdown'];
-				unset( $settings['dropdown'] );
-			}
-
-			self::update_settings( $settings );
-
+			return;
 		}
 
+		if ( version_compare( $version, '1.2', '<' ) ) {
+			$settings['show_number']   = 1;
+			$settings['show_location'] = 1;
+			$settings['show_evenodd']  = 1;
+		}
+
+		if ( version_compare( $version, '1.3', '<' ) ) {
+			// Hide option is now 0 instead of 3
+			if ( isset( $settings['type'] ) && 3 === (int) $settings['type'] ) {
+				$settings['type'] = 0;
+			}
+			// dropdown settings are renamed to defined_classes
+			if ( ! isset( $settings['dropdown'] ) ) {
+				$settings['dropdown'] = '';
+			}
+			$settings['defined_classes'] = $settings['dropdown'];
+			unset( $settings['dropdown'] );
+		}
+
+		self::update_settings( $settings );
 	}
 
 	/**
@@ -316,35 +312,37 @@ class WCSSC_Lib {
 	 */
 	public static function get_default_settings() {
 
-		if ( null === self::$default_settings ) {
-
-			self::$default_settings = array(
-				'show_id'           => false,
-				'type'              => 1,
-				'defined_classes'   => array(),
-				'show_number'       => true,
-				'show_location'     => true,
-				'show_evenodd'      => true,
-				'fix_widget_params' => false,
-				'filter_unique'     => false,
-			);
-
-			// Prevent passing by reference.
-			$default_settings = self::$default_settings;
-
-			/**
-			 * Modify the plugin default settings. Doesn't change the DB values.
-			 * IMPORTANT: Do not change the variable types of the values! Type casting will be overruled.
-			 *
-			 * @since  1.5.0
-			 * @param  array  $default_settings  See `widget_css_classes_set_settings` filter for parameters.
-			 * @return array
-			 */
-			$default_settings = apply_filters( 'widget_css_classes_default_settings', $default_settings );
-
-			// Validate default settings against the original defaults.
-			self::$default_settings = self::validate_settings( $default_settings, true );
+		// Only run filters once.
+		if ( self::$default_settings ) {
+			return self::$default_settings;
 		}
+
+		self::$default_settings = array(
+			'show_id'           => false,
+			'type'              => 1,
+			'defined_classes'   => array(),
+			'show_number'       => true,
+			'show_location'     => true,
+			'show_evenodd'      => true,
+			'fix_widget_params' => false,
+			'filter_unique'     => false,
+		);
+
+		// Prevent passing by reference.
+		$default_settings = self::$default_settings;
+
+		/**
+		 * Modify the plugin default settings. Doesn't change the DB values.
+		 * IMPORTANT: Do not change the variable types of the values! Type casting will be overruled.
+		 *
+		 * @since  1.5.0
+		 * @param  array  $default_settings  See `widget_css_classes_set_settings` filter for parameters.
+		 * @return array
+		 */
+		$default_settings = apply_filters( 'widget_css_classes_default_settings', $default_settings );
+
+		// Validate default settings against the original defaults.
+		self::$default_settings = self::validate_settings( $default_settings, true );
 
 		return self::$default_settings;
 	}
