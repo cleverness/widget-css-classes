@@ -7,8 +7,8 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 4.7
-Stable tag: 1.4.0
+Tested up to: 4.8
+Stable tag: 1.5.0
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -93,6 +93,28 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 4. Generated HTML
 
 == Changelog ==
+
+= 1.5.0 =
+* **Feature:** Option to try and fix the widget parameters if they are invalid. [#24](https://github.com/cleverness/widget-css-classes/issues/24)
+* **Feature:** Option to remove duplicate classes. [#25](https://github.com/cleverness/widget-css-classes/issues/25)
+* **Enhancement:** Sort classes based on the predefined classes on the frontend by default. [#19](https://github.com/cleverness/widget-css-classes/issues/19)
+* **Enhancement:** Classes filter for frontend (for sorting or modifications). [#19](https://github.com/cleverness/widget-css-classes/issues/19)
+  - `widget_css_classes`: modify all classes added by this plugin.
+  - `widget_css_classes_custom`: modify custom input classes.
+* **Enhancement:** Plugin settings filter (`widget_css_classes_set_settings`), overwrites user settings. [#16](https://github.com/cleverness/widget-css-classes/issues/16)
+* **Enhancement:** Plugin default settings filter (`widget_css_classes_default_settings`). [#4](https://github.com/cleverness/widget-css-classes/issues/4)
+* **Enhancement:** Capability filters for form fields. [#21](https://github.com/cleverness/widget-css-classes/issues/21)
+  - `widget_css_classes_id_input_capability`: ID input
+  - `widget_css_classes_class_input_capability`: classes input
+  - `widget_css_classes_class_select_capability`: predefined classes select (also hides classes input if invalid)
+* **Compatibility:** WP External Links. [#17](https://github.com/cleverness/widget-css-classes/issues/17), thanks to Victor [@freelancephp](https://profiles.wordpress.org/freelancephp)
+* **Fix:** Form wrapper div style. [#18](https://github.com/cleverness/widget-css-classes/issues/18), thanks to Chuck Reynolds [@ryno267](https://profiles.wordpress.org/ryno267)
+* **Fix:** Enable sortable input selection (IE-11 fix). [#20](https://github.com/cleverness/widget-css-classes/issues/20)
+* **UI:** Enhance setting page JavaScript and remove relCopy library dependency.
+* **i18n:** Remove Dutch and Russian languages from plugin distribution (available on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/widget-css-classes)). [#23](https://github.com/cleverness/widget-css-classes/issues/23)
+* Started using TravisCI and CodeClimate. [#15](https://github.com/cleverness/widget-css-classes/issues/15)
+
+Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/pull/22)
 
 = 1.4.0 =
 * Feature: Sort Pre-defined classes (thanks Jory Hogeveen)

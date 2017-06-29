@@ -8,6 +8,8 @@
     <arg name="extensions" value="php" />
 
     <rule ref="WordPress-Extra">
+        <!-- The $domain arg must be a single string literal, not "". Sniff not working (class constant). -->
+        <exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
         <!-- Class file names should be based on the class name with "class-" prepended. -->
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <!-- When an array uses associative keys, each value should start on a new line. -->
