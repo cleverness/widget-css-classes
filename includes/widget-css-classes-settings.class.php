@@ -124,76 +124,76 @@ class WCSSC_Settings {
 
 	public function register_importexport_settings() {
 
-		if ( current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
-			$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', WCSSC_Lib::DOMAIN );
+		$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', WCSSC_Lib::DOMAIN );
 
-			$wcssc_message_class = '';
-			$wcssc_message       = '';
-			if ( isset( $_GET['wcssc_message'] ) ) {
-				switch ( $_GET['wcssc_message'] ) {
-					case 1:
-						$wcssc_message_class = 'updated';
-						$wcssc_message       = esc_attr__( 'Settings Imported', WCSSC_Lib::DOMAIN );
-						break;
-					case 2:
-						$wcssc_message_class = 'error';
-						$wcssc_message       = esc_attr__( 'Invalid Settings File', WCSSC_Lib::DOMAIN );
-						break;
-					case 3:
-						$wcssc_message_class = 'error';
-						$wcssc_message       = esc_attr__( 'No Settings File Selected', WCSSC_Lib::DOMAIN );
-						break;
-				}
+		$wcssc_message_class = '';
+		$wcssc_message       = '';
+		if ( isset( $_GET['wcssc_message'] ) ) {
+			switch ( $_GET['wcssc_message'] ) {
+				case 1:
+					$wcssc_message_class = 'updated';
+					$wcssc_message       = esc_attr__( 'Settings Imported', WCSSC_Lib::DOMAIN );
+					break;
+				case 2:
+					$wcssc_message_class = 'error';
+					$wcssc_message       = esc_attr__( 'Invalid Settings File', WCSSC_Lib::DOMAIN );
+					break;
+				case 3:
+					$wcssc_message_class = 'error';
+					$wcssc_message       = esc_attr__( 'No Settings File Selected', WCSSC_Lib::DOMAIN );
+					break;
 			}
+		}
 
-			if ( ! empty( $wcssc_message ) ) {
-				echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
+		if ( ! empty( $wcssc_message ) ) {
+			echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
+		}
+
+		// export settings
+		if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
+			header( 'Content-Disposition: attachment; filename=widget-css-classes-settings.txt' );
+			header( 'Content-Type: text/plain; charset=utf-8' );
+			$general = get_option( 'WCSSC_options' );
+
+			echo "[START=WCSSC SETTINGS]\n";
+			foreach ( $general as $id => $text ) {
+				// @codingStandardsIgnoreLine >> wp_json_encode is WP 4.1+
+				echo "$id\t" . json_encode( $text ) . "\n";
 			}
+			echo "[STOP=WCSSC SETTINGS]";
+			exit;
+		}
 
-			// export settings
-			if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
-				header( 'Content-Disposition: attachment; filename=widget-css-classes-settings.txt' );
-				header( 'Content-Type: text/plain; charset=utf-8' );
-				$general = get_option( 'WCSSC_options' );
-
-				echo "[START=WCSSC SETTINGS]\n";
-				foreach ( $general as $id => $text ) {
-					// @codingStandardsIgnoreLine >> wp_json_encode is WP 4.1+
-					echo "$id\t" . json_encode( $text ) . "\n";
-				}
-				echo "[STOP=WCSSC SETTINGS]";
-				exit;
-			}
-
-			// import settings
-			if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
-				$wcssc_message = 3;
-				if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
-					$wcssc_message = 2;
-					$import = explode( "\n",
-						// @codingStandardsIgnoreLine >> yeah yeah, I know...
-						file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
-					if ( array_shift( $import ) === '[START=WCSSC SETTINGS]' && array_pop( $import ) === '[STOP=WCSSC SETTINGS]' ) {
-						$options = WCSSC_Lib::get_settings();
-						foreach ( $import as $import_option ) {
-							list( $key, $value ) = explode( "\t", $import_option );
-							$options[ $key ] = json_decode( sanitize_text_field( $value ) );
-							if ( $options['dropdown'] ) { // Update for 1.3.0
-								$options['defined_classes'] = $options['dropdown'];
-								unset( $options['dropdown'] );
-							}
+		// import settings
+		if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
+			$wcssc_message = 3;
+			if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
+				$wcssc_message = 2;
+				$import = explode( "\n",
+					// @codingStandardsIgnoreLine >> yeah yeah, I know...
+					file_get_contents( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) );
+				if ( array_shift( $import ) === '[START=WCSSC SETTINGS]' && array_pop( $import ) === '[STOP=WCSSC SETTINGS]' ) {
+					$options = WCSSC_Lib::get_settings();
+					foreach ( $import as $import_option ) {
+						list( $key, $value ) = explode( "\t", $import_option );
+						$options[ $key ] = json_decode( sanitize_text_field( $value ) );
+						if ( $options['dropdown'] ) { // Update for 1.3.0
+							$options['defined_classes'] = $options['dropdown'];
+							unset( $options['dropdown'] );
 						}
-						WCSSC_Lib::update_settings( $options );
-						$wcssc_message = 1;
 					}
+					WCSSC_Lib::update_settings( $options );
+					$wcssc_message = 1;
 				}
-
-				wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message=' . esc_attr( $wcssc_message ) ) );
-				exit;
 			}
 
-		} // End if().
+			wp_redirect( admin_url( '/options-general.php?page=widget-css-classes-settings&tab=importexport&wcssc_message=' . esc_attr( $wcssc_message ) ) );
+			exit;
+		}
 	}
 
 	public function validate_input( $input ) {
