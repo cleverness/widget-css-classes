@@ -122,6 +122,11 @@ class WCSSC_Settings {
 		<?php
 	}
 
+	/**
+	 * @todo Move to separate class or split in different methods.
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
+	 */
 	public function register_importexport_settings() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
