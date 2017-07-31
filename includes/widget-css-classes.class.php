@@ -647,7 +647,7 @@ class WCSSC {
 		// If Widget Logic plugin is enabled, use it's callback
 		if ( in_array( 'widget-logic/widget_logic.php', $active_plugins, true ) ) {
 			$widget_logic_options = get_option( 'widget_logic' );
-			if ( isset( $widget_logic_options['widget_logic-options-filter'] ) && 'checked' === $widget_logic_options['widget_logic-options-filter'] ) {
+			if ( ! empty( $widget_logic_options['widget_logic-options-filter'] ) ) {
 				$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
 			} else {
 				$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
