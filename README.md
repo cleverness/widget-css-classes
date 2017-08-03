@@ -1,5 +1,7 @@
 # Widget CSS Classes
 
+Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
+
 [![WordPress Plugin version](https://img.shields.io/wordpress/plugin/v/widget-css-classes.svg?style=flat)](https://wordpress.org/plugins/widget-css-classes/)
 [![WordPress Plugin WP tested version](https://img.shields.io/wordpress/v/widget-css-classes.svg?style=flat)](https://wordpress.org/plugins/widget-css-classes/)
 [![WordPress Plugin downloads](https://img.shields.io/wordpress/plugin/dt/widget-css-classes.svg?style=flat)](https://wordpress.org/plugins/widget-css-classes/)
