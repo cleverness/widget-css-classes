@@ -56,7 +56,7 @@ class WCSSC_Lib {
 		}
 
 		if ( $file === $this_plugin ) {
-			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', WCSSC_Lib::DOMAIN ) . '</a>';
+			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', self::DOMAIN ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 
@@ -75,7 +75,7 @@ class WCSSC_Lib {
 		     . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
 		     . ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
 			 . ' | <a href="http://codebrainmedia.com">CodeBrain Media</a>'
-		     . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', WCSSC_Lib::DOMAIN ) . '</a>
+		     . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', self::DOMAIN ) . '</a>
 		<br />';
 	}
 

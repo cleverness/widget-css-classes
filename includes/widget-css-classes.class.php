@@ -48,6 +48,10 @@ class WCSSC {
 		'defined' => 'edit_theme_options',
 	);
 
+	/**
+	 * Initializer for plugin backend.
+	 * @since  1.5.0
+	 */
 	public static function init() {
 		static $done;
 		if ( $done ) return;
@@ -151,7 +155,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 			case 2:
 				// show classes predefined only.
 				if ( $access_predefined ) {
@@ -159,7 +163,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 			case 3:
 				// show both.
 				if ( $access_predefined ) {
@@ -167,7 +171,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 		}
 
 		if ( $fields ) {

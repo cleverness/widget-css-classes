@@ -44,18 +44,26 @@ class WCSSC_Settings {
 
 		register_setting( $this->general_key, $this->general_key, array( $this, 'validate_input' ) );
 		add_settings_section( 'section_general', esc_attr__( 'Widget CSS Classes Settings', WCSSC_Lib::DOMAIN ), array( $this, 'section_general_desc' ), $this->general_key );
-		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_number' ) );
-		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_location' ) );
-		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_evenodd' ) );
-		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array( 'key' => 'show_id' ) );
+		add_settings_field( 'show_number', esc_attr__( 'Add Widget Number Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'show_number',
+		) );
+		add_settings_field( 'show_location', esc_attr__( 'Add First/Last Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'show_location',
+		) );
+		add_settings_field( 'show_evenodd', esc_attr__( 'Add Even/Odd Classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'show_evenodd',
+		) );
+		add_settings_field( 'show_id', esc_attr__( 'Show Additional Field for ID', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key' => 'show_id',
+		) );
 		add_settings_field( 'type', esc_attr__( 'Class Field Type', WCSSC_Lib::DOMAIN ), array( $this, 'type_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'defined_classes', esc_attr__( 'Predefined Classes', WCSSC_Lib::DOMAIN ), array( $this, 'defined_classes_option' ), $this->general_key, 'section_general' );
 		add_settings_field( 'fix_widget_params', esc_attr__( 'Fix widget parameters', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
-			'key' => 'fix_widget_params',
+			'key'  => 'fix_widget_params',
 			'desc' => esc_html__( 'Wrap widget in a <div> element if the parameters are invalid.', WCSSC_Lib::DOMAIN ),
 		) );
 		add_settings_field( 'filter_unique', esc_attr__( 'Remove duplicate classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
-			'key' => 'filter_unique',
+			'key'  => 'filter_unique',
 			'desc' => esc_html__( 'Plugins that run after this plugin could still add duplicates.', WCSSC_Lib::DOMAIN ),
 		) );
 		add_settings_field( 'translate_classes', esc_attr__( 'Translate classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
