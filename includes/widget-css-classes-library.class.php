@@ -140,6 +140,13 @@ class WCSSC_Lib {
 			unset( $settings['dropdown'] );
 		}
 
+		if ( version_compare( $version, '1.5.2', '<' ) ) {
+			// set on true because this was default in previous versions.
+			if ( ! isset( $settings['translate_classes'] ) ) {
+				$settings['translate_classes'] = true;
+			}
+		}
+
 		self::update_settings( $settings );
 	}
 
