@@ -58,6 +58,12 @@ class WCSSC_Settings {
 			'key' => 'filter_unique',
 			'desc' => esc_html__( 'Plugins that run after this plugin could still add duplicates.', WCSSC_Lib::DOMAIN ),
 		) );
+		add_settings_field( 'translate_classes', esc_attr__( 'Translate classes', WCSSC_Lib::DOMAIN ), array( $this, 'show_yes_no_option' ), $this->general_key, 'section_general', array(
+			'key'  => 'translate_classes',
+			'desc' => esc_html__( 'Translate classes like `widget-first` and `widget-even`.', WCSSC_Lib::DOMAIN )
+				// Translators: %s stands for a link to translate.wordpress.org.
+				. ' ' . sprintf( esc_html__( 'Translations are taken from %s', WCSSC_Lib::DOMAIN ), '<a href="https://translate.wordpress.org/projects/wp-plugins/widget-css-classes" target="_blank">translate.wordpress.org</a>' ),
+		) );
 		do_action( 'widget_css_classes_settings' );
 	}
 

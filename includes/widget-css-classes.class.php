@@ -23,6 +23,20 @@ class WCSSC {
 	public static $widget_counter = array();
 
 	/**
+	 * Container for core class tipes.
+	 * @static
+	 * @since  1.5.2
+	 * @var    array
+	 */
+	public static $core_classes = array(
+		'widget_prefix' => 'widget-',
+		'widget_first' => 'widget-first',
+		'widget_last' => 'widget-last',
+		'widget_even' => 'widget-even',
+		'widget_odd' => 'widget-odd',
+	);
+
+	/**
 	 * Default capabilities to display the WCC form in widgets.
 	 * @static
 	 * @since  1.5.0
@@ -66,6 +80,30 @@ class WCSSC {
 		 * @return string
 		 */
 		self::$caps['defined'] = apply_filters( 'widget_css_classes_class_select_capability', self::$caps['defined'], self::$caps['classes'] );
+
+		$done = true;
+	}
+
+	/**
+	 * Initializer for plugin frontend.
+	 * @since  1.5.2
+	 */
+	public static function init_front() {
+		static $done;
+		if ( $done ) return;
+
+		/**
+		 * Do not translate by default but make it optionally.
+		 * @since  1.5.2
+		 */
+		if ( WCSSC_Lib::get_settings( 'translate_classes' ) ) {
+			// Translate with readable string instead of variable for compatibility.
+			self::$core_classes['widget_prefix'] = __( 'widget-', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_first']  = __( 'widget-first', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_last']   = __( 'widget-last', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_even']   = __( 'widget-even', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_odd']    = __( 'widget-odd', WCSSC_Lib::DOMAIN );
+		}
 
 		$done = true;
 	}
@@ -480,7 +518,7 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
-				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', WCSSC_Lib::DOMAIN ) ) . self::$widget_counter[ $this_id ];
+				$class = apply_filters( 'widget_css_classes_number', self::$core_classes['widget_prefix'] ) . self::$widget_counter[ $this_id ];
 				array_unshift( $classes, $class );
 			}
 
@@ -488,8 +526,8 @@ class WCSSC {
 			     isset( $arr_registered_widgets[ $this_id ] ) &&
 			     is_array( $arr_registered_widgets[ $this_id ] )
 			) {
-				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', WCSSC_Lib::DOMAIN ) );
-				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', WCSSC_Lib::DOMAIN ) );
+				$widget_first = apply_filters( 'widget_css_classes_first', self::$core_classes['widget_first'] );
+				$widget_last  = apply_filters( 'widget_css_classes_last', self::$core_classes['widget_last'] );
 				if ( 1 === (int) self::$widget_counter[ $this_id ] ) {
 					array_unshift( $classes, $widget_first );
 				}
@@ -499,8 +537,8 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
-				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', WCSSC_Lib::DOMAIN ) );
-				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', WCSSC_Lib::DOMAIN ) );
+				$widget_even = apply_filters( 'widget_css_classes_even', self::$core_classes['widget_even'] );
+				$widget_odd  = apply_filters( 'widget_css_classes_odd', self::$core_classes['widget_odd'] );
 				$class = ( ( self::$widget_counter[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
 				array_unshift( $classes, $class );
 			}

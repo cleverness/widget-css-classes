@@ -326,6 +326,7 @@ class WCSSC_Lib {
 			'show_evenodd'      => true,
 			'fix_widget_params' => false,
 			'filter_unique'     => false,
+			'translate_classes' => false,
 		);
 
 		// Prevent passing by reference.
