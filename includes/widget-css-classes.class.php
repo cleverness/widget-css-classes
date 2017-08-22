@@ -292,7 +292,7 @@ class WCSSC {
 			'border'     => 'border: 1px solid #ddd;',
 			'box-shadow' => 'box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;',
 			'color'      => 'color: #32373c;',
-		    'margin-top' => 'margin-top: 1px;',
+			'margin-top' => 'margin-top: 1px;',
 		);
 
 		if ( null !== $do_class_field ) {
