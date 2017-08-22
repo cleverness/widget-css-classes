@@ -30,10 +30,10 @@ class WCSSC {
 	 */
 	public static $core_classes = array(
 		'widget_prefix' => 'widget-',
-		'widget_first' => 'widget-first',
-		'widget_last' => 'widget-last',
-		'widget_even' => 'widget-even',
-		'widget_odd' => 'widget-odd',
+		'widget_first'  => 'widget-first',
+		'widget_last'   => 'widget-last',
+		'widget_even'   => 'widget-even',
+		'widget_odd'    => 'widget-odd',
 	);
 
 	/**
