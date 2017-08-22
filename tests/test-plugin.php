@@ -47,6 +47,7 @@ class WCSSC_UnitTest extends WP_UnitTestCase {
 			'show_evenodd'      => true,
 			'fix_widget_params' => false,
 			'filter_unique'     => false,
+			'translate_classes' => false,
 		);
 
 		// Trigger update.
