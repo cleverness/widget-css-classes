@@ -122,9 +122,9 @@ class WCSSC_Lib {
 		}
 
 		if ( version_compare( $version, '1.2', '<' ) ) {
-			$settings['show_number']   = 1;
-			$settings['show_location'] = 1;
-			$settings['show_evenodd']  = 1;
+			$settings['show_number']   = true;
+			$settings['show_location'] = true;
+			$settings['show_evenodd']  = true;
 		}
 
 		if ( version_compare( $version, '1.3', '<' ) ) {
@@ -134,7 +134,7 @@ class WCSSC_Lib {
 			}
 			// dropdown settings are renamed to defined_classes
 			if ( ! isset( $settings['dropdown'] ) ) {
-				$settings['dropdown'] = '';
+				$settings['dropdown'] = array();
 			}
 			$settings['defined_classes'] = $settings['dropdown'];
 			unset( $settings['dropdown'] );
