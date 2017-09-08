@@ -8,6 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.8
+Requires PHP: 5.2.4
 Stable tag: 1.5.2
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
