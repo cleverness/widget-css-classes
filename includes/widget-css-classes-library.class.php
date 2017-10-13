@@ -56,7 +56,7 @@ class WCSSC_Lib {
 		}
 
 		if ( $file === $this_plugin ) {
-			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', WCSSC_Lib::DOMAIN ) . '</a>';
+			$settings_link = '<a href="' . admin_url( 'options-general.php?page=widget-css-classes-settings' ) . '">' . esc_attr__( 'Settings', self::DOMAIN ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 
@@ -72,10 +72,10 @@ class WCSSC_Lib {
 	public static function admin_footer() {
 		$plugin_data = get_plugin_data( WCSSC_FILE );
 		echo $plugin_data['Title'] // @codingStandardsIgnoreLine >> no valid esc function.
-		     . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
-		     . ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
+			 . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
+			 . ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
 			 . ' | <a href="http://codebrainmedia.com">CodeBrain Media</a>'
-		     . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', WCSSC_Lib::DOMAIN ) . '</a>
+			 . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', self::DOMAIN ) . '</a>
 		<br />';
 	}
 
@@ -122,9 +122,9 @@ class WCSSC_Lib {
 		}
 
 		if ( version_compare( $version, '1.2', '<' ) ) {
-			$settings['show_number']   = 1;
-			$settings['show_location'] = 1;
-			$settings['show_evenodd']  = 1;
+			$settings['show_number']   = true;
+			$settings['show_location'] = true;
+			$settings['show_evenodd']  = true;
 		}
 
 		if ( version_compare( $version, '1.3', '<' ) ) {
@@ -134,10 +134,17 @@ class WCSSC_Lib {
 			}
 			// dropdown settings are renamed to defined_classes
 			if ( ! isset( $settings['dropdown'] ) ) {
-				$settings['dropdown'] = '';
+				$settings['dropdown'] = array();
 			}
 			$settings['defined_classes'] = $settings['dropdown'];
 			unset( $settings['dropdown'] );
+		}
+
+		if ( version_compare( $version, '1.5.2', '<' ) ) {
+			// set on true because this was default in previous versions.
+			if ( ! isset( $settings['translate_classes'] ) ) {
+				$settings['translate_classes'] = true;
+			}
 		}
 
 		self::update_settings( $settings );
@@ -326,6 +333,7 @@ class WCSSC_Lib {
 			'show_evenodd'      => true,
 			'fix_widget_params' => false,
 			'filter_unique'     => false,
+			'translate_classes' => false,
 		);
 
 		// Prevent passing by reference.

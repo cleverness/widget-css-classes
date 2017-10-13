@@ -23,6 +23,20 @@ class WCSSC {
 	public static $widget_counter = array();
 
 	/**
+	 * Container for core class tipes.
+	 * @static
+	 * @since  1.5.2
+	 * @var    array
+	 */
+	public static $core_classes = array(
+		'widget_prefix' => 'widget-',
+		'widget_first'  => 'widget-first',
+		'widget_last'   => 'widget-last',
+		'widget_even'   => 'widget-even',
+		'widget_odd'    => 'widget-odd',
+	);
+
+	/**
 	 * Default capabilities to display the WCC form in widgets.
 	 * @static
 	 * @since  1.5.0
@@ -34,6 +48,10 @@ class WCSSC {
 		'defined' => 'edit_theme_options',
 	);
 
+	/**
+	 * Initializer for plugin backend.
+	 * @since  1.5.0
+	 */
 	public static function init() {
 		static $done;
 		if ( $done ) return;
@@ -66,6 +84,30 @@ class WCSSC {
 		 * @return string
 		 */
 		self::$caps['defined'] = apply_filters( 'widget_css_classes_class_select_capability', self::$caps['defined'], self::$caps['classes'] );
+
+		$done = true;
+	}
+
+	/**
+	 * Initializer for plugin frontend.
+	 * @since  1.5.2
+	 */
+	public static function init_front() {
+		static $done;
+		if ( $done ) return;
+
+		/**
+		 * Do not translate by default but make it optionally.
+		 * @since  1.5.2
+		 */
+		if ( WCSSC_Lib::get_settings( 'translate_classes' ) ) {
+			// Translate with readable string instead of variable for compatibility.
+			self::$core_classes['widget_prefix'] = __( 'widget-', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_first']  = __( 'widget-first', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_last']   = __( 'widget-last', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_even']   = __( 'widget-even', WCSSC_Lib::DOMAIN );
+			self::$core_classes['widget_odd']    = __( 'widget-odd', WCSSC_Lib::DOMAIN );
+		}
 
 		$done = true;
 	}
@@ -113,7 +155,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 			case 2:
 				// show classes predefined only.
 				if ( $access_predefined ) {
@@ -121,7 +163,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 			case 3:
 				// show both.
 				if ( $access_predefined ) {
@@ -129,7 +171,7 @@ class WCSSC {
 				} else {
 					$fields .= self::do_hidden( $widget->get_field_name( 'classes' ), $instance['classes'] );
 				}
-			break;
+				break;
 		}
 
 		if ( $fields ) {
@@ -230,28 +272,37 @@ class WCSSC {
 
 		// Do we have existing classes and is the user allowed to select defined classes?
 		if ( ! empty( $instance['classes'] ) ) {
+
 			$text_classes = explode( ' ', $instance['classes'] );
-			foreach ( $text_classes as $key => $value ) {
-				if ( in_array( $value, $predefined_classes, true ) ) {
-					if ( ! in_array( $value, $instance['classes-defined'], true ) ) {
-						$instance['classes-defined'][] = $value;
-					}
-					unset( $text_classes[ $key ] );
-				}
-			}
+
+			// Get the classes that exist in the predefined classes and merge them with the existing.
+			$exists_defined = array_intersect( $text_classes, $predefined_classes );
+
+			// Add them to the defined classes of this instance.
+			$instance['classes-defined'] = array_merge( $instance['classes-defined'], $exists_defined );
+
+			// Remove classes that exist in the predefined classes from the normal (custom) classes.
+			$text_classes = array_diff( $text_classes, $predefined_classes );
+
 			$instance['classes'] = implode( ' ', $text_classes );
 		}
 
 		$style = array(
 			'padding'    => 'padding: 5px;',
-			'max-height' => 'max-height: 70px;',
+			'max-height' => 'max-height: 75px;',
 			'overflow'   => 'overflow: hidden;',
 			'overflow-y' => 'overflow-y: auto;',
 			'border'     => 'border: 1px solid #ddd;',
 			'box-shadow' => 'box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;',
 			'color'      => 'color: #32373c;',
-		    'margin-top' => 'margin-top: 1px;',
+			'margin-top' => 'margin-top: 1px;',
 		);
+
+		if ( 3 < count( $predefined_classes ) ) {
+			unset( $style['max-height'] );
+			$style['height'] = 'height: 75px;';
+			$style['resize'] = 'resize: vertical;';
+		}
 
 		if ( null !== $do_class_field ) {
 			if ( $do_class_field ) {
@@ -480,7 +531,7 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_number' ) ) {
-				$class = apply_filters( 'widget_css_classes_number', esc_attr__( 'widget-', WCSSC_Lib::DOMAIN ) ) . self::$widget_counter[ $this_id ];
+				$class = apply_filters( 'widget_css_classes_number', self::$core_classes['widget_prefix'] ) . self::$widget_counter[ $this_id ];
 				array_unshift( $classes, $class );
 			}
 
@@ -488,8 +539,8 @@ class WCSSC {
 			     isset( $arr_registered_widgets[ $this_id ] ) &&
 			     is_array( $arr_registered_widgets[ $this_id ] )
 			) {
-				$widget_first = apply_filters( 'widget_css_classes_first', esc_attr__( 'widget-first', WCSSC_Lib::DOMAIN ) );
-				$widget_last = apply_filters( 'widget_css_classes_last', esc_attr__( 'widget-last', WCSSC_Lib::DOMAIN ) );
+				$widget_first = apply_filters( 'widget_css_classes_first', self::$core_classes['widget_first'] );
+				$widget_last  = apply_filters( 'widget_css_classes_last', self::$core_classes['widget_last'] );
 				if ( 1 === (int) self::$widget_counter[ $this_id ] ) {
 					array_unshift( $classes, $widget_first );
 				}
@@ -499,8 +550,8 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_evenodd' ) ) {
-				$widget_even = apply_filters( 'widget_css_classes_even', esc_attr__( 'widget-even', WCSSC_Lib::DOMAIN ) );
-				$widget_odd  = apply_filters( 'widget_css_classes_odd', esc_attr__( 'widget-odd', WCSSC_Lib::DOMAIN ) );
+				$widget_even = apply_filters( 'widget_css_classes_even', self::$core_classes['widget_even'] );
+				$widget_odd  = apply_filters( 'widget_css_classes_odd', self::$core_classes['widget_odd'] );
 				$class = ( ( self::$widget_counter[ $this_id ] % 2 ) ? $widget_odd : $widget_even );
 				array_unshift( $classes, $class );
 			}

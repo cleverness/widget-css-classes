@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Widget CSS Classes
- * Version: 1.5.1
+ * Version: 1.5.2-dev
  * Description: Add custom, first, last, even, odd, and numbered classes to your widgets.
  * Author: C.M. Kendrick
  * Author URI: http://cleverness.org
@@ -27,7 +27,7 @@ function widget_css_classes_loader() {
 
 	if ( is_admin() ) {
 
-		if ( ! defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.5.1' );
+		if ( ! defined( 'WCSSC_PLUGIN_VERSION' ) ) define( 'WCSSC_PLUGIN_VERSION', '1.5.2' );
 		if ( ! defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
 		if ( ! defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
 		if ( ! defined( 'WCSSC_PLUGIN_DIR' ) ) define( 'WCSSC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -46,6 +46,7 @@ function widget_css_classes_loader() {
 function widget_css_classes_frontend_hook() {
 	if ( ! is_admin() ) {
 		include_once 'includes/widget-css-classes.class.php';
+		WCSSC::init_front();
 		add_filter( 'dynamic_sidebar_params', array( 'WCSSC', 'add_widget_classes' ) );
 	}
 }
@@ -66,7 +67,7 @@ function widget_css_classes_activation() {
 	}
 
 	if ( ! defined( 'WCSSC_BASENAME' ) ) define( 'WCSSC_BASENAME', plugin_basename( __FILE__ ) );
-	if ( ! defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.5' );
+	if ( ! defined( 'WCSSC_DB_VERSION' ) ) define( 'WCSSC_DB_VERSION', '1.5.2' );
 	if ( ! defined( 'WCSSC_FILE' ) ) define( 'WCSSC_FILE', __FILE__ );
 	include_once 'includes/widget-css-classes-library.class.php';
 
