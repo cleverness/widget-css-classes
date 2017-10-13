@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.5.1
+ * @version 1.5.2
  */
 
 /**
@@ -298,6 +298,7 @@ class WCSSC {
 			'margin-top' => 'margin-top: 1px;',
 		);
 
+		// @since  1.5.2
 		if ( 3 < count( $predefined_classes ) ) {
 			unset( $style['max-height'] );
 			$style['height'] = 'height: 75px;';

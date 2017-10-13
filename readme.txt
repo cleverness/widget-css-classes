@@ -97,6 +97,7 @@ Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) an
 
 = 1.5.2 =
 * **Enhancement:** Make translations of core widget classes optional instead of default. [#29](https://github.com/cleverness/widget-css-classes/issues/29)
+* **Enhancement:** Allow vertical resize of defined classes box for CSS3 compatible browsers.
 
 = 1.5.1 =
 * **Fix:** Widget Logic `widget_content` filter compatibility. [#27](https://github.com/cleverness/widget-css-classes/issues/27)
