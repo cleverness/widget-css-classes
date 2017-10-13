@@ -286,7 +286,7 @@ class WCSSC {
 
 		$style = array(
 			'padding'    => 'padding: 5px;',
-			'max-height' => 'max-height: 70px;',
+			'max-height' => 'max-height: 75px;',
 			'overflow'   => 'overflow: hidden;',
 			'overflow-y' => 'overflow-y: auto;',
 			'border'     => 'border: 1px solid #ddd;',
@@ -294,6 +294,12 @@ class WCSSC {
 			'color'      => 'color: #32373c;',
 			'margin-top' => 'margin-top: 1px;',
 		);
+
+		if ( 3 < count( $predefined_classes ) ) {
+			unset( $style['max-height'] );
+			$style['height'] = 'height: 75px;';
+			$style['resize'] = 'resize: vertical;';
+		}
 
 		if ( null !== $do_class_field ) {
 			if ( $do_class_field ) {
