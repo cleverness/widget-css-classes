@@ -272,15 +272,18 @@ class WCSSC {
 
 		// Do we have existing classes and is the user allowed to select defined classes?
 		if ( ! empty( $instance['classes'] ) ) {
+
 			$text_classes = explode( ' ', $instance['classes'] );
-			foreach ( $text_classes as $key => $value ) {
-				if ( in_array( $value, $predefined_classes, true ) ) {
-					if ( ! in_array( $value, $instance['classes-defined'], true ) ) {
-						$instance['classes-defined'][] = $value;
-					}
-					unset( $text_classes[ $key ] );
-				}
-			}
+
+			// Get the classes that exist in the predefined classes and merge them with the existing.
+			$exists_defined = array_intersect( $text_classes, $predefined_classes );
+
+			// Add them to the defined classes of this instance.
+			$instance['classes-defined'] = array_merge( $instance['classes-defined'], $exists_defined );
+
+			// Remove classes that exist in the predefined classes from the normal (custom) classes.
+			$text_classes = array_diff( $text_classes, $predefined_classes );
+
 			$instance['classes'] = implode( ' ', $text_classes );
 		}
 
