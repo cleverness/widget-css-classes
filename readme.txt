@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.9
 Requires PHP: 5.2.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -78,7 +78,6 @@ register_sidebar( array(
 There are two ways:
 
 1. Edit your theme's style.css file (usually located in _/wp-content/themes/yourtheme/_).
-
 2. Use a plugin such as [Simple Custom CSS](http://wordpress.org/plugins/simple-custom-css/).
 
 = How I export the Settings? =
