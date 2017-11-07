@@ -28,7 +28,7 @@ __This plugin also adds additional classes to widgets to help you style them eas
 * widget-even: added to even numbered widgets in a sidebar
 * widget-#: added to every widget, such as widget-1, widget-2
 
-__Features:__
+= Features =
 
 * Adds a text field to a widget for defining a class
 * You can specify multiple classes by putting a space between them
@@ -64,13 +64,15 @@ usually located in your theme's functions.php (_/wp-content/themes/yourtheme/fun
 This HTML element must have class and id attributes. This plugin will not work if `before_widget` and `after_widget` are blank.
 
 Example:
-`register_sidebar( array(
+```
+register_sidebar( array(
 	'name'          => 'Sidebar',
 	'before_widget' => '<div id="%1$s" class="widget %2$s">',
 	'after_widget'  => '</div>',
 	'before_title'  => '<h2 class="widget-title">',
 	'after_title'   => '</h2>'
-) );`
+) );
+```
 
 = How do I add the CSS for my custom class? =
 There are two ways:
