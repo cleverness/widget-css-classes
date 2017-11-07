@@ -194,38 +194,6 @@ Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/p
 = 1.0 =
 * First version
 
-== Upgrade Notice ==
-
-= 1.4 =
-New feature, bug fix, security fix
-
-= 1.2.7 =
-Bug fix
-
-= 1.2.6 =
-Bug fix
-
-= 1.2.5 =
-Bug fix
-
-= 1.2.4 =
-New translation, added support for WP Page Widget
-
-= 1.2.3 =
-New translations
-
-= 1.2.2 =
-Bug fix
-
-= 1.2 =
-New settings, bug fix
-
-= 1.1 =
-Compatibility fix, bug fix, new feature
-
-= 1.0 =
-First version
-
 == Credits ==
 
 [Adding Custom CSS Classes to WordPress Widgets](http://ednailor.com/2011/01/24/adding-custom-css-classes-to-sidebar-widgets/)
