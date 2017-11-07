@@ -196,34 +196,16 @@ Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/p
 
 == Credits ==
 
-[Adding Custom CSS Classes to WordPress Widgets](http://ednailor.com/2011/01/24/adding-custom-css-classes-to-sidebar-widgets/)
+- [Adding Custom CSS Classes to WordPress Widgets](http://ednailor.com/2011/01/24/adding-custom-css-classes-to-sidebar-widgets/)
+- [Add .first & .last CSS Class Automatically To WordPress Widgets](http://wpshock.com/add-first-last-css-class-automatically-to-wordpress-widgets/)
+- Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
+- Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
+- Polish translation added, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
+- Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
+- Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
+- Dutch translation and predefined classes fix by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
+- Russian translation by Наталия Завьялова
+- Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
+- Fix ids notice by [Ricardo Lüders](http://www.luders.com.br/)
 
-[Add .first & .last CSS Class Automatically To WordPress Widgets](http://wpshock.com/add-first-last-css-class-automatically-to-wordpress-widgets/)
-
-Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
-
-Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
-
-Polish translation added, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
-
-Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
-
-Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
-
-Dutch translation and predefined classes fix by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
-
-Russian translation by Наталия Завьялова
-
-Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
-
-Fix ids notice by [Ricardo Lüders](http://www.luders.com.br/)
-
-== License ==
-
-This file is part of Widget CSS Classes.
-
-Widget CSS Classes is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-Widget CSS Classes is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this plugin. If not, see <http://www.gnu.org/licenses/>.
+[GitHub Contributors](https://github.com/cleverness/widget-css-classes/graphs/contributors)
