@@ -2,7 +2,7 @@
 Contributors: elusivelight, keraweb
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org
 Author URI: http://cleverness.org
-Plugin URI: http://cleverness.org/plugins/widget-css-classes
+Plugin URI: https://github.com/cleverness/widget-css-classes
 Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,7 +42,7 @@ __This plugin also adds additional classes to widgets to help you style them eas
 * Compatible with Widget Logic, Widget Context, and WP Page Widget plugins
 * Has filters and hooks for customizing output including class names
 
-[Plugin Website](http://cleverness.org/plugins/widget-css-classes/)
+[Plugin Website](https://github.com/cleverness/widget-css-classes/wiki)
 
 == Installation ==
 
