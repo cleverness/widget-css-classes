@@ -85,7 +85,7 @@ You can export the Settings from __Settings > Widget CSS Classes > Import/Export
 
 = What should I do if I find a bug? =
 
-Visit [the plugin website](http://cleverness.org/plugins/widget-css-classes/) and [leave a comment](http://cleverness.org/plugins/widget-css-classes/#respond) or [contact me](http://cleverness.org/contact/).
+Please file a [bug report on GitHub](https://github.com/cleverness/widget-css-classes/issues/new).
 
 == Screenshots ==
 
