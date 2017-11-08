@@ -188,7 +188,7 @@ class WCSSC {
 		 */
 		do_action( 'widget_css_classes_form', $fields, $instance );
 
-		// @codingStandardsIgnoreLine
+		// @codingStandardsIgnoreLine >> No escaping needed.
 		echo $fields;
 		return $return;
 	}
