@@ -188,6 +188,7 @@ class WCSSC {
 		 */
 		do_action( 'widget_css_classes_form', $fields, $instance );
 
+		// @codingStandardsIgnoreLine
 		echo $fields;
 		return $return;
 	}
@@ -433,6 +434,9 @@ class WCSSC {
 	 *
 	 * // Disable variable check because of global $wp_registered_widgets.
 	 * @SuppressWarnings(PHPMD.LongVariables)
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
+	 * @todo Refactor to enable above checks.
 	 *
 	 * @static
 	 * @param  $params
@@ -517,8 +521,8 @@ class WCSSC {
 
 		// Add first, last, even, and odd classes.
 		if ( WCSSC_Lib::get_settings( 'show_number' ) ||
-		     WCSSC_Lib::get_settings( 'show_location' ) ||
-		     WCSSC_Lib::get_settings( 'show_evenodd' )
+			 WCSSC_Lib::get_settings( 'show_location' ) ||
+			 WCSSC_Lib::get_settings( 'show_evenodd' )
 		) {
 
 			if ( ! self::$widget_counter ) {
@@ -560,7 +564,7 @@ class WCSSC {
 		} // End if().
 
 		/**
-		 * Modify the list of extra CSS classes.
+		 * Modify the list of all CSS classes.
 		 * Can also be used for ordering etc.
 		 *
 		 * @since  1.5.0
