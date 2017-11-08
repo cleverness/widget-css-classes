@@ -172,7 +172,7 @@ class WCSSC_Settings {
 		}
 
 		if ( ! empty( $wcssc_message ) ) {
-			echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
+			echo '<div class=" ' . esc_attr( $wcssc_message_class ) . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
 		}
 
 		// export settings

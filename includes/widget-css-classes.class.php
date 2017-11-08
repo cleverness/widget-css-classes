@@ -541,8 +541,8 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_location' ) &&
-			     isset( $arr_registered_widgets[ $this_id ] ) &&
-			     is_array( $arr_registered_widgets[ $this_id ] )
+				 isset( $arr_registered_widgets[ $this_id ] ) &&
+				 is_array( $arr_registered_widgets[ $this_id ] )
 			) {
 				$widget_first = apply_filters( 'widget_css_classes_first', self::$core_classes['widget_first'] );
 				$widget_last  = apply_filters( 'widget_css_classes_last', self::$core_classes['widget_last'] );
