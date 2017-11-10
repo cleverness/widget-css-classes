@@ -5,7 +5,7 @@
 * Method library
 * @author C.M. Kendrick <cindy@cleverness.org>
 * @package widget-css-classes
-* @version 1.5.2
+* @version 1.5.2.1
 */
 
 /**

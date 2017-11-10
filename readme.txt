@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 4.9
 Requires PHP: 5.2.4
-Stable tag: 1.5.3
+Stable tag: 1.5.2.1
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -96,9 +96,18 @@ Please file a [bug report on GitHub](https://github.com/cleverness/widget-css-cl
 
 == Changelog ==
 
+= 1.5.2.1 =
+* **i18n:** Remove sv_SE translation from the plugin directory. It's 95% on translate.wordpress.org and accepted as the better version. [#23](https://github.com/cleverness/widget-css-classes/issues/23) 
+* **Documentation:** Readme & Wiki. [#31](https://github.com/cleverness/widget-css-classes/issues/31)
+* **Compatibility:** Tested with WordPress 4.9
+
+Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/pull/32)
+
 = 1.5.2 =
 * **Enhancement:** Make translations of core widget classes optional instead of default. [#29](https://github.com/cleverness/widget-css-classes/issues/29)
 * **Enhancement:** Allow vertical resize of defined classes box for CSS3 compatible browsers.
+
+Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/pull/30)
 
 = 1.5.1 =
 * **Fix:** Widget Logic `widget_content` filter compatibility. [#27](https://github.com/cleverness/widget-css-classes/issues/27)
