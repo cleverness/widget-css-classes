@@ -12,10 +12,9 @@ Add custom classes and ids plus first, last, even, odd, and numbered classes to 
 
 ### Widget CSS Classes gives you the ability to add custom classes and ids to your WordPress widgets
 
-_Please note that this plugin doesn't enable you to enter custom CSS. You'll need to edit your theme's style.css or add another
- plugin that allows you to input custom CSS._
+_Please note that this plugin doesn't enable you to enter custom CSS. You'll need to edit your theme's style.css or add another plugin that allows you to input custom CSS._
 
-__This plugin also adds additional classes to widgets to help you style them easier:__
+**This plugin also adds additional classes to widgets to help you style them easier:**
 
 * widget-first: added to the first widget in a sidebar
 * widget-last: added to the last widget in a sidebar
