@@ -3,7 +3,7 @@
  *
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.5.0
+ * @version 1.5.2.1
  */
 
 jQuery( document ).ready( function ( $ ) {
@@ -12,9 +12,9 @@ jQuery( document ).ready( function ( $ ) {
 	$( 'input.wcssc_type' ).on( 'change', function() {
 		var val = $(this).val();
 		if ( '2' === val || '3' === val ) {
-			$('.wcssc_defined_classes').parents('tr').css({'opacity':''});
+			$('.wcssc_defined_classes').parents('tr').css( { 'opacity': '' } );
 		} else {
-			$('.wcssc_defined_classes').parents('tr').css({'opacity':'.5'});
+			$('.wcssc_defined_classes').parents('tr').css( { 'opacity': '.5' } );
 		}
 	} ).filter(':checked').trigger('change');
 

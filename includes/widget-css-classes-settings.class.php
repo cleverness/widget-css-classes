@@ -5,7 +5,7 @@
  * Settings
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.5.2
+ * @version 1.5.2.1
  */
 
 /**
@@ -147,12 +147,15 @@ class WCSSC_Settings {
 			return;
 		}
 
+		// @codingStandardsIgnoreLine
+		$get = $_GET; $post = $_POST;
+
 		$this->plugin_tabs['importexport'] = esc_attr__( 'Import/Export', WCSSC_Lib::DOMAIN );
 
 		$wcssc_message_class = '';
 		$wcssc_message       = '';
-		if ( isset( $_GET['wcssc_message'] ) ) {
-			switch ( $_GET['wcssc_message'] ) {
+		if ( isset( $get['wcssc_message'] ) ) {
+			switch ( $get['wcssc_message'] ) {
 				case 1:
 					$wcssc_message_class = 'updated';
 					$wcssc_message       = esc_attr__( 'Settings Imported', WCSSC_Lib::DOMAIN );
@@ -169,11 +172,11 @@ class WCSSC_Settings {
 		}
 
 		if ( ! empty( $wcssc_message ) ) {
-			echo '<div class=" ' . $wcssc_message_class . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
+			echo '<div class=" ' . esc_attr( $wcssc_message_class ) . ' "><p>' . esc_html( $wcssc_message ) . '</p></div>';
 		}
 
 		// export settings
-		if ( isset( $_GET['widget-css-classes-settings-export'] ) ) {
+		if ( isset( $get['widget-css-classes-settings-export'] ) ) {
 			header( 'Content-Disposition: attachment; filename=widget-css-classes-settings.txt' );
 			header( 'Content-Type: text/plain; charset=utf-8' );
 			$general = get_option( 'WCSSC_options' );
@@ -183,12 +186,12 @@ class WCSSC_Settings {
 				// @codingStandardsIgnoreLine >> wp_json_encode is WP 4.1+
 				echo "$id\t" . json_encode( $text ) . "\n";
 			}
-			echo "[STOP=WCSSC SETTINGS]";
+			echo '[STOP=WCSSC SETTINGS]';
 			exit;
 		}
 
 		// import settings
-		if ( isset( $_POST['widget-css-classes-settings-import'] ) ) {
+		if ( isset( $post['widget-css-classes-settings-import'] ) ) {
 			$wcssc_message = 3;
 			if ( $_FILES['widget-css-classes-settings-import-file']['tmp_name'] ) {
 				$wcssc_message = 2;

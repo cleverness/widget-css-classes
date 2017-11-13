@@ -5,7 +5,7 @@
  * Loader
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.5.2
+ * @version 1.5.2.1
  */
 
 /**
@@ -188,6 +188,7 @@ class WCSSC {
 		 */
 		do_action( 'widget_css_classes_form', $fields, $instance );
 
+		// @codingStandardsIgnoreLine >> No escaping needed.
 		echo $fields;
 		return $return;
 	}
@@ -433,6 +434,9 @@ class WCSSC {
 	 *
 	 * // Disable variable check because of global $wp_registered_widgets.
 	 * @SuppressWarnings(PHPMD.LongVariables)
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
+	 * @todo Refactor to enable above checks.
 	 *
 	 * @static
 	 * @param  $params
@@ -517,8 +521,8 @@ class WCSSC {
 
 		// Add first, last, even, and odd classes.
 		if ( WCSSC_Lib::get_settings( 'show_number' ) ||
-		     WCSSC_Lib::get_settings( 'show_location' ) ||
-		     WCSSC_Lib::get_settings( 'show_evenodd' )
+			 WCSSC_Lib::get_settings( 'show_location' ) ||
+			 WCSSC_Lib::get_settings( 'show_evenodd' )
 		) {
 
 			if ( ! self::$widget_counter ) {
@@ -537,8 +541,8 @@ class WCSSC {
 			}
 
 			if ( WCSSC_Lib::get_settings( 'show_location' ) &&
-			     isset( $arr_registered_widgets[ $this_id ] ) &&
-			     is_array( $arr_registered_widgets[ $this_id ] )
+				 isset( $arr_registered_widgets[ $this_id ] ) &&
+				 is_array( $arr_registered_widgets[ $this_id ] )
 			) {
 				$widget_first = apply_filters( 'widget_css_classes_first', self::$core_classes['widget_first'] );
 				$widget_last  = apply_filters( 'widget_css_classes_last', self::$core_classes['widget_last'] );
@@ -560,7 +564,7 @@ class WCSSC {
 		} // End if().
 
 		/**
-		 * Modify the list of extra CSS classes.
+		 * Modify the list of all CSS classes.
 		 * Can also be used for ordering etc.
 		 *
 		 * @since  1.5.0
