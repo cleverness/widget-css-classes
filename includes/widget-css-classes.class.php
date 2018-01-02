@@ -690,6 +690,7 @@ class WCSSC {
 	 *
 	 * // Disable complexity check because of third part plugin handling.
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
 	 *
 	 * @static
 	 * @since  1.5.0
