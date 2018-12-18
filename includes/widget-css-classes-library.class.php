@@ -72,10 +72,10 @@ class WCSSC_Lib {
 	public static function admin_footer() {
 		$plugin_data = get_plugin_data( WCSSC_FILE );
 		echo $plugin_data['Title'] // @codingStandardsIgnoreLine >> no valid esc function.
-			 . ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
-			 . ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
-			 . ' | <a href="http://codebrainmedia.com">CodeBrain Media</a>'
-			 . ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', self::DOMAIN ) . '</a>
+			. ' | ' . esc_attr__( 'Version', WCSSC_Lib::DOMAIN ) . ' ' . esc_html( $plugin_data['Version'] )
+			. ' | ' . $plugin_data['Author'] // @codingStandardsIgnoreLine >> no valid esc function.
+			. ' | <a href="http://codebrainmedia.com">CodeBrain Media</a>'
+			. ' | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cindy@cleverness.org">' . esc_attr__( 'Donate', self::DOMAIN ) . '</a>
 		<br />';
 	}
 
@@ -184,9 +184,9 @@ class WCSSC_Lib {
 			if ( ! is_string( $key ) ) {
 				return false;
 			}
-			self::$settings = (array) self::$settings;
+			self::$settings         = (array) self::$settings;
 			self::$settings[ $key ] = $settings;
-			$settings = self::$settings;
+			$settings               = self::$settings;
 		}
 		elseif ( ! is_array( $settings ) ) {
 			return false;
@@ -263,7 +263,7 @@ class WCSSC_Lib {
 				}
 
 				if ( is_string( $value ) ) {
-					$settings[ $key ] = strip_tags( stripslashes( $value ) );
+					$settings[ $key ] = wp_strip_all_tags( stripslashes( $value ) );
 				}
 
 				// Validate var types.
@@ -299,7 +299,7 @@ class WCSSC_Lib {
 		$new_classes = array();
 		// Parse each value the same way.
 		foreach ( $classes as $key => $class ) {
-			$class = self::parse_defined_classes( $class );
+			$class       = self::parse_defined_classes( $class );
 			$new_classes = array_merge( $new_classes, $class );
 		}
 

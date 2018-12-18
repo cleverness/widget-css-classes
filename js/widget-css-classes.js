@@ -3,10 +3,11 @@
  *
  * @author C.M. Kendrick <cindy@cleverness.org>
  * @package widget-css-classes
- * @version 1.5.2.1
+ * @version 1.5.3
+ * @preserve
  */
 
-jQuery( document ).ready( function ( $ ) {
+jQuery( function ( $ ) {
 
 	// Change opacity if predefined classes is disabled.
 	$( 'input.wcssc_type' ).on( 'change', function() {

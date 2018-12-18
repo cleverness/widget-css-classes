@@ -7,9 +7,9 @@ Tags: widgets, classes, css, widget classes, widget css
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 4.9
+Tested up to: 5.0
 Requires PHP: 5.2.4
-Stable tag: 1.5.2.1
+Stable tag: 1.5.3
 
 Add custom classes and ids plus first, last, even, odd, and numbered classes to your widgets.
 
@@ -95,6 +95,10 @@ Please file a [bug report on GitHub](https://github.com/cleverness/widget-css-cl
 4. Generated HTML
 
 == Changelog ==
+
+= 1.5.3 =
+* **Compatibility:** dFactory Responsive Lightbox widget option. #33
+* Tested with WP 5.0.
 
 = 1.5.2.1 =
 * **i18n:** Remove sv_SE translation from the plugin directory. It's 95% on translate.wordpress.org and accepted as the better version. [#23](https://github.com/cleverness/widget-css-classes/issues/23) 
