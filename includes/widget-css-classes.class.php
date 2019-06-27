@@ -468,6 +468,10 @@ class WCSSC {
 		$widget_num             = $widget_obj['params'][0]['number'];
 		$widget_opt             = self::get_widget_opt( $widget_obj );
 
+		if ( ! $widget_opt ) {
+			return $params;
+		}
+
 		// If set, try to fix invalid sidebar parameters.
 		if ( WCSSC_Lib::get_settings( 'fix_widget_params' ) ) {
 			$params[0] = self::fix_widget_params( $params[0] );
@@ -736,6 +740,7 @@ class WCSSC {
 
 		// Default callback.
 		if ( null === $widget_opt ) {
+
 			// Check if WP Page Widget is in use.
 			global $post;
 			$id = ( isset( $post->ID ) ? get_the_ID() : null );
@@ -744,9 +749,21 @@ class WCSSC {
 			}
 
 			$option_name = '';
-			if ( isset( $widget_obj['callback'][0]->option_name ) ) {
+
+			if (
+				isset( $widget_obj['callback'] ) &&
+				// AMP validation compatibility.
+				( ! class_exists( 'Closure' ) || ! $widget_obj['callback'] instanceof Closure ) &&
+				isset( $widget_obj['callback'][0]->option_name )
+			) {
 				$option_name = $widget_obj['callback'][0]->option_name;
-			} elseif ( isset( $widget_obj['original_callback'][0]->option_name ) ) {
+			}
+			elseif (
+				isset( $widget_obj['original_callback'] ) &&
+				// AMP validation compatibility.
+				( ! class_exists( 'Closure' ) || ! $widget_obj['original_callback'] instanceof Closure ) &&
+				isset( $widget_obj['original_callback'][0]->option_name )
+			) {
 				// @since  1.5.3  Compatibility with dFactory Responsive Lightbox plugin.
 				$option_name = $widget_obj['original_callback'][0]->option_name;
 			}
