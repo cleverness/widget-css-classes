@@ -465,8 +465,14 @@ class WCSSC {
 		$this_id                = $params[0]['id']; // Get the id for the current sidebar we're processing
 		$widget_id              = $params[0]['widget_id'];
 		$widget_obj             = $wp_registered_widgets[ $widget_id ];
-		$widget_num             = $widget_obj['params'][0]['number'];
-		$widget_opt             = self::get_widget_opt( $widget_obj );
+
+		// Skip old single widget (not using WP_Widget).
+		if ( ! isset( $widget_obj['params'][0]['number'] ) ) {
+			return $params;
+		}
+
+		$widget_num = $widget_obj['params'][0]['number'];
+		$widget_opt = self::get_widget_opt( $widget_obj );
 
 		// If set, try to fix invalid sidebar parameters.
 		if ( WCSSC_Lib::get_settings( 'fix_widget_params' ) ) {
