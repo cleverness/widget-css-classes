@@ -96,12 +96,16 @@ Please file a [bug report on GitHub](https://github.com/cleverness/widget-css-cl
 
 == Changelog ==
 
+= 1.5.4 =
+* **Compatibility:** Fix for old single widgets (remove notice). [#37](https://github.com/cleverness/widget-css-classes/issues/37) (props @westonruter)
+* Tested with WP 5.2.
+
 = 1.5.3 =
-* **Compatibility:** dFactory Responsive Lightbox widget option. #33
+* **Compatibility:** dFactory Responsive Lightbox widget option. [#33](https://github.com/cleverness/widget-css-classes/issues/33)
 * Tested with WP 5.0.
 
 = 1.5.2.1 =
-* **i18n:** Remove sv_SE translation from the plugin directory. It's 95% on translate.wordpress.org and accepted as the better version. [#23](https://github.com/cleverness/widget-css-classes/issues/23) 
+* **i18n:** Remove sv_SE translation from the plugin directory. It's 95% on translate.wordpress.org and accepted as the better version. [#23](https://github.com/cleverness/widget-css-classes/issues/23)
 * **Documentation:** Readme & Wiki. [#31](https://github.com/cleverness/widget-css-classes/issues/31)
 * **Compatibility:** Tested with WordPress 4.9
 
@@ -153,7 +157,7 @@ Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/p
 * Fix: When predefined is selected, show previous text input classes if they are defined
 * Fix: Ids index notice
 * i18n: Added Dutch translation by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
-* i18n: Added Russian translation by Наталия Завьялова
+* i18n: Added Russian translation by ??????? ?????????
 * i18n: Added Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
 
 = 1.2.9 =
@@ -180,7 +184,7 @@ Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/p
 * Added support for WP Page Widget
 
 = 1.2.3 =
-* Added Polish translation, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
+* Added Polish translation, Slovak translation files renamed by [Tomasz Wesolowski](https://github.com/ittw)
 * Added Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
 
 = 1.2.2 =
@@ -212,12 +216,12 @@ Detailed info: [PR on GitHub](https://github.com/cleverness/widget-css-classes/p
 - [Add .first & .last CSS Class Automatically To WordPress Widgets](http://wpshock.com/add-first-last-css-class-automatically-to-wordpress-widgets/)
 - Widget Context compatibility fix provided by [Joan Piedra](http://joanpiedra.com/)
 - Slovak translation by Branco [WebHostingGeeks.com](http://webhostinggeeks.com/user-reviews/)
-- Polish translation added, Slovak translation files renamed by [Tomasz Wesołowski](https://github.com/ittw)
+- Polish translation added, Slovak translation files renamed by [Tomasz Wesolowski](https://github.com/ittw)
 - Spanish translation by [Maria Ramos at WebHostingHub](http://www.webhostinghub.com/)
 - Serbo-Croatian translation by [Borisa Djuraskovic at WebHostingHub](http://www.webhostinghub.com/)
 - Dutch translation and predefined classes fix by [Jory Hogeveen at Keraweb](https://www.keraweb.nl/)
-- Russian translation by Наталия Завьялова
+- Russian translation by ??????? ?????????
 - Swedish translation by [Olle Gustafsson](http://www.ollegustafsson.com/)
-- Fix ids notice by [Ricardo Lüders](http://www.luders.com.br/)
+- Fix ids notice by [Ricardo L�ders](http://www.luders.com.br/)
 
 [GitHub Contributors](https://github.com/cleverness/widget-css-classes/graphs/contributors)
